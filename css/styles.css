@@ -1545,18 +1545,68 @@ form small {
     z-index: 2000;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* Modal centrado en desktop */
     padding: 20px;
 }
 
 .modal-content {
     width: 100%;
-    max-width: 550px;
+    max-width: 600px; /* Ancho razonable para desktop */
+    background: #FFFFFF !important;
+    color: #1a1a1a !important;
     padding: 40px;
-    border-radius: var(--border-radius-md);
+    border-radius: 12px !important; /* Bordes redondeados parejos en desktop */
     position: relative;
-    max-height: 90vh;
+    max-height: 90vh; /* Altura normal centrada */
+    height: auto;
     overflow-y: auto;
+    margin: 0;
+    border: none !important;
+    backdrop-filter: none !important;
+}
+
+.modal-close-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Modificar texto dentro de modal blanco */
+.modal-content h3, 
+.modal-content h4, 
+.modal-content p, 
+.modal-content label {
+    color: #1a1a1a !important;
+}
+
+.modal-content form label {
+    color: #4a4a4a !important;
+    font-weight: 600;
+}
+
+.modal-content form input[type="text"],
+.modal-content form input[type="email"],
+.modal-content form input[type="tel"],
+.modal-content form input[type="url"],
+.modal-content form textarea,
+.modal-content form select,
+.modal-content form input[type="file"] {
+    background: #F5F5F5 !important;
+    color: #1a1a1a !important;
+    border: 1px solid #DDDDDD !important;
+}
+
+.modal-content form input:focus,
+.modal-content form textarea:focus,
+.modal-content form select:focus {
+    background: #FFFFFF !important;
+    border-color: var(--color-red) !important;
 }
 
 .modal-content h3 {
@@ -1879,7 +1929,7 @@ form input[type="file"] {
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 4px;
     }
     
     .section-header {
@@ -1933,11 +1983,18 @@ form input[type="file"] {
         gap: 0;
     }
     
-    /* Modales en Móvil */
+    /* Modales en Móvil (Bottom Sheet) */
+    .modal-admin, .modal-apply {
+        align-items: flex-end;
+        padding: 0;
+    }
+    
     .modal-content {
-        padding: 25px 20px;
-        max-width: 95vw;
-        border-radius: var(--border-radius-sm);
+        padding: 30px 20px;
+        max-width: 100%;
+        border-radius: 24px 24px 0 0 !important;
+        height: calc(100vh - 50px);
+        max-height: calc(100vh - 50px);
     }
 
     .modal-content h3 {
@@ -2047,8 +2104,20 @@ form input[type="file"] {
     }
 
     .distributor-card-actions {
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 10px;
+    }
+
+    .distributor-card-actions a {
+        flex: 1;
+        justify-content: center;
+        padding: 10px 0;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+        border-bottom: none;
     }
 
     .search-bar {

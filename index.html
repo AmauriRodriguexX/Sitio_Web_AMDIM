@@ -97,7 +97,7 @@
 
                     <!-- Ubicación interactiva de Google Maps -->
                     <div class="map-container glass-card">
-                        <h3>Nuestras Oficinas</h3>
+                        <h3>Nuestras oficinas</h3>
                         <div id="google-map-home">
                             <iframe 
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.6393529321585!2d-99.21360672520336!3d19.43886558188358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d202029e06198f%3A0xe54e60124c6576b5!2sJuan%20V%C3%A1zquez%20de%20Mella%20481%2C%20Los%20Morales%20Secc%20Alameda%2C%20Miguel%20Hidalgo%2C%2011510%20Ciudad de M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1719945115203!5m2!1ses-419!2smx" 
@@ -413,7 +413,7 @@
                 <div class="contacto-form-container glass-card">
                     <h3 style="display: flex; align-items: center; gap: 10px;">
                         <span class="material-symbols-outlined" style="color: var(--color-red);">mail</span>
-                        Enviar Mensaje
+                        Enviar mensaje
                     </h3>
                     <form id="form-contacto">
                         <div class="form-row">
@@ -442,16 +442,16 @@
                             <textarea id="contact-comments" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn--primary btn-submit">Enviar Mensaje</button>
+                        <button type="submit" class="btn btn--primary btn-submit">Enviar mensaje</button>
                     </form>
                 </div>
 
                 <!-- Info de oficinas de AMDIM -->
                 <div class="contacto-info glass-card">
-                    <h3>Oficinas centrales</h3>
+                    <h3>oficinas centrales</h3>
                     <p><strong>Dirección:</strong> Juan Vázquez de Mella 481, Piso 2-203, Los Morales Polanco, Miguel Hidalgo, Ciudad de México, C.P. 11510.</p>
-                    <p><strong>Horario de Atención:</strong> Lunes a Viernes de 9:00 AM a 6:00 PM.</p>
-                    <p><strong>Correo Electrónico Directo:</strong> <a href="mailto:buzonamdim@amdim.com.mx">buzonamdim@amdim.com.mx</a></p>
+                    <p><strong>Horario de atención:</strong> Lunes a Viernes de 9:00 AM a 6:00 PM.</p>
+                    <p><strong>Correo electrónico directo:</strong> <a href="mailto:buzonamdim@amdim.com.mx">buzonamdim@amdim.com.mx</a></p>
                     <p><strong>Teléfonos:</strong> <br>AMDIM: <a href="tel:5552553904">55 5255 3904</a> <br>SP AMDIM: <a href="tel:5555454381">55 5545 4381</a></p>
                 </div>
             </div>
@@ -488,6 +488,7 @@
             <!-- MODAL APLICACIÓN (POSTULACIÓN CANDIDATO) -->
             <div id="apply-job-modal" style="display: none;" class="modal-apply">
                 <div class="modal-content glass-panel">
+                    <button class="modal-close-icon material-symbols-outlined" onclick="document.getElementById('apply-job-modal').style.display='none'">close</button>
                     <h3 style="display: flex; align-items: center; gap: 10px;">
                         <span class="material-symbols-outlined" style="color: var(--color-red);">badge</span>
                         Postularse a la Vacante
@@ -527,6 +528,7 @@
     <!-- MODAL DE DOCUMENTOS LEGALES (Aviso de Privacidad, Términos, Cookies, Aviso Legal) -->
     <div id="legal-modal" style="display: none;" class="modal-apply">
         <div class="modal-content glass-panel" style="max-width: 800px; width: 95%;">
+            <button class="modal-close-icon material-symbols-outlined" onclick="document.getElementById('legal-modal').style.display='none'">close</button>
             <h3 id="legal-modal-title" style="display: flex; align-items: center; gap: 10px;">
                 <span class="material-symbols-outlined" style="color: var(--color-red);">gavel</span>
                 Documento Legal
