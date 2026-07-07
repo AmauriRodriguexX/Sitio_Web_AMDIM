@@ -4,31 +4,714 @@
 // --- 1. DATOS INICIALES DE PRUEBA (MOCK DATA) ---
 const DISTRIBUIDORES_INICIALES = [
     {
-        id: "d1",
-        nombre: "Mitsubishi Polanco",
-        telefono: "55 5255 3904",
-        web: "https://www.mitsubishi-motors.mx",
-        direccion: "Av. Ejército Nacional 843, Granada, Miguel Hidalgo, Ciudad de México, C.P. 11520",
-        lat: 19.4395,
-        lng: -99.2010
+        "id": "d1",
+        "nombre": "MITSUBISHI AEROPUERTO",
+        "telefono": "5510781315",
+        "web": "https://mitsubishi-aeropuerto.mx",
+        "direccion": "Av. Fuerza Aérea #394, Colonia Federal, Alcaldía Venustiano Carranza, C.P. 15700, México, CDMX.",
+        "estado": "Ciudad de México",
+        "lat": 19.4223272,
+        "lng": -99.0851668
     },
     {
-        id: "d2",
-        nombre: "Mitsubishi Guadalajara",
-        telefono: "33 3333 3333",
-        web: "https://www.mitsubishi-motors.mx",
-        direccion: "Av. Patria 1201, Villa Universitaria, Zapopan, Jalisco, C.P. 45110",
-        lat: 20.6975,
-        lng: -103.4150
+        "id": "d2",
+        "nombre": "MITSUBISHI AGUASCALIENTES",
+        "telefono": "4495368840",
+        "web": "https://mitsubishi-aguascalientes.mx",
+        "direccion": "Blvd. Luis Donaldo Colosio Murrieta 791, Col, Trojes de Alonso, 20116 Aguascalientes, Ags.",
+        "estado": "Aguascalientes",
+        "lat": 21.9251749,
+        "lng": -102.2920947
     },
     {
-        id: "d3",
-        nombre: "Mitsubishi Monterrey",
-        telefono: "81 8181 8181",
-        web: "https://www.mitsubishi-motors.mx",
-        direccion: "Av. Lázaro Cárdenas 2400, Valle Oriente, San Pedro Garza García, Nuevo León, C.P. 66269",
-        lat: 25.6420,
-        lng: -100.3295
+        "id": "d3",
+        "nombre": "MITSUBISHI ANGELOPOLIS",
+        "telefono": "2222257777",
+        "web": "https://mitsubishi-angelopolis.mx",
+        "direccion": "Atlixcáyotl 5310 A, Reserva Territorial Atlixcáyotl, Corredor Comercial Desarrollo Atlixcayotl, 72820 San Bernardino Tlaxcalancingo, Pue.",
+        "estado": "Puebla",
+        "lat": 19.0274641,
+        "lng": -98.2336571
+    },
+    {
+        "id": "d4",
+        "nombre": "MITSUBISHI BOCA DEL RIO",
+        "telefono": "2299229510",
+        "web": "https://mitsubishi-bocadelrio.mx",
+        "direccion": "Bv. Adolfo Ruíz Cortines S/N, Primera Sección, Costa de Oro, 94299 Boca del Río, Ver.",
+        "estado": "Veracruz",
+        "lat": 19.1518593,
+        "lng": -96.1063268
+    },
+    {
+        "id": "d5",
+        "nombre": "MITSUBISHI CAMINO REAL",
+        "telefono": "3338805610",
+        "web": "https://mitsubishi-caminoreal.mx",
+        "direccion": "Av. Ignacio L Vallarta 5091, Camino Real, 45040 Zapopan, Jal.",
+        "estado": "Jalisco",
+        "lat": 20.6764828,
+        "lng": -103.4117324
+    },
+    {
+        "id": "d6",
+        "nombre": "MITSUBISHI CAMPECHE",
+        "telefono": "8000028867",
+        "web": "https://mitsubishi-campeche.mx",
+        "direccion": "Av. Maestros Campechanos 377 Col, Multunchac, 24095 San Francisco de Campeche, Camp.",
+        "estado": "Campeche",
+        "lat": 19.8072217,
+        "lng": -90.5282131
+    },
+    {
+        "id": "d7",
+        "nombre": "MITSUBISHI CAMPESTRE",
+        "telefono": "4777114444",
+        "web": "https://mitsubishi-campestre.mx",
+        "direccion": "Blvd. Adolfo López Mateos 2511 Col, Jardines del Moral, 37160 León de los Aldama, Gto.",
+        "estado": "Guanajuato",
+        "lat": 21.1484703,
+        "lng": -101.6854198
+    },
+    {
+        "id": "d8",
+        "nombre": "MITSUBISHI CANCUN",
+        "telefono": "529988811940",
+        "web": "https://mitsubishi-cancun.mx",
+        "direccion": "Av. Bonampak Supermanzana 8, Zona Hotelera, 77500 Cancún, Q.R.",
+        "estado": "Quintana Roo",
+        "lat": 21.1424986,
+        "lng": -86.822441
+    },
+    {
+        "id": "d9",
+        "nombre": "MITSUBISHI CD DEL CARMEN",
+        "telefono": "8000028867",
+        "web": "https://mitsubishi-cddelcarmen.mx",
+        "direccion": "Av. Aviación #114, Col. Benito Juárez. 24180. Ciudad del Carmen, Campeche",
+        "estado": "Campeche",
+        "lat": 19.4326,
+        "lng": -99.1332
+    },
+    {
+        "id": "d10",
+        "nombre": "MITSUBISHI CD GUZMÁN",
+        "telefono": "523414105605",
+        "web": "https://mitsubishi-cdguzman.mx",
+        "direccion": "Calz Madero y Carranza 485 Col, Centro, 49000 Cdad. Guzmán, Jal.",
+        "estado": "Jalisco",
+        "lat": 19.7031901,
+        "lng": -103.4776408
+    },
+    {
+        "id": "d11",
+        "nombre": "MITSUBISHI CELAYA",
+        "telefono": "524611599018",
+        "web": "https://mitsubishi-celaya.mx",
+        "direccion": "Nogal 818, Col, Primera Seccion, Jardines de Celaya 1ra Secc, 38080 Celaya, Gto.",
+        "estado": "Guanajuato",
+        "lat": 20.5169819,
+        "lng": -100.7925115
+    },
+    {
+        "id": "d12",
+        "nombre": "MITSUBISHI CHIAPAS",
+        "telefono": "529611212284",
+        "web": "https://mitsubishi-chiapas.mx",
+        "direccion": "Blvd. Belisario Domínguez 4000, Jardines de Tuxtla, 29020 Tuxtla Gutiérrez, Chis.",
+        "estado": "Chiapas",
+        "lat": 16.7564689,
+        "lng": -93.1570249
+    },
+    {
+        "id": "d13",
+        "nombre": "MITSUBISHI CHIHUAHUA",
+        "telefono": "526144422700",
+        "web": "https://mitsubishi-chihuahua.mx",
+        "direccion": "Blvrd Antonio Ortiz Mena 431 Col, Unidad Presidentes, 31210 Chihuahua, Chih.",
+        "estado": "Chihuahua",
+        "lat": 28.6451314,
+        "lng": -106.1003711
+    },
+    {
+        "id": "d14",
+        "nombre": "MITSUBISHI COAPA",
+        "telefono": "525510781315",
+        "web": "https://mitsubishi-coapa.mx",
+        "direccion": "Calz. del Hueso 975, Coapa, Granjas Coapa, Tlalpan, 14330 Ciudad de México, CDMX",
+        "estado": "Ciudad de México",
+        "lat": 19.2994609,
+        "lng": -99.1071897
+    },
+    {
+        "id": "d15",
+        "nombre": "MITSUBISHI COATZACOALCOS",
+        "telefono": "529212131020",
+        "web": "https://mitsubishi-coatzacoalcos.mx",
+        "direccion": "Carretera Coatzacoalcos, 4 S/N, Heroes de Nacozari, 96599 Coatzacoalcos, Ver.",
+        "estado": "Veracruz",
+        "lat": 18.1226554,
+        "lng": -94.4426708
+    },
+    {
+        "id": "d16",
+        "nombre": "MITSUBISHI COLIMA",
+        "telefono": "523123307172",
+        "web": "https://mitsubishi-colima.mx",
+        "direccion": "Carlos de La Madrid Béjar 895, El Tecolote, 28090 Colima, Col.",
+        "estado": "Colima",
+        "lat": 19.2201068,
+        "lng": -103.7220493
+    },
+    {
+        "id": "d17",
+        "nombre": "MITSUBISHI CÓRDOBA",
+        "telefono": "522717129006",
+        "web": "https://mitsubishi-cordoba.mx",
+        "direccion": "Zona Diez, 21 de Mayo 292.95, La Posta, 94570 Córdoba, Ver.",
+        "estado": "Veracruz",
+        "lat": 18.8843766,
+        "lng": -96.9533777
+    },
+    {
+        "id": "d18",
+        "nombre": "MITSUBISHI BERNARDO QUINTANA",
+        "telefono": "4421500600",
+        "web": "https://www.mitsubishi-bernardoquintana.mx/",
+        "direccion": "Prol. Bernardo Quintana 4099, Plaza Boulevares, 76160 Santiago de Querétaro, Qro.",
+        "estado": "Querétaro",
+        "lat": 20.6149857,
+        "lng": -100.3880554
+    },
+    {
+        "id": "d19",
+        "nombre": "MITSUBISHI COUNTRY",
+        "telefono": "523321012100",
+        "web": "https://mitsubishi-country.mx",
+        "direccion": "Av. Manuel Ávila Camacho 2023- A, Country Club, 44610 Guadalajara, Jal.",
+        "estado": "Jalisco",
+        "lat": 20.7053545,
+        "lng": -103.3647488
+    },
+    {
+        "id": "d20",
+        "nombre": "MITSUBISHI CUAUTITLÁN",
+        "telefono": "525593314444",
+        "web": "https://mitsubishi-cuautitlan.mx",
+        "direccion": "Autopista México - Querétaro km 38.4, El Sabino, 54713 San Mateo Ixtacalco, Méx.",
+        "estado": "Estado de México",
+        "lat": 19.6730888,
+        "lng": -99.2002018
+    },
+    {
+        "id": "d21",
+        "nombre": "MITSUBISHI CULIACÁN",
+        "telefono": "526675495050",
+        "web": "https://mitsubishi-culiacan.mx",
+        "direccion": "Blvd. Pedro Infante 2301-L-2, Col. Jardines, Desarrollo Urbano Tres Ríos, 80100 Culiacán Rosales, Sin.",
+        "estado": "Sinaloa",
+        "lat": 24.8031889,
+        "lng": -107.4124831
+    },
+    {
+        "id": "d22",
+        "nombre": "MITSUBISHI DURANGO",
+        "telefono": "526188264434",
+        "web": "https://mitsubishi-durango.mx",
+        "direccion": "Blvd. Domingo Arrieta 1100 Col, Jalisco, 34170 Durango, Dgo.",
+        "estado": "Durango",
+        "lat": 24.0035783,
+        "lng": -104.6619933
+    },
+    {
+        "id": "d23",
+        "nombre": "MITSUBISHI FLETEROS",
+        "telefono": "528111584400",
+        "web": "https://mitsubishi-fleteros.mx",
+        "direccion": "Gral. Pablo A Gonzalez 124, San Jerónimo, 64640 Monterrey, N.L.",
+        "estado": "Nuevo León",
+        "lat": 25.6798251,
+        "lng": -100.3535829
+    },
+    {
+        "id": "d24",
+        "nombre": "MITSUBISHI GONZALEZ GALLO",
+        "telefono": "523324512800",
+        "web": "https://mitsubishi-gonzalezgallo.mx",
+        "direccion": "Calz. Jesús González Gallo 534, La Aurora, 44790 Guadalajara, Jal.",
+        "estado": "Jalisco",
+        "lat": 20.6540703,
+        "lng": -103.3403645
+    },
+    {
+        "id": "d25",
+        "nombre": "MITSUBISHI HERMOSILLO CENTRO",
+        "telefono": "526622135520",
+        "web": "https://mitsubishi-hermosillocentro.mx",
+        "direccion": "Blvr. Abelardo L. Rodríguez 110 Col, Centro, 06700 Hermosillo, Son.",
+        "estado": "Sonora",
+        "lat": 29.0907561,
+        "lng": -110.9562331
+    },
+    {
+        "id": "d26",
+        "nombre": "MITSUBISHI INSURGENTES",
+        "telefono": "525591839002",
+        "web": "https://mitsubishi-insurgentes.mx",
+        "direccion": "Av. Insurgentes Sur 1247, Extremadura Insurgentes, Benito Juárez, 03740 Ciudad de México, CDMX",
+        "estado": "Ciudad de México",
+        "lat": 19.3755459,
+        "lng": -99.1785957
+    },
+    {
+        "id": "d27",
+        "nombre": "MITSUBISHI INTERLOMAS",
+        "telefono": "525530003430",
+        "web": "https://mitsubishi-interlomas.mx",
+        "direccion": "P.º de la Herradura 422, Interlomas, Parques de la Herradura, 52760 Naucalpan de Juárez, Méx.",
+        "estado": "Estado de México",
+        "lat": 19.4027652,
+        "lng": -99.2681718
+    },
+    {
+        "id": "d28",
+        "nombre": "MITSUBISHI JUAREZ",
+        "telefono": "526564786000",
+        "web": "https://mitsubishi-juarez.mx",
+        "direccion": "Av de la Raza 6529, Del Futuro, 32320 Juárez, Chih.",
+        "estado": "Chihuahua",
+        "lat": 31.725192,
+        "lng": -106.4270555
+    },
+    {
+        "id": "d29",
+        "nombre": "MITSUBISHI LA PAZ",
+        "telefono": "Pendiente",
+        "web": "https://mitsubishi-lapaz.mx",
+        "direccion": "Lote 9, Av Luis Donaldo Colosio, entre Boulevard Constituyentes y Calle Aquiles Serdan. Colonia Sector Inalapa. C.P 23090. La Paz, B.C.S.",
+        "estado": "Baja California",
+        "lat": 19.4326,
+        "lng": -99.1332
+    },
+    {
+        "id": "d30",
+        "nombre": "MITSUBISHI LAGUNA",
+        "telefono": "528717294900",
+        "web": "https://mitsubishi-laguna.mx",
+        "direccion": "Av. Juarez 3701 Col, Nuevo Torreón, 27060 Torreón, Coah.",
+        "estado": "Coahuila",
+        "lat": 25.5383475,
+        "lng": -103.4087059
+    },
+    {
+        "id": "d31",
+        "nombre": "MITSUBISHI LEÓN",
+        "telefono": "524777717800",
+        "web": "https://mitsubishi-leon.mx",
+        "direccion": "Blvd. Adolfo López Mateos 2710 Col, Industrial Julian de Obregon, 37290 León de los Aldama, Gto.",
+        "estado": "Guanajuato",
+        "lat": 21.0966622,
+        "lng": -101.6290706
+    },
+    {
+        "id": "d32",
+        "nombre": "MITSUBISHI LINDA VISTA",
+        "telefono": "528140024300",
+        "web": "https://mitsubishi-lindavista.mx",
+        "direccion": "Av. Constituyentes de Nuevo León 114, Col. Alamos Corregidora, 64590 Monterrey, N.L.",
+        "estado": "Nuevo León",
+        "lat": 25.6855713,
+        "lng": -100.2621916
+    },
+    {
+        "id": "d33",
+        "nombre": "MITSUBISHI LÓPEZ MATEOS",
+        "telefono": "523337704444",
+        "web": "https://mitsubishi-lopezmateos.mx",
+        "direccion": "Av. Adolfo López Mateos Sur 4221 Col, Loma Bonita, 45086 Zapopan, Jal.",
+        "estado": "Jalisco",
+        "lat": 20.6407104,
+        "lng": -103.4094368
+    },
+    {
+        "id": "d34",
+        "nombre": "MITSUBISHI LOS FUERTES",
+        "telefono": "522222230232",
+        "web": "https://mitsubishi-losfuertes.mx",
+        "direccion": "Diag. Defensores de la República 872 Col, Adolfo López Mateos, 72240 Heroica Puebla de Zaragoza, Pue.",
+        "estado": "Puebla",
+        "lat": 19.0644556,
+        "lng": -98.1808061
+    },
+    {
+        "id": "d35",
+        "nombre": "MITSUBISHI MANZANILLO",
+        "telefono": "314 688 2679",
+        "web": "https://mitsubishi-manzanillo.mx",
+        "direccion": "Blvd. Miguel de la Madrid No.740 Col. Salagua, las brisas, C.P.28218, Manzanillo, Col.",
+        "estado": "Colima",
+        "lat": 19.0853676,
+        "lng": -104.3080294
+    },
+    {
+        "id": "d36",
+        "nombre": "MITSUBISHI MAZATLÁN",
+        "telefono": "526699899090",
+        "web": "https://mitsubishi-mazatlan.mx",
+        "direccion": "Dr. Jesús Kumate 209 Col, Hacienda las Cruces, 82110 Mazatlán, Sin.",
+        "estado": "Sinaloa",
+        "lat": 23.2415146,
+        "lng": -106.441345
+    },
+    {
+        "id": "d37",
+        "nombre": "MITSUBISHI MERIDA",
+        "telefono": "529999449797",
+        "web": "https://mitsubishi-merida.mx",
+        "direccion": "Calle 6, Prol. Paseo Montejo 318 Col, Gonzalo Guerrero, 97118 Mérida, Yuc.",
+        "estado": "Mérida",
+        "lat": 21.0233978,
+        "lng": -89.6224518
+    },
+    {
+        "id": "d38",
+        "nombre": "MITSUBISHI MEXICALI",
+        "telefono": "526865615757",
+        "web": "https://mitsubishi-mexicali.mx",
+        "direccion": "Blvd. Lázaro Cárdenas 1598 Col, Ex-Ejido Zacatecas, 21090 Mexicali, B.C.",
+        "estado": "Baja California",
+        "lat": 32.6243493,
+        "lng": -115.4566667
+    },
+    {
+        "id": "d39",
+        "nombre": "MITSUBISHI MONCLOVA",
+        "telefono": "528666416847",
+        "web": "https://mitsubishi-monclova.mx",
+        "direccion": "Blvd Harold R. Pape 310 Col, Santa Isabel, 25732 Monclova, Coah.",
+        "estado": "Coahuila",
+        "lat": 26.9441053,
+        "lng": -101.4131666
+    },
+    {
+        "id": "d40",
+        "nombre": "MITSUBISHI MORELIA",
+        "telefono": "524431284338",
+        "web": "https://mitsubishi-morelia.mx",
+        "direccion": "Av Acueducto 2547, Col. Chapultepec Ote, 58260 Morelia, Mich.",
+        "estado": "Michoacán",
+        "lat": 19.6959156,
+        "lng": -101.1610928
+    },
+    {
+        "id": "d41",
+        "nombre": "MITSUBISHI MORELOS",
+        "telefono": "527779801300",
+        "web": "https://mitsubishi-morelos.mx",
+        "direccion": "José María Morelos 65 Col, Chipitlan, 62070 Cuernavaca, Mor.",
+        "estado": "Morelos",
+        "lat": 18.8934458,
+        "lng": -99.2285599
+    },
+    {
+        "id": "d42",
+        "nombre": "MITSUBISHI OAXACA",
+        "telefono": "529515016070",
+        "web": "https://mitsubishi-oaxaca.mx",
+        "direccion": "AV UNIVERSIDAD 553-A COL, Avenida Universidad 553-A, Exhacienda Candiani, 68120 Oaxaca de Juárez, Oax.",
+        "estado": "Oaxaca",
+        "lat": 17.0399427,
+        "lng": -96.7111739
+    },
+    {
+        "id": "d43",
+        "nombre": "MITSUBISHI PACHUCA",
+        "telefono": "527714541921",
+        "web": "https://mitsubishi-pachuca.mx",
+        "direccion": "Blvd. Felipe Ángeles 400 Col, Parque Urbano, Pachoacan, 42083 Pachuca de Soto, Hgo.",
+        "estado": "Hidalgo",
+        "lat": 20.0684025,
+        "lng": -98.779529
+    },
+    {
+        "id": "d44",
+        "nombre": "MITSUBISHI PLAYA DEL CARMEN",
+        "telefono": "800 00 28867",
+        "web": "https://www.mitsubishi-playadelcarmen.mx/",
+        "direccion": "Calle Carr. Federal 6236, Zazil-ha, 77720 Playa del Carmen, Q.R.",
+        "estado": "Quintana Roo",
+        "lat": 19.4326,
+        "lng": -99.1332
+    },
+    {
+        "id": "d45",
+        "nombre": "MITSUBISHI POZA RICA",
+        "telefono": "527821188080",
+        "web": "https://mitsubishi-pozarica.mx",
+        "direccion": "Av 20 de Noviembre 206 Col, Cazones, 93230 Poza Rica de Hidalgo, Ver.",
+        "estado": "Veracruz",
+        "lat": 20.5421321,
+        "lng": -97.4511866
+    },
+    {
+        "id": "d46",
+        "nombre": "MITSUBISHI PUERTO VALLARTA",
+        "telefono": "523223080777",
+        "web": "https://mitsubishi-puertovallarta.mx",
+        "direccion": "Boulevard Vallarta Tepic 5162A, Col. Las Juntas, Puerto Vallarta, Jalisco.",
+        "estado": "Jalisco",
+        "lat": 20.6671594,
+        "lng": -105.2474564
+    },
+    {
+        "id": "d47",
+        "nombre": "MITSUBISHI REYNOSA",
+        "telefono": "528992931300",
+        "web": "https://mitsubishi-reynosa.mx",
+        "direccion": "Blvd. Hidalgo 285 Col, Fuentes del Valle, 88746 Reynosa, Tamps.",
+        "estado": "Tamaulipas",
+        "lat": 26.0673665,
+        "lng": -98.3371649
+    },
+    {
+        "id": "d48",
+        "nombre": "MITSUBISHI SALTILLO",
+        "telefono": "528447979000",
+        "web": "https://mitsubishi-saltillo.mx",
+        "direccion": "Blvd. Venustiano Carranza 5586 Col, La Hacienda, 25256 Saltillo, Coah.",
+        "estado": "Coahuila",
+        "lat": 25.4731904,
+        "lng": -100.9764998
+    },
+    {
+        "id": "d49",
+        "nombre": "MITSUBISHI SAN ÁNGEL",
+        "telefono": "525553373000",
+        "web": "https://mitsubishi-sanangel.mx",
+        "direccion": "Av. Revolución 1321, Col. Tlacopac, Àlvaro Obregòn, Álvaro Obregón, 01049 Ciudad de México, CDMX",
+        "estado": "Ciudad de México",
+        "lat": 19.358823,
+        "lng": -99.189959
+    },
+    {
+        "id": "d50",
+        "nombre": "MITSUBISHI SAN LUIS POTOSÍ",
+        "telefono": "524448635301",
+        "web": "https://mitsubishi-sanluispotosi.mx",
+        "direccion": "Av. Benito Juarez 1110, Valle Dorado, 78399 San Luis Potosí, S.L.P.",
+        "estado": "San Luis Potosí",
+        "lat": 22.1440697,
+        "lng": -100.947482
+    },
+    {
+        "id": "d51",
+        "nombre": "MITSUBISHI SANTA CLARA",
+        "telefono": "55 5699 0390",
+        "web": "https://mitsubishi-santaclara.mx",
+        "direccion": "Avenida Via Morelos 439, Colonia Santa Clara, CP 55540, Ecatepec de Morelos, Edo de Mex.",
+        "estado": "Estado de México",
+        "lat": 19.5376404,
+        "lng": -99.0622675
+    },
+    {
+        "id": "d52",
+        "nombre": "MITSUBISHI SATÉLITE",
+        "telefono": "525553667833",
+        "web": "https://mitsubishi-satelite.mx",
+        "direccion": "Perif. Blvd. Manuel Ávila Camacho 2304 Col, San Lucas Tepetlacalco, 53240 Tlalnepantla, Méx.",
+        "estado": "Estado de México",
+        "lat": 19.5235222,
+        "lng": -99.2292417
+    },
+    {
+        "id": "d53",
+        "nombre": "MITSUBISHI SENDERO",
+        "telefono": "528141050000",
+        "web": "https://mitsubishi-sendero.mx",
+        "direccion": "Avenida Universidad 1003, Centro, 66400 San Nicolás de los Garza, N.L.",
+        "estado": "Nuevo León",
+        "lat": 25.7574614,
+        "lng": -100.2966105
+    },
+    {
+        "id": "d54",
+        "nombre": "MITSUBISHI TABASCO",
+        "telefono": "529933136666",
+        "web": "https://mitsubishi-tabasco.mx",
+        "direccion": "Ave Juan Estrada Torres s/n esq. Ciudad deportiva, Primero de Mayo, 86190 Villahermosa, Tab.",
+        "estado": "Tabasco",
+        "lat": 17.9767553,
+        "lng": -92.9391475
+    },
+    {
+        "id": "d55",
+        "nombre": "MITSUBISHI TAMPICO",
+        "telefono": "528331151600",
+        "web": "https://mitsubishi-tampico.mx",
+        "direccion": "Av. Miguel Hidalgo. 6303 Nvo. Aeropuerto, Lomas del Chairel, 89337 Tampico, Tamps.",
+        "estado": "Tamaulipas",
+        "lat": 22.277467,
+        "lng": -97.8730488
+    },
+    {
+        "id": "d56",
+        "nombre": "MITSUBISHI TEHUACÁN",
+        "telefono": "522383825199",
+        "web": "https://mitsubishi-tehuacan.mx",
+        "direccion": "Av Independencia Pte 1409-B, Arcadia, 75760 Tehuacán, Pue.",
+        "estado": "Puebla",
+        "lat": 18.4630827,
+        "lng": -97.4058007
+    },
+    {
+        "id": "d57",
+        "nombre": "MITSUBISHI TEPIC",
+        "telefono": "523112172202",
+        "web": "https://mitsubishi-tepic.mx",
+        "direccion": "Av Insurgentes 1997, Los Llanitos, 63170 Tepic, Nay.",
+        "estado": "Nayarit",
+        "lat": 21.4910761,
+        "lng": -104.8787547
+    },
+    {
+        "id": "d58",
+        "nombre": "MITSUBISHI TIJUANA",
+        "telefono": "526649691979",
+        "web": "https://mitsubishi-tijuana.mx",
+        "direccion": "Av. Vía Rápida Pte. 15471, La Cienega Poniente, 22114 Tijuana, B.C.",
+        "estado": "Tijuana",
+        "lat": 32.4951855,
+        "lng": -116.9432667
+    },
+    {
+        "id": "d59",
+        "nombre": "MITSUBISHI TLAHUAC",
+        "telefono": "525554266301",
+        "web": "https://mitsubishi-tlahuac.mx",
+        "direccion": "Av. Tlahuac 4799, El Vergel, Iztapalapa, 09880 Ciudad de México, CDMX",
+        "estado": "Ciudad de México",
+        "lat": 19.3189859,
+        "lng": -99.0794749
+    },
+    {
+        "id": "d60",
+        "nombre": "MITSUBISHI TLAXCALA",
+        "telefono": "522464613435",
+        "web": "https://mitsubishi-tlaxcala.mx",
+        "direccion": "Autopista Tlaxcala - Apizaco, quinta sección, 90459 Santa María Atlihuetzian, Tlax.",
+        "estado": "Tlaxcala",
+        "lat": 19.3757692,
+        "lng": -98.179451
+    },
+    {
+        "id": "d61",
+        "nombre": "MITSUBISHI TOLUCA",
+        "telefono": "527221801888",
+        "web": "https://mitsubishi-toluca.mx",
+        "direccion": "Av. Lic. Benito Juárez García 1610 Col, San Francisco Coaxusco, 52158 Toluca de Lerdo, Méx.",
+        "estado": "Estado de México",
+        "lat": 19.2719477,
+        "lng": -99.6307857
+    },
+    {
+        "id": "d62",
+        "nombre": "MITSUBISHI URUAPAN",
+        "telefono": "452 502 0424",
+        "web": "https://mitsubishi-uruapan.mx",
+        "direccion": "Paseo de la Revolución 500 Jardines del Bosque Uruapan Michoacán CP 60190",
+        "estado": "Michoacán",
+        "lat": 19.4326,
+        "lng": -99.1332
+    },
+    {
+        "id": "d63",
+        "nombre": "MITSUBISHI VALLEJO",
+        "telefono": "525595506568",
+        "web": "https://mitsubishi-vallejo.mx",
+        "direccion": "Calz. Vallejo 1059, Nueva Vallejo II Secc, Gustavo A. Madero, 07720 Ciudad de México, CDMX",
+        "estado": "Ciudad de México",
+        "lat": 19.498831,
+        "lng": -99.1552893
+    },
+    {
+        "id": "d64",
+        "nombre": "MITSUBISHI XALAPA",
+        "telefono": "522281730244",
+        "web": "https://mitsubishi-xalapa.mx",
+        "direccion": "C. Lázaro Cárdenas 4107 Col, Sipeh Animas, 91190 Xalapa-Enríquez, Ver.",
+        "estado": "Veracruz",
+        "lat": 19.5243698,
+        "lng": -96.8961656
+    },
+    {
+        "id": "d65",
+        "nombre": "MITSUBISHI ZACATECAS",
+        "telefono": "524923072040",
+        "web": "https://mitsubishi-zacatecas.mx",
+        "direccion": "Calz. Revolución Mexicana 1A, Col. Tierra y Libertad, Primera Sección, 98615 Guadalupe, Zac.",
+        "estado": "Zacatecas",
+        "lat": 22.7568321,
+        "lng": -102.5133755
+    },
+    {
+        "id": "d66",
+        "nombre": "MITSUBISHI ZAMORA",
+        "telefono": "3515170027",
+        "web": "https://mitsubishi-zamora.mx",
+        "direccion": "Carr. Zamora-La Barca KM 3, COLONIA, San Joaquín, 45086 Zamora de Hidalgo, Mich.",
+        "estado": "Michoacán",
+        "lat": 20.0147653,
+        "lng": -102.2809723
+    },
+    {
+        "id": "d67",
+        "nombre": "MITSUBISHI RÍO MAYO",
+        "telefono": "777 160 6600",
+        "web": "https://mitsubishi-riomayo.mx",
+        "direccion": "Av Río Mayo 403, Vista Hermosa, 62290 Cuernavaca, Mor.",
+        "estado": "Morelos",
+        "lat": 18.9337175,
+        "lng": -99.2215857
+    },
+    {
+        "id": "d68",
+        "nombre": "MITSUBISHI CD VICTORIA",
+        "telefono": "8343161600",
+        "web": "https://Pendiente",
+        "direccion": "C. Alberto Carrera Torres 920b, Zona Centro, 87000 Cdad. Victoria, Tamps.",
+        "estado": "Tamaulipas",
+        "lat": 23.7374233,
+        "lng": -99.1439088
+    },
+    {
+        "id": "d69",
+        "nombre": "MITSUBISHI CORREGIDORA",
+        "telefono": "4461392005",
+        "web": "https://mitsubishi-corregidora.mx",
+        "direccion": "PROLONGACIÓN AV, Calle Luis M. Vega 302, Cimatario, 76030 Santiago de Querétaro, Qro.",
+        "estado": "Querétaro",
+        "lat": 20.5767269,
+        "lng": -100.3899282
+    },
+    {
+        "id": "d70",
+        "nombre": "MITSUBISHI JURIQUILLA",
+        "telefono": "Pendiente",
+        "web": "https://mitsubishi-juriquilla.mx",
+        "direccion": "Pendiente",
+        "estado": "Pendiente",
+        "lat": 19.4326,
+        "lng": -99.1332
+    },
+    {
+        "id": "d71",
+        "nombre": "MITSUBISHI DEL VALLE",
+        "telefono": "55 9183 9002",
+        "web": "https://mitsubishi-delvalle.mx",
+        "direccion": "Ixcateopan, Av. División del Nte. 183 Esquina, Letran Valle, Benito Juárez, 03650 Ciudad de México, CDMX",
+        "estado": "Ciudad de México",
+        "lat": 19.4326,
+        "lng": -99.1332
     }
 ];
 
@@ -53,8 +736,11 @@ const VACANTES_INICIALES = [
 
 // --- 2. INICIALIZACIÓN DEL SITIO ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar bases de datos locales si no existen
-    if (!localStorage.getItem('amdim_distribuidores')) {
+    // Inicializar bases de datos locales si no existen o tienen datos viejos
+    const storedDists = localStorage.getItem('amdim_distribuidores');
+    const parsedDists = storedDists ? JSON.parse(storedDists) : null;
+    const hasEstadoField = parsedDists && parsedDists[0] && parsedDists[0].hasOwnProperty('estado');
+    if (!storedDists || parsedDists.length < 71 || !hasEstadoField) {
         localStorage.setItem('amdim_distribuidores', JSON.stringify(DISTRIBUIDORES_INICIALES));
     }
     if (!localStorage.getItem('amdim_vacantes')) {
@@ -69,6 +755,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initContacto();
     initLinkedInFeed();
     initLegales();
+    initModelosFilter();
 });
 
 // --- 3. NAVEGACIÓN Y COMPORTAMIENTO GENERAL ---
@@ -77,7 +764,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * Controla la barra de navegación del sitio (SPA)
  */
 function initNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-link, .bottom-nav-link');
     const sections = document.querySelectorAll('.content-section');
 
     function showSection(targetId) {
@@ -105,10 +792,8 @@ function initNavigation() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        const activeLink = document.querySelector(`.nav-link[href="#${targetId}"]`);
-        if (activeLink) {
-            activeLink.classList.add('active');
-        }
+        const activeLinks = document.querySelectorAll(`.nav-link[href="#${targetId}"], .bottom-nav-link[href="#${targetId}"]`);
+        activeLinks.forEach(link => link.classList.add('active'));
     }
 
     navLinks.forEach(link => {
@@ -120,10 +805,10 @@ function initNavigation() {
 
             // Cerrar menú móvil al hacer click
             const mainNav = document.getElementById('main-nav');
-            const menuToggle = document.querySelector('.menu-toggle');
+            const menuToggles = document.querySelectorAll('.menu-toggle');
             if (mainNav.classList.contains('open')) {
                 mainNav.classList.remove('open');
-                menuToggle.classList.remove('open');
+                menuToggles.forEach(t => t.classList.remove('open'));
             }
         });
     });
@@ -159,90 +844,221 @@ function initHeaderScroll() {
  * Controla el menú responsivo móvil
  */
 function initMobileMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
+    const menuToggles = document.querySelectorAll('.menu-toggle');
     const mainNav = document.getElementById('main-nav');
 
-    if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('open');
-            mainNav.classList.toggle('open');
+    // Crear el overlay dinámicamente si no existe
+    let overlay = document.getElementById('nav-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'nav-overlay';
+        document.body.appendChild(overlay);
+    }
+
+    if (menuToggles.length > 0 && mainNav) {
+        menuToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const isOpen = toggle.classList.toggle('open');
+                // Sincronizar el estado en todos los toggles
+                menuToggles.forEach(t => {
+                    if (isOpen) t.classList.add('open');
+                    else t.classList.remove('open');
+                });
+                mainNav.classList.toggle('open');
+                overlay.classList.toggle('open');
+            });
+        });
+
+        // Cerrar al dar click en el overlay (blur trasero)
+        overlay.addEventListener('click', () => {
+            menuToggles.forEach(t => t.classList.remove('open'));
+            mainNav.classList.remove('open');
+            overlay.classList.remove('open');
+        });
+
+        // Cerrar el menú al hacer click en cualquier enlace de navegación
+        const navLinks = mainNav.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggles.forEach(t => t.classList.remove('open'));
+                mainNav.classList.remove('open');
+                overlay.classList.remove('open');
+            });
         });
     }
 }
 
-// --- 4. SECCIÓN DISTRIBUIDORES ---
-
 function initDistribuidores() {
     const searchInput = document.getElementById('distribuidor-search');
+    const stateSelect = document.getElementById('distribuidor-state-select');
+    const searchStats = document.getElementById('search-stats');
     const directoryList = document.getElementById('directory-list');
     const btnUseLocation = document.getElementById('btn-use-location');
-    const btnOpenAdmin = document.getElementById('btn-open-admin-portal');
-    const btnCloseAdmin = document.getElementById('btn-close-admin-portal');
-    const adminPortal = document.getElementById('distribuidor-admin-portal');
-    const formAlta = document.getElementById('form-alta-distribuidor');
+    const mapContainer = document.getElementById('distribuidores-map');
+
+    let selectedDistId = null;
 
     function getDistribuidores() {
         return JSON.parse(localStorage.getItem('amdim_distribuidores')) || [];
     }
 
-    function renderDistribuidores(filterText = "") {
+    // Normalizar texto para búsqueda inteligente (quita acentos)
+    function cleanText(text) {
+        return text.toString().toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim();
+    }
+
+    // Inicializar el selector de estados dinámicamente
+    function initStateSelect() {
+        if (!stateSelect) return;
         const list = getDistribuidores();
+        const states = [...new Set(list.map(d => d.estado))].filter(Boolean).sort();
+        
+        stateSelect.innerHTML = '<option value="">Todos los Estados</option>';
+        states.forEach(state => {
+            const option = document.createElement('option');
+            option.value = state;
+            option.textContent = state;
+            stateSelect.appendChild(option);
+        });
+    }
+
+    function renderDistribuidores() {
+        const list = getDistribuidores();
+        const filterText = searchInput ? cleanText(searchInput.value) : "";
+        const filterState = stateSelect ? stateSelect.value : "";
+
         directoryList.innerHTML = "";
 
         const filteredList = list.filter(dist => {
-            const matchName = dist.nombre.toLowerCase().includes(filterText.toLowerCase());
-            const matchDir = dist.direccion.toLowerCase().includes(filterText.toLowerCase());
-            return matchName || matchDir;
+            const matchState = !filterState || dist.estado === filterState;
+            
+            const cleanName = cleanText(dist.nombre);
+            const cleanDir = cleanText(dist.direccion);
+            const cleanState = cleanText(dist.estado);
+            
+            const matchSearch = !filterText || 
+                                cleanName.includes(filterText) || 
+                                cleanDir.includes(filterText) ||
+                                cleanState.includes(filterText) ||
+                                dist.telefono.includes(filterText);
+                                
+            return matchState && matchSearch;
         });
+
+        // Actualizar estadísticas de búsqueda
+        if (searchStats) {
+            if (filteredList.length === 1) {
+                searchStats.textContent = "1 distribuidor encontrado";
+            } else {
+                searchStats.textContent = `${filteredList.length} distribuidores encontrados ${filterState ? `en ${filterState}` : ''}`;
+            }
+        }
 
         if (filteredList.length === 0) {
             directoryList.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--color-text-muted); padding: 40px 0;">No se encontraron distribuidores.</p>`;
+            actualizarMapa(null);
             return;
+        }
+
+        // Si el distribuidor seleccionado ya no está en la lista filtrada, reseteamos la selección
+        if (selectedDistId && !filteredList.some(d => d.id === selectedDistId)) {
+            selectedDistId = null;
+        }
+
+        // Si no hay ninguno seleccionado, por defecto seleccionamos el primero
+        if (!selectedDistId && filteredList.length > 0) {
+            selectedDistId = filteredList[0].id;
         }
 
         filteredList.forEach(dist => {
             const card = document.createElement('div');
-            card.className = 'distributor-card glass-card';
+            const isActive = dist.id === selectedDistId;
+            card.className = `distributor-card glass-card ${isActive ? 'active' : ''}`;
+            card.dataset.id = dist.id;
+            
             card.innerHTML = `
-                <div class="distributor-img-placeholder">
-                    <span class="material-symbols-outlined" style="font-size: 2.5rem; color: var(--color-red);">directions_car</span>
+                <div class="distributor-card-img">
+                    <img src="assets/images/facades/real_facade.png" alt="${dist.nombre}" loading="lazy">
                 </div>
-                <div class="distributor-info">
-                    <div>
+                <div class="distributor-card-info">
+                    <div class="distributor-card-header">
                         <h4>${dist.nombre}</h4>
-                        <p><strong>Teléfono:</strong> <a href="tel:${dist.telefono.replace(/\s+/g, '')}">${dist.telefono}</a></p>
-                        <p><strong>Dirección:</strong> ${dist.direccion}</p>
+                        <span class="distributor-card-state-badge">${dist.estado}</span>
                     </div>
-                    <div class="card-actions">
-                        <a href="${dist.web}" target="_blank" class="btn-link">
-                            <span class="material-symbols-outlined icon-align" style="font-size: 0.9rem;">language</span> Visitar Sitio
+                    <div class="distributor-card-body">
+                        <p style="display: flex; align-items: center; gap: 8px;">
+                            <span class="material-symbols-outlined" style="font-size: 0.95rem; color: var(--color-red);">call</span>
+                            <strong>Teléfono:</strong> 
+                            <a href="tel:${dist.telefono.replace(/\s+/g, '')}" style="color: var(--color-text-secondary); text-decoration: none;" onclick="event.stopPropagation();">${dist.telefono}</a>
+                        </p>
+                        <p style="display: flex; align-items: flex-start; gap: 8px;">
+                            <span class="material-symbols-outlined" style="font-size: 0.95rem; color: var(--color-red); margin-top: 2px;">location_on</span>
+                            <span>${dist.direccion}</span>
+                        </p>
+                    </div>
+                    <div class="distributor-card-actions">
+                        <a href="${dist.web}" target="_blank" onclick="event.stopPropagation();">
+                            <span class="material-symbols-outlined" style="font-size: 0.85rem;">language</span> Visitar Sitio
                         </a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dist.direccion)}" target="_blank" class="btn-link">
-                            <span class="material-symbols-outlined icon-align" style="font-size: 0.9rem;">navigation</span> Cómo llegar
+                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dist.direccion)}" target="_blank" onclick="event.stopPropagation();">
+                            <span class="material-symbols-outlined" style="font-size: 0.85rem;">navigation</span> Cómo llegar
                         </a>
                     </div>
                 </div>
             `;
+
+            card.addEventListener('click', () => {
+                selectDistributor(dist);
+            });
+
             directoryList.appendChild(card);
         });
 
-        // Actualizar el mapa con los pines
-        actualizarMapaDistribuidores(filteredList);
+        // Actualizar mapa con el distribuidor activo
+        const activeDist = filteredList.find(d => d.id === selectedDistId) || filteredList[0];
+        if (activeDist) {
+            actualizarMapa(activeDist);
+        }
     }
 
-    function actualizarMapaDistribuidores(list) {
-        const mapContainer = document.getElementById('distribuidores-map');
+    function selectDistributor(dist) {
+        selectedDistId = dist.id;
+        
+        // Quitar clase active a todas las tarjetas y ponérsela a la seleccionada
+        const cards = directoryList.querySelectorAll('.distributor-card');
+        cards.forEach(card => {
+            if (card.dataset.id === dist.id) {
+                card.classList.add('active');
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                card.classList.remove('active');
+            }
+        });
+
+        actualizarMapa(dist);
+    }
+
+    function actualizarMapa(dist) {
         if (!mapContainer) return;
 
-        if (list.length > 0) {
-            const firstDist = list[0];
+        if (dist) {
+            // Usar coordenadas lat/lng si son válidas (distintas a las del fallback de CDMX)
+            // O si es la de CDMX, usar la dirección para mayor precisión en la API de Google Maps
+            const query = (dist.lat === 19.4326 && dist.lng === -99.1332) 
+                ? encodeURIComponent(dist.nombre + ", " + dist.direccion) 
+                : `${dist.lat},${dist.lng}`;
+                
             mapContainer.innerHTML = `
                 <iframe 
-                    src="https://maps.google.com/maps?q=${encodeURIComponent(firstDist.direccion)}&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                    src="https://maps.google.com/maps?q=${query}&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                     width="100%" 
                     height="100%" 
                     allowfullscreen="" 
-                    loading="lazy">
+                    loading="lazy"
+                    style="border:0;">
                 </iframe>
             `;
         } else {
@@ -256,91 +1072,124 @@ function initDistribuidores() {
         }
     }
 
+    function calcularDistancia(lat1, lon1, lat2, lon2) {
+        const R = 6371; // km
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
+    }
+
     // Buscador interactivo
     if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            renderDistribuidores(e.target.value);
+        searchInput.addEventListener('input', () => {
+            renderDistribuidores();
         });
     }
 
-    // Geolocalización simulada
+    // Filtro por Estado
+    if (stateSelect) {
+        stateSelect.addEventListener('change', () => {
+            renderDistribuidores();
+        });
+    }
+
+    // Geolocalización real / simulada
     if (btnUseLocation) {
         btnUseLocation.addEventListener('click', () => {
-            showToast("Buscando distribuidor más cercano a tu ubicación...");
+            showToast("Solicitando permiso de ubicación...");
             
-            setTimeout(() => {
-                const list = getDistribuidores();
-                if (list.length > 0) {
-                    const cercano = list[0]; // Mitsubishi Polanco
-                    if (searchInput) {
-                        searchInput.value = cercano.nombre;
-                        renderDistribuidores(cercano.nombre);
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const userLat = position.coords.latitude;
+                        const userLng = position.coords.longitude;
+                        
+                        showToast("Buscando distribuidor más cercano...");
+                        
+                        setTimeout(() => {
+                            const list = getDistribuidores();
+                            let closestDist = null;
+                            let minDistance = Infinity;
+                            
+                            list.forEach(dist => {
+                                // Evitar calcular con coordenadas default
+                                if (dist.lat !== 19.4326 || dist.lng !== -99.1332) {
+                                    const d = calcularDistancia(userLat, userLng, dist.lat, dist.lng);
+                                    if (d < minDistance) {
+                                        minDistance = d;
+                                        closestDist = dist;
+                                    }
+                                }
+                            });
+                            
+                            // Si no encontramos con coordenadas válidas, tomamos el primero como fallback
+                            if (!closestDist && list.length > 0) {
+                                closestDist = list[0];
+                            }
+                            
+                            if (closestDist) {
+                                selectedDistId = closestDist.id;
+                                if (stateSelect) stateSelect.value = "";
+                                if (searchInput) searchInput.value = "";
+                                
+                                renderDistribuidores();
+                                selectDistributor(closestDist);
+                                showToast(`Distribuidor más cercano encontrado: ${closestDist.nombre} (a ${(minDistance < Infinity) ? minDistance.toFixed(1) + ' km' : 'distancia no determinada'})`);
+                            }
+                        }, 800);
+                    },
+                    (error) => {
+                        console.warn("Error de geolocalización o permiso denegado: ", error);
+                        showToast("No pudimos obtener tu ubicación. Usando ubicación de referencia...");
+                        
+                        // Referencia CDMX (Ángel de la Independencia)
+                        const cdmxLat = 19.4270;
+                        const cdmxLng = -99.1677;
+                        
+                        setTimeout(() => {
+                            const list = getDistribuidores();
+                            let closestDist = list[0]; // Fallback default
+                            let minDistance = Infinity;
+                            
+                            list.forEach(dist => {
+                                if (dist.lat !== 19.4326 || dist.lng !== -99.1332) {
+                                    const d = calcularDistancia(cdmxLat, cdmxLng, dist.lat, dist.lng);
+                                    if (d < minDistance) {
+                                        minDistance = d;
+                                        closestDist = dist;
+                                    }
+                                }
+                            });
+                            
+                            if (closestDist) {
+                                selectedDistId = closestDist.id;
+                                if (stateSelect) stateSelect.value = "";
+                                if (searchInput) searchInput.value = "";
+                                
+                                renderDistribuidores();
+                                selectDistributor(closestDist);
+                                showToast(`Distribuidor más cercano en CDMX: ${closestDist.nombre}`);
+                            }
+                        }, 800);
                     }
-                    showToast(`Distribuidor más cercano encontrado: ${cercano.nombre}`);
-                }
-            }, 1200);
+                );
+            } else {
+                showToast("Geolocalización no soportada por tu navegador.");
+            }
         });
     }
 
-    // Portales Administrativos (Modal)
-    if (btnOpenAdmin && adminPortal) {
-        btnOpenAdmin.addEventListener('click', () => {
-            adminPortal.style.display = 'flex';
-        });
-    }
-
-    if (btnCloseAdmin && adminPortal) {
-        btnCloseAdmin.addEventListener('click', () => {
-            adminPortal.style.display = 'none';
-        });
-    }
-
-    // Alta de Distribuidor
-    if (formAlta) {
-        formAlta.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const nombre = document.getElementById('dist-nombre').value;
-            const telefono = document.getElementById('dist-telefono').value;
-            const web = document.getElementById('dist-web').value;
-            const direccion = document.getElementById('dist-direccion').value;
-
-            const nuevoDist = {
-                id: "d_" + Date.now(),
-                nombre,
-                telefono,
-                web,
-                direccion,
-                lat: 19.43, 
-                lng: -99.13
-            };
-
-            const actualLista = getDistribuidores();
-            actualLista.push(nuevoDist);
-            localStorage.setItem('amdim_distribuidores', JSON.stringify(actualLista));
-
-            formAlta.reset();
-            if (adminPortal) adminPortal.style.display = 'none';
-            
-            renderDistribuidores();
-            showToast("Distribuidor registrado exitosamente.");
-        });
-    }
-
-    // Carga inicial de distribuidores
+    // Inicializar
+    initStateSelect();
     renderDistribuidores();
 }
 
-// --- 5. SECCIÓN BOLSA DE TRABAJO ---
-
 function initBolsaTrabajo() {
-    const tabCandidatos = document.getElementById('tab-candidatos');
-    const tabDistribuidores = document.getElementById('tab-distribuidores');
-    const viewCandidatos = document.getElementById('jobs-candidato-view');
-    const viewDistribuidores = document.getElementById('jobs-distribuidor-view');
-
-    const formAltaVacante = document.getElementById('form-alta-vacante');
     const vacantesList = document.getElementById('vacantes-list');
-    const myVacanciesList = document.getElementById('my-vacancies-list');
     
     const applyModal = document.getElementById('apply-job-modal');
     const formAplicar = document.getElementById('form-aplicar-vacante');
@@ -349,38 +1198,8 @@ function initBolsaTrabajo() {
     const applyJobDesc = document.getElementById('apply-job-desc');
     const applyJobId = document.getElementById('apply-job-id');
 
-    const descTextarea = document.getElementById('vacante-descripcion');
-    const charCounter = document.getElementById('char-counter');
-
     function getVacantes() {
         return JSON.parse(localStorage.getItem('amdim_vacantes')) || [];
-    }
-
-    // Control de Tabs
-    if (tabCandidatos && tabDistribuidores) {
-        tabCandidatos.addEventListener('click', () => {
-            tabCandidatos.classList.add('active');
-            tabDistribuidores.classList.remove('active');
-            viewCandidatos.style.display = 'block';
-            viewDistribuidores.style.display = 'none';
-            renderVacantesPublicas();
-        });
-
-        tabDistribuidores.addEventListener('click', () => {
-            tabDistribuidores.classList.add('active');
-            tabCandidatos.classList.remove('active');
-            viewDistribuidores.style.display = 'block';
-            viewCandidatos.style.display = 'none';
-            renderVacantesDistribuidor();
-        });
-    }
-
-    // Contador de Caracteres
-    if (descTextarea && charCounter) {
-        descTextarea.addEventListener('input', () => {
-            const restantes = 300 - descTextarea.value.length;
-            charCounter.textContent = `${restantes} caracteres restantes`;
-        });
     }
 
     // Render de Vacantes Públicas (Vista Candidato)
@@ -400,9 +1219,9 @@ function initBolsaTrabajo() {
                 <h4>${job.titulo}</h4>
                 <p class="vacante-distribuidor">${job.distribuidor}</p>
                 <p class="vacante-desc">${job.descripcion}</p>
-                <p class="vacante-vigencia">Vigencia: ${job.vigencia === '1-mes' ? '1 Mes' : 'Permanente / Manual'}</p>
-                <button class="btn-apply-trigger" data-id="${job.id}">
-                    <span class="material-symbols-outlined icon-align" style="font-size: 1rem;">send</span> Postularse
+                <p class="vacante-vigencia">Vigencia: ${job.vigencia === '1-mes' ? '1 Mes' : 'Permanente'}</p>
+                <button class="btn btn--primary btn-apply-trigger" data-id="${job.id}">
+                    Postularse
                 </button>
             `;
             vacantesList.appendChild(card);
@@ -421,83 +1240,6 @@ function initBolsaTrabajo() {
         });
     }
 
-    // Render de Vacantes Propias (Vista Dashboard)
-    function renderVacantesDistribuidor() {
-        const list = getVacantes();
-        myVacanciesList.innerHTML = "";
-
-        // Asumimos que el distribuidor activo es "Mitsubishi Polanco"
-        const misVacantes = list.filter(job => job.distribuidor === "Mitsubishi Polanco");
-
-        if (misVacantes.length === 0) {
-            myVacanciesList.innerHTML = `<p style="text-align: center; color: var(--color-text-muted); padding: 20px 0;">Aún no has publicado vacantes.</p>`;
-            return;
-        }
-
-        misVacantes.forEach(job => {
-            const item = document.createElement('div');
-            item.className = 'my-vacancy-item glass-panel';
-            item.innerHTML = `
-                <div>
-                    <h5>${job.titulo}</h5>
-                    <p style="margin-top: 4px;">Recibe CVs en: ${job.email}</p>
-                </div>
-                <button class="btn-deactivate" data-id="${job.id}">
-                    <span class="material-symbols-outlined icon-align" style="font-size: 0.95rem;">delete</span> Quitar
-                </button>
-            `;
-            myVacanciesList.appendChild(item);
-        });
-
-        // Configurar botones de desactivar
-        const deactivateButtons = myVacanciesList.querySelectorAll('.btn-deactivate');
-        deactivateButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const jobId = btn.getAttribute('data-id');
-                desactivarVacante(jobId);
-            });
-        });
-    }
-
-    // Desactivar Vacante
-    function desactivarVacante(id) {
-        const actualLista = getVacantes();
-        const nuevaLista = actualLista.filter(job => job.id !== id);
-        localStorage.setItem('amdim_vacantes', JSON.stringify(nuevaLista));
-        renderVacantesDistribuidor();
-        showToast("Vacante desactivada y retirada de la bolsa de trabajo.");
-    }
-
-    // Alta de Vacante en el Dashboard
-    if (formAltaVacante) {
-        formAltaVacante.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('vacante-email').value;
-            const titulo = document.getElementById('vacante-titulo').value;
-            const descripcion = descTextarea.value;
-            const vigencia = document.getElementById('vacante-vigencia').value;
-
-            const nuevaVacante = {
-                id: "v_" + Date.now(),
-                titulo,
-                distribuidor: "Mitsubishi Polanco", 
-                email,
-                descripcion,
-                vigencia
-            };
-
-            const actualLista = getVacantes();
-            actualLista.push(nuevaVacante);
-            localStorage.setItem('amdim_vacantes', JSON.stringify(actualLista));
-
-            formAltaVacante.reset();
-            if (charCounter) charCounter.textContent = '300 caracteres restantes';
-            
-            renderVacantesDistribuidor();
-            showToast("Vacante publicada de manera exitosa en el portal.");
-        });
-    }
-
     // Modal de Aplicación
     function abrirModalAplicacion(job) {
         applyJobTitle.textContent = job.titulo;
@@ -509,6 +1251,15 @@ function initBolsaTrabajo() {
     if (btnCloseApply) {
         btnCloseApply.addEventListener('click', () => {
             applyModal.style.display = 'none';
+        });
+    }
+
+    // Cerrar modal al hacer click en el fondo (overlay)
+    if (applyModal) {
+        applyModal.addEventListener('click', (e) => {
+            if (e.target === applyModal) {
+                applyModal.style.display = 'none';
+            }
         });
     }
 
@@ -532,38 +1283,66 @@ function initLinkedInFeed() {
     const feedContainer = document.getElementById('linkedin-feed-placeholder');
     if (!feedContainer) return;
 
+    // Aquí AMDIM puede agregar sus publicaciones recientes manualmente
+    // Copiando el texto, agregando una imagen (opcional) y el enlace al post real de LinkedIn
     const posts = [
         {
             fecha: "Hace 2 días",
             texto: "Celebramos la convención nacional anual 2026 de la AMDIM. Un espacio donde nuestros 71 distribuidores autorizados de Mitsubishi Motors en México compartieron estrategias e innovación para seguir ofreciendo el mejor servicio del sector.",
+            imagen: "", // Puedes colocar una ruta como "assets/images/news1.jpg"
+            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
             likes: 48,
             comentarios: 6
         },
         {
             fecha: "Hace 1 semana",
             texto: "¡Orgullosos del lanzamiento de la nueva L200 2026! Robustez, durabilidad y tecnología al servicio de los caminos mexicanos. Visita tu distribuidor autorizado Mitsubishi más cercano para agendar tu prueba de manejo.",
+            imagen: "",
+            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
             likes: 92,
             comentarios: 15
         },
         {
             fecha: "Hace 3 semanas",
             texto: "AMDIM reafirma su compromiso con el desarrollo automotriz del país. Abrimos nuevas vacantes en nuestra bolsa de trabajo para integrar talento especializado en las áreas de ventas y servicio técnico certificado.",
+            imagen: "",
+            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
             likes: 34,
             comentarios: 2
         }
     ];
 
     feedContainer.innerHTML = "";
-    posts.forEach(post => {
+    // Mostrar solamente los primeros 5 posts más recientes
+    posts.slice(0, 5).forEach(post => {
         const postCard = document.createElement('div');
         postCard.className = 'mock-linkedin-post glass-card';
+        postCard.style.cursor = 'pointer'; // Para indicar que es clickeable
+        
+        // Al hacer click, lleva al post real de LinkedIn
+        postCard.addEventListener('click', () => {
+            window.open(post.enlace, '_blank');
+        });
+
+        // Generar la etiqueta de imagen solo si existe
+        const imgHTML = post.imagen ? `<div style="margin-top: 15px; border-radius: 8px; overflow: hidden;"><img src="${post.imagen}" alt="Post de LinkedIn" style="width: 100%; height: auto; display: block;"></div>` : '';
+
         postCard.innerHTML = `
-            <div class="post-header">
-                <strong>Asociación Mexicana de Distribuidores Mitsubishi, A.C.</strong>
-                <span>${post.fecha}</span>
+            <div class="post-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--color-red); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
+                        AM
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <strong style="color: var(--color-white); font-size: 0.95rem;">Asociación Mexicana de Distribuidores Mitsubishi, A.C.</strong>
+                        <span style="font-size: 0.8rem; color: var(--color-text-muted);">${post.fecha}</span>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined" style="color: #0A66C2;">open_in_new</span>
             </div>
-            <div class="post-content">
+            <div class="post-content" style="color: var(--color-text-secondary); line-height: 1.5; font-size: 0.95rem;">
                 <p>${post.texto}</p>
+                ${imgHTML}
             </div>
             <div style="display: flex; gap: 20px; margin-top: 15px; font-size: 0.8rem; color: var(--color-text-muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px;">
                 <span style="display: flex; align-items: center; gap: 6px;">
@@ -760,5 +1539,45 @@ function initLegales() {
         if (e.target === legalModal) {
             legalModal.style.display = 'none';
         }
+    });
+}
+
+// --- 9. SECCIÓN MODELOS (FILTRADO DINÁMICO) ---
+
+/**
+ * Controla el filtrado dinámico de vehículos por categoría
+ */
+function initModelosFilter() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const modelCards = document.querySelectorAll('.model-card');
+
+    if (!filterButtons.length || !modelCards.length) return;
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Quitar active de todos los botones
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Activar botón clickeado
+            button.classList.add('active');
+
+            const filterValue = button.getAttribute('data-filter');
+
+            modelCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filterValue === 'all' || category === filterValue) {
+                    card.style.display = 'flex';
+                    // Animación suave de aparición
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(10px)';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                        card.style.transition = 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
     });
 }

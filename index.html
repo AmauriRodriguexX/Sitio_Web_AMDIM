@@ -6,6 +6,10 @@
     <meta name="description" content="Asociación Mexicana de Distribuidores Mitsubishi, A.C. (AMDIM) - Sitio Oficial Institucional y Bolsa de Trabajo.">
     <title>AMDIM - Asociación Mexicana de Distribuidores Mitsubishi</title>
     
+    <!-- Favicon Oficial -->
+    <link rel="icon" href="https://www.mitsubishi-aeropuerto.mx/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://www.mitsubishi-aeropuerto.mx/favicon.ico" type="image/x-icon">
+    
     <!-- Google Fonts: Material Symbols Outlined & Tipografía de Apoyo -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
     
@@ -58,8 +62,8 @@
                     <h1>Asociación Mexicana de Distribuidores Mitsubishi</h1>
                     <p>Representando, vinculando y protegiendo a la red de distribuidores de Mitsubishi Motors en México desde 2004.</p>
                     <div class="hero-actions">
-                        <a href="#modelos" class="btn-primary">Ver Modelos</a>
-                        <a href="#bolsa-trabajo" class="btn-secondary">Bolsa de Trabajo</a>
+                        <a href="#modelos" class="btn btn--primary">Ver Modelos</a>
+                        <a href="#bolsa-trabajo" class="btn btn--glass">Bolsa de Trabajo</a>
                     </div>
                 </div>
             </div>
@@ -87,7 +91,7 @@
                         </p>
                         <p>
                             <strong>LinkedIn Oficial:</strong>
-                            <a href="https://www.linkedin.com" target="_blank">Asociación Mexicana Distribuidores Mitsubishi, A.C.</a>
+                            <a href="https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/" target="_blank">Asociación Mexicana Distribuidores Mitsubishi, A.C.</a>
                         </p>
                     </div>
 
@@ -118,7 +122,7 @@
             <div class="about-content">
                 <!-- Historia -->
                 <article class="history glass-card">
-                    <h3>Nuestra Historia</h3>
+                    <h3>Nuestra historia</h3>
                     <p>La Asociación Mexicana de Distribuidores Mitsubishi A.C. (AMDIM) inició operaciones en abril del 2004 y actualmente representa a 71 Distribuidores Autorizados Mitsubishi Motors en México. Nuestro propósito es promover, defender y fortalecer los intereses de nuestros asociados, impulsando las mejores prácticas del sector automotriz y fomentando una relación sólida y colaborativa con la marca, en beneficio de la red de Distribuidores y de los clientes en México.</p>
                 </article>
 
@@ -137,7 +141,7 @@
 
                 <!-- Estructura Organizacional -->
                 <section class="organization glass-card">
-                    <h3>Estructura Organizacional</h3>
+                    <h3>Estructura organizacional</h3>
                     <div class="team-grid">
                         <!-- Francisco Vargas Montoya -->
                         <div class="team-member glass-card">
@@ -186,51 +190,123 @@
                 <p>Descubre la gama actual de vehículos y descarga sus fichas técnicas.</p>
             </div>
 
+            <!-- Filtro de Modelos -->
+            <div class="models-filter-wrapper">
+                <div class="models-filter-container">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="suvs">SUVs &amp; Camionetas</button>
+                    <button class="filter-btn" data-filter="pickups">Pick-ups &amp; Comercial</button>
+                    <button class="filter-btn" data-filter="autos">Autos &amp; MPVs</button>
+                </div>
+            </div>
+
             <!-- Listado de Modelos con imágenes y fichas técnicas -->
             <div id="models-container" class="models-grid">
-                <!-- L200 -->
-                <div class="model-card glass-card" data-model="l200">
-                    <img src="assets/images/vehicles/L20026.png" alt="Mitsubishi L200">
-                    <h3>Mitsubishi L200</h3>
-                    <p>La pick-up legendaria, potente, robusta y lista para cualquier desafío y terreno.</p>
-                    <a href="#" class="btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de L200 descargada.');">
-                        <span class="material-symbols-outlined icon-align">download</span> Descargar Ficha Técnica
-                    </a>
-                </div>
-                <!-- Outlander -->
-                <div class="model-card glass-card" data-model="outlander">
-                    <img src="assets/images/vehicles/OUTL26.png" alt="Mitsubishi Outlander">
-                    <h3>Mitsubishi Outlander</h3>
-                    <p>Diseño premium, tecnología avanzada y confort inteligente para toda la familia.</p>
-                    <a href="#" class="btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de Outlander descargada.');">
-                        <span class="material-symbols-outlined icon-align">download</span> Descargar Ficha Técnica
-                    </a>
-                </div>
-                <!-- Xpander -->
-                <div class="model-card glass-card" data-model="xpander">
-                    <img src="assets/images/vehicles/XPAN26.png" alt="Mitsubishi Xpander">
-                    <h3>Mitsubishi Xpander</h3>
-                    <p>Versatilidad, dinamismo y espacio inteligente de 3 filas de asientos para 7 pasajeros.</p>
-                    <a href="#" class="btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de Xpander descargada.');">
-                        <span class="material-symbols-outlined icon-align">download</span> Descargar Ficha Técnica
-                    </a>
-                </div>
                 <!-- Mirage G4 -->
-                <div class="model-card glass-card" data-model="mirage">
-                    <img src="assets/images/vehicles/MIG426.png" alt="Mitsubishi Mirage G4">
-                    <h3>Mitsubishi Mirage G4</h3>
-                    <p>El sedán eficiente con un excelente rendimiento de combustible y conectividad.</p>
-                    <a href="#" class="btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de Mirage G4 descargada.');">
-                        <span class="material-symbols-outlined icon-align">download</span> Descargar Ficha Técnica
+                <div class="model-card glass-card" data-model="mirage" data-category="autos">
+                    <span class="model-badge">Sedán</span>
+                    <img src="https://mitsubishi-motors.mx/assets/Mirage-G4-GLX-gris-miniatura-lateral_3626_yroVpbrPFN.avif" alt="Mitsubishi Mirage G4">
+                    <h3>Mirage G4</h3>
+                    <div class="model-price">Desde $322,900 MXN</div>
+                    <p>El sedán eficiente con un excelente rendimiento de combustible, gran espacio interior y conectividad moderna para tu día a día.</p>
+                    <a href="#" class="btn btn--ghost-light btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de Mirage G4 descargada.');">
+                        Descargar Ficha Técnica
                     </a>
                 </div>
+                
+                <!-- Xpander -->
+                <div class="model-card glass-card" data-model="xpander" data-category="autos">
+                    <span class="model-badge">MPV / Familiar</span>
+                    <img src="https://mitsubishi-motors.mx/assets/Xpander-miniatura-side_3759_OiXrcEKnJk.avif" alt="Mitsubishi Xpander">
+                    <h3>Xpander</h3>
+                    <div class="model-price">Desde $453,900 MXN</div>
+                    <p>La camioneta familiar con espacio inteligente y versátil de 3 filas para 7 pasajeros, ideal para compartir grandes momentos.</p>
+                    <a href="#" class="btn btn--ghost-light btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de Xpander descargada.');">
+                        Descargar Ficha Técnica
+                    </a>
+                </div>
+
+                <!-- Xpander Cross -->
+                <div class="model-card glass-card" data-model="xpander-cross" data-category="suvs">
+                    <span class="model-badge">Crossover</span>
+                    <img src="https://mitsubishi-motors.mx/assets/Miniatura-XpanderCross-2026-left_3685_654PWr7hEH.avif" alt="Mitsubishi Xpander Cross">
+                    <h3>Xpander Cross</h3>
+                    <div class="model-price">Desde $475,900 MXN</div>
+                    <p>La versión crossover con diseño robusto, mayor altura al suelo y la comodidad ideal para tus aventuras familiares.</p>
+                    <a href="#" class="btn btn--ghost-light btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de Xpander Cross descargada.');">
+                        Descargar Ficha Técnica
+                    </a>
+                </div>
+
+                <!-- Outlander Sport -->
+                <div class="model-card glass-card" data-model="outlander-sport" data-category="suvs">
+                    <span class="model-badge">SUV Compacto</span>
+                    <img src="https://mitsubishi-motors.mx/assets/Outlander-Sport-lateral-2025_2705_oGE47FRGHz.avif" alt="Mitsubishi Outlander Sport">
+                    <h3>Outlander Sport</h3>
+                    <div class="model-price">Desde $467,900 MXN</div>
+                    <p>Un SUV dinámico, audaz y compacto, diseñado para destacar en la ciudad con tecnología avanzada y agilidad excepcional.</p>
+                    <a href="#" class="btn btn--ghost-light btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de Outlander Sport descargada.');">
+                        Descargar Ficha Técnica
+                    </a>
+                </div>
+
+                <!-- Outlander -->
+                <div class="model-card glass-card" data-model="outlander" data-category="suvs">
+                    <span class="model-badge">SUV Mediano</span>
+                    <img src="https://mitsubishi-motors.mx/assets/Outlander-MY26-Side_3046_x9NvKJLuqw.avif" alt="Mitsubishi Outlander">
+                    <h3>Outlander</h3>
+                    <div class="model-price">Desde $609,900 MXN</div>
+                    <p>Elegancia premium, confort de tres filas de asientos, seguridad de vanguardia y un manejo dinámico incomparable para toda la familia.</p>
+                    <a href="#" class="btn btn--ghost-light btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de Outlander descargada.');">
+                        Descargar Ficha Técnica
+                    </a>
+                </div>
+
+                <!-- Outlander PHEV -->
+                <div class="model-card glass-card" data-model="outlander-phev" data-category="suvs">
+                    <span class="model-badge">Híbrido Enchufable</span>
+                    <img src="https://mitsubishi-motors.mx/assets/PHEV-Lateral-Min_3900_M0spA5g2Fq.avif" alt="Mitsubishi Outlander PHEV">
+                    <h3>Outlander PHEV</h3>
+                    <div class="model-price">Desde $883,900 MXN</div>
+                    <p>El SUV híbrido enchufable más vendido del mundo, combinando el poder eléctrico con tracción S-AWC de alto rendimiento.</p>
+                    <a href="#" class="btn btn--ghost-light btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de Outlander PHEV descargada.');">
+                        Descargar Ficha Técnica
+                    </a>
+                </div>
+
                 <!-- Montero Sport -->
-                <div class="model-card glass-card" data-model="montero">
-                    <img src="assets/images/vehicles/MONT25.png" alt="Mitsubishi Montero Sport">
-                    <h3>Mitsubishi Montero Sport</h3>
-                    <p>La combinación ideal entre lujo todoterreno, robustez, potencia y exclusividad.</p>
-                    <a href="#" class="btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de Montero Sport descargada.');">
-                        <span class="material-symbols-outlined icon-align">download</span> Descargar Ficha Técnica
+                <div class="model-card glass-card" data-model="montero" data-category="suvs">
+                    <span class="model-badge">SUV Off-Road</span>
+                    <img src="https://mitsubishi-motors.mx/assets/Montero-Sport-SE-Plus-Left-Mini_3821_EEkefUU84j.avif" alt="Mitsubishi Montero Sport">
+                    <h3>Montero Sport</h3>
+                    <div class="model-price">Desde $980,900 MXN</div>
+                    <p>Fuerza legendaria todoterreno combinada con lujo, confort de primer nivel, tecnología off-road y una presencia imponente.</p>
+                    <a href="#" class="btn btn--ghost-light btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de Montero Sport descargada.');">
+                        Descargar Ficha Técnica
+                    </a>
+                </div>
+
+                <!-- L200 -->
+                <div class="model-card glass-card" data-model="l200" data-category="pickups">
+                    <span class="model-badge">Pick-up</span>
+                    <img src="https://mitsubishi-motors.mx/assets/L200-Left-2025_2115_uCoM3EHVZX.avif" alt="Mitsubishi L200">
+                    <h3>L200</h3>
+                    <div class="model-price">Desde $582,900 MXN</div>
+                    <p>La pick-up legendaria construida con un chasis ultra resistente, motor turbo diésel eficiente y tracción 4WD para el trabajo y la aventura.</p>
+                    <a href="#" class="btn btn--ghost-light btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de L200 descargada.');">
+                        Descargar Ficha Técnica
+                    </a>
+                </div>
+
+                <!-- L200 GSR -->
+                <div class="model-card glass-card" data-model="l200-gsr" data-category="pickups">
+                    <span class="model-badge">Pick-up Premium</span>
+                    <img src="https://mitsubishi-motors.mx/assets/L200-GSR-Left-2025_3850_whxLhDaIpe.avif" alt="Mitsubishi L200 GSR">
+                    <h3>L200 GSR</h3>
+                    <div class="model-price">Desde $870,900 MXN</div>
+                    <p>La máxima expresión de rudeza y sofisticación. Diseño oscurecido exclusivo GSR, confort premium y capacidades off-road incomparables.</p>
+                    <a href="#" class="btn btn--ghost-light btn-download" onclick="event.preventDefault(); alert('Ficha Técnica de L200 GSR descargada.');">
+                        Descargar Ficha Técnica
                     </a>
                 </div>
             </div>
@@ -239,19 +315,27 @@
         <!-- SECCIÓN: DISTRIBUIDORES -->
         <section id="distribuidores" class="content-section" style="display: none;">
             <div class="section-header">
-                <h2>Red de Distribuidores</h2>
+                <h2>Red de distribuidores</h2>
                 <p>Localiza tu distribuidor autorizado Mitsubishi Motors más cercano en México.</p>
             </div>
 
             <!-- Controles de Búsqueda y Geolocalización -->
-            <div class="search-bar">
-                <input type="text" id="distribuidor-search" placeholder="Buscar por ciudad, estado o nombre comercial...">
-                <button id="btn-use-location" class="btn-primary">
-                    <span class="material-symbols-outlined icon-align">my_location</span> Usar ubicación
-                </button>
-                <button id="btn-open-admin-portal" class="btn-secondary">
-                    <span class="material-symbols-outlined icon-align">add_location</span> Portal Admin
-                </button>
+            <div class="search-bar-container" style="max-width: 1200px; margin: 0 auto 30px auto; width: 100%; display: flex; flex-direction: column; gap: 12px;">
+                <div class="search-bar" style="margin-bottom: 0;">
+                    <div style="position: relative; flex-grow: 1; display: flex; gap: 15px; flex-wrap: wrap;">
+                        <input type="text" id="distribuidor-search" placeholder="Buscar por ciudad, estado, C.P. o nombre..." style="flex-grow: 1;">
+                        <select id="distribuidor-state-select" class="filter-select">
+                            <option value="">Todos los Estados</option>
+                            <!-- Generado dinámicamente por js/main.js -->
+                        </select>
+                    </div>
+                    <button id="btn-use-location" class="btn btn--primary" style="flex-shrink: 0;">
+                        Usar ubicación
+                    </button>
+                </div>
+                <div id="search-stats" style="font-size: 0.85rem; color: var(--color-text-muted); font-weight: 500; padding-left: 5px;">
+                    Cargando distribuidores...
+                </div>
             </div>
 
             <div class="distribuidos-layout">
@@ -259,7 +343,7 @@
                 <div id="distribuidores-map" class="map-view">
                     <div class="map-placeholder-content">
                         <span class="material-symbols-outlined" style="font-size: 3rem; color: var(--color-red); margin-bottom: 15px;">location_on</span>
-                        <h3>Red de Distribuidores Mitsubishi</h3>
+                        <h3>Red de distribuidores Mitsubishi</h3>
                         <p>Usa la barra de búsqueda para geolocalizar al distribuidor.</p>
                     </div>
                 </div>
@@ -273,137 +357,47 @@
                 </div>
             </div>
 
-            <!-- PORTAL ADMINISTRATIVO DE DISTRIBUIDORES (MODAL SIMULADO) -->
-            <div id="distribuidor-admin-portal" style="display: none;" class="modal-admin">
-                <div class="modal-content glass-panel">
-                    <h3 style="display: flex; align-items: center; gap: 10px;">
-                        <span class="material-symbols-outlined" style="color: var(--color-red);">add_business</span>
-                        Administración
-                    </h3>
-                    <h4 style="margin-bottom: 20px; font-weight: 500;">Dar de alta una nueva sucursal</h4>
-                    
-                    <form id="form-alta-distribuidor">
-                        <label for="dist-nombre">Nombre Comercial:</label>
-                        <input type="text" id="dist-nombre" placeholder="Ej. Mitsubishi Polanco" required>
-
-                        <label for="dist-telefono">Teléfono:</label>
-                        <input type="tel" id="dist-telefono" placeholder="Ej. 55 5555 5555" required>
-
-                        <label for="dist-web">Sitio Web:</label>
-                        <input type="url" id="dist-web" value="https://www.mitsubishi-motors.mx" required>
-
-                        <label for="dist-direccion">Dirección Física Completa:</label>
-                        <textarea id="dist-direccion" rows="3" placeholder="Calle, número, colonia, código postal y estado..." required></textarea>
-
-                        <button type="submit" class="btn-submit">Registrar Distribuidor</button>
-                        <button type="button" id="btn-close-admin-portal" class="btn-close">Cerrar</button>
-                    </form>
-                </div>
-            </div>
         </section>
 
         <!-- SECCIÓN: BOLSA DE TRABAJO -->
         <section id="bolsa-trabajo" class="content-section" style="display: none;">
             <div class="section-header">
-                <h2>Bolsa de Trabajo</h2>
-                <p>Encuentra tu próximo reto profesional o publica vacantes para la red Mitsubishi.</p>
-            </div>
-
-            <!-- Tabs de navegación -->
-            <div class="job-board-tabs">
-                <button id="tab-candidatos" class="tab-btn active">Buscar Empleo (Candidatos)</button>
-                <button id="tab-distribuidores" class="tab-btn">Portal del Distribuidor (Dashboard)</button>
+                <h2>Bolsa de trabajo</h2>
+                <p>Encuentra tu próximo reto profesional en la red de distribuidores autorizados Mitsubishi.</p>
             </div>
 
             <!-- VISTA CANDIDATOS -->
             <div id="jobs-candidato-view" class="job-view-panel">
-                <h3>Vacantes Disponibles</h3>
+                <h3>Vacantes disponibles</h3>
                 <div id="vacantes-list" class="vacantes-grid">
                     <!-- Cargado Dinámicamente por js/main.js -->
                 </div>
             </div>
 
-            <!-- VISTA PORTAL DISTRIBUIDOR (DASHBOARD) -->
-            <div id="jobs-distribuidor-view" class="job-view-panel" style="display: none;">
-                <div class="dashboard-layout">
-                    <!-- Formulario de carga de vacantes -->
-                    <div class="alta-vacante-container glass-card">
-                        <h4>Publicar Nueva Vacante</h4>
-                        <form id="form-alta-vacante">
-                            <label for="vacante-email">Correo para recibir CVs:</label>
-                            <input type="email" id="vacante-email" placeholder="ejemplo@distribuidor.com.mx" required>
-
-                            <label for="vacante-titulo">Título del Puesto:</label>
-                            <input type="text" id="vacante-titulo" placeholder="Ej. Mecánico Automotriz Certificado" required>
-
-                            <label for="vacante-descripcion">Descripción del Puesto (Máx. 300 caracteres):</label>
-                            <textarea id="vacante-descripcion" maxlength="300" rows="5" placeholder="Especifica las responsabilidades y requisitos de la vacante..." required></textarea>
-                            <small id="char-counter">300 caracteres restantes</small>
-
-                            <label for="vacante-vigencia">Vigencia de Publicación:</label>
-                            <select id="vacante-vigencia">
-                                <option value="1-mes">1 Mes (Desactivación automática)</option>
-                                <option value="manual">Manual (Permanecerá activa)</option>
-                            </select>
-
-                            <button type="submit" class="btn-submit">Publicar Vacante</button>
-                        </form>
-                    </div>
-
-                    <!-- Listado de vacantes publicadas -->
-                    <div class="mis-vacantes-container glass-card">
-                        <h4>Mis Vacantes Activas</h4>
-                        <div id="my-vacancies-list">
-                            <!-- Cargado Dinámicamente por js/main.js -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MODAL APLICACIÓN (POSTULACIÓN CANDIDATO) -->
-            <div id="apply-job-modal" style="display: none;" class="modal-apply">
-                <div class="modal-content glass-panel">
-                    <h3 style="display: flex; align-items: center; gap: 10px;">
-                        <span class="material-symbols-outlined" style="color: var(--color-red);">badge</span>
-                        Postularse a la Vacante
-                    </h3>
-                    <h4 id="apply-job-title">[Título Vacante]</h4>
-                    <p id="apply-job-desc" style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 20px;">[Distribuidor]</p>
-
-                    <form id="form-aplicar-vacante">
-                        <input type="hidden" id="apply-job-id">
-                        
-                        <label for="apply-name">Nombre Completo:</label>
-                        <input type="text" id="apply-name" placeholder="Ej. Juan Pérez López" required>
-
-                        <label for="apply-email">Correo Electrónico:</label>
-                        <input type="email" id="apply-email" placeholder="juan@correo.com" required>
-
-                        <label for="apply-phone">Teléfono de Contacto:</label>
-                        <input type="tel" id="apply-phone" placeholder="Ej. 55 1234 5678" required>
-
-                        <label for="apply-cv">Cargar CV (Formatos PDF / Word):</label>
-                        <input type="file" id="apply-cv" accept=".pdf,.doc,.docx" required>
-
-                        <button type="submit" class="btn-submit">Enviar Postulación</button>
-                        <button type="button" id="btn-close-apply-modal" class="btn-close">Cancelar</button>
-                    </form>
-                </div>
-            </div>
         </section>
 
         <!-- SECCIÓN: NOTICIAS -->
         <section id="noticias" class="content-section" style="display: none;">
             <div class="section-header">
-                <h2>Últimas Noticias</h2>
+                <h2>Últimas noticias</h2>
                 <p>Publicaciones y actualidad de la red AMDIM en LinkedIn.</p>
             </div>
 
             <!-- Feed simulado de LinkedIn -->
             <div class="feed-container">
-                <div id="linkedin-feed-placeholder">
+                <div id="linkedin-feed-placeholder" style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
                     <!-- Generado Dinámicamente por js/main.js -->
                 </div>
+            </div>
+
+            <!-- Botón para ver perfil oficial -->
+            <div style="text-align: center; margin-top: 35px;">
+                <a href="https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/" target="_blank" class="btn btn--primary" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: middle;">
+                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                    </svg>
+                    Ver LinkedIn Oficial
+                </a>
             </div>
         </section>
 
@@ -433,22 +427,28 @@
                             </div>
                         </div>
 
-                        <label for="contact-email">Correo Electrónico:</label>
-                        <input type="email" id="contact-email" placeholder="ejemplo@correo.com" required>
+                        <div class="form-group">
+                            <label for="contact-email">Correo Electrónico:</label>
+                            <input type="email" id="contact-email" placeholder="ejemplo@correo.com" required>
+                        </div>
 
-                        <label for="contact-phone">Teléfono:</label>
-                        <input type="tel" id="contact-phone" placeholder="Ej. 5512345678" required>
+                        <div class="form-group">
+                            <label for="contact-phone">Teléfono:</label>
+                            <input type="tel" id="contact-phone" placeholder="Ej. 5512345678" required>
+                        </div>
 
-                        <label for="contact-comments">Escriba su comentario:</label>
-                        <textarea id="contact-comments" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                        <div class="form-group">
+                            <label for="contact-comments">Escriba su comentario:</label>
+                            <textarea id="contact-comments" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                        </div>
 
-                        <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                        <button type="submit" class="btn btn--primary btn-submit">Enviar Mensaje</button>
                     </form>
                 </div>
 
                 <!-- Info de oficinas de AMDIM -->
                 <div class="contacto-info glass-card">
-                    <h3>Oficinas Centrales</h3>
+                    <h3>Oficinas centrales</h3>
                     <p><strong>Dirección:</strong> Juan Vázquez de Mella 481, Piso 2-203, Los Morales Polanco, Miguel Hidalgo, Ciudad de México, C.P. 11510.</p>
                     <p><strong>Horario de Atención:</strong> Lunes a Viernes de 9:00 AM a 6:00 PM.</p>
                     <p><strong>Correo Electrónico Directo:</strong> <a href="mailto:buzonamdim@amdim.com.mx">buzonamdim@amdim.com.mx</a></p>
@@ -464,6 +464,14 @@
         <div class="footer-content">
             <p>&copy; 2026 Asociación Mexicana de Distribuidores Mitsubishi, A.C. Todos los derechos reservados.</p>
             <p>Juan Vázquez de Mella 481, Piso 2-203, Los Morales Polanco, C.P. 11510, Ciudad de México.</p>
+            <div class="footer-social" style="margin-top: 15px; margin-bottom: 5px;">
+                <a href="https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: var(--color-text-secondary); text-decoration: none; font-size: 0.85rem; transition: var(--transition-smooth);" onmouseover="this.style.color='var(--color-red)'" onmouseout="this.style.color='var(--color-text-secondary)'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="flex-shrink: 0; vertical-align: middle;">
+                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                    </svg>
+                    <span>LinkedIn Oficial</span>
+                </a>
+            </div>
             <div class="footer-links">
                 <a href="#inicio">Inicio</a> | 
                 <a href="#nosotros">Nosotros</a> | 
@@ -477,6 +485,45 @@
         </div>
     </footer>
 
+            <!-- MODAL APLICACIÓN (POSTULACIÓN CANDIDATO) -->
+            <div id="apply-job-modal" style="display: none;" class="modal-apply">
+                <div class="modal-content glass-panel">
+                    <h3 style="display: flex; align-items: center; gap: 10px;">
+                        <span class="material-symbols-outlined" style="color: var(--color-red);">badge</span>
+                        Postularse a la Vacante
+                    </h3>
+                    <h4 id="apply-job-title">[Título Vacante]</h4>
+                    <p id="apply-job-desc" style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 20px;">[Distribuidor]</p>
+
+                    <form id="form-aplicar-vacante">
+                        <input type="hidden" id="apply-job-id">
+                        
+                        <div class="form-group">
+                            <label for="apply-name">Nombre Completo:</label>
+                            <input type="text" id="apply-name" placeholder="Ej. Juan Pérez López" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apply-email">Correo Electrónico:</label>
+                            <input type="email" id="apply-email" placeholder="juan@correo.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apply-phone">Teléfono de Contacto:</label>
+                            <input type="tel" id="apply-phone" placeholder="Ej. 55 1234 5678" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apply-cv">Cargar CV (Formatos PDF / Word):</label>
+                            <input type="file" id="apply-cv" accept=".pdf,.doc,.docx" required>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn-submit">Enviar Postulación</button>
+                        <button type="button" id="btn-close-apply-modal" class="btn btn--ghost-light btn-close">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+
     <!-- MODAL DE DOCUMENTOS LEGALES (Aviso de Privacidad, Términos, Cookies, Aviso Legal) -->
     <div id="legal-modal" style="display: none;" class="modal-apply">
         <div class="modal-content glass-panel" style="max-width: 800px; width: 95%;">
@@ -487,9 +534,33 @@
             <div id="legal-modal-body" style="margin-top: 20px; max-height: 60vh; overflow-y: auto; padding-right: 10px; font-size: 0.9rem; text-align: justify; color: var(--color-text-secondary); line-height: 1.6;">
                 <!-- Cargado Dinámicamente por js/main.js -->
             </div>
-            <button type="button" id="btn-close-legal-modal" class="btn-close">Cerrar Documento</button>
+            <button type="button" id="btn-close-legal-modal" class="btn btn--ghost-light btn-close">Cerrar Documento</button>
         </div>
     </div>
+
+    <!-- MOBILE BOTTOM NAV (Glassmorphism Pill) -->
+    <nav class="mobile-bottom-nav">
+        <a href="#inicio" class="bottom-nav-link active" title="Inicio">
+            <span class="material-symbols-outlined">home</span>
+        </a>
+        <a href="#modelos" class="bottom-nav-link" title="Modelos">
+            <span class="material-symbols-outlined">directions_car</span>
+        </a>
+        <a href="#distribuidores" class="bottom-nav-link" title="Distribuidores">
+            <span class="material-symbols-outlined">location_on</span>
+        </a>
+        <a href="#bolsa-trabajo" class="bottom-nav-link" title="Bolsa de Trabajo">
+            <span class="material-symbols-outlined">work</span>
+        </a>
+        <a href="#noticias" class="bottom-nav-link" title="Noticias">
+            <span class="material-symbols-outlined">article</span>
+        </a>
+        <button class="menu-toggle bottom-nav-menu-toggle" aria-label="Abrir menú" title="Más">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
 
     <!-- Lógica principal de la SPA y persistencia -->
     <script src="js/main.js" defer></script>
