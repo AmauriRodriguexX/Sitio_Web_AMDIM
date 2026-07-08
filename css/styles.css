@@ -1533,6 +1533,21 @@ form small {
     color: var(--color-white);
 }
 
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(60px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes modalSlideUpMobile {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
 /* Modales (Alta Distribuidor, Aplicar Vacante) */
 .modal-admin, .modal-apply {
     position: fixed;
@@ -1547,6 +1562,7 @@ form small {
     justify-content: center;
     align-items: center; /* Modal centrado en desktop */
     padding: 20px;
+    animation: modalFadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .modal-content {
@@ -1563,6 +1579,7 @@ form small {
     margin: 0;
     border: none !important;
     backdrop-filter: none !important;
+    animation: modalSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .modal-close-icon {
@@ -1995,6 +2012,7 @@ form input[type="file"] {
         border-radius: 24px 24px 0 0 !important;
         height: calc(100vh - 50px);
         max-height: calc(100vh - 50px);
+        animation: modalSlideUpMobile 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .modal-content h3 {
