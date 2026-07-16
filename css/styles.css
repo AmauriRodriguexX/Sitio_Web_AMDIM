@@ -2436,3 +2436,33 @@ form input[type="file"] {
         height: 50vh;
     }
 }
+
+/* --- 14. ESTILOS DE COMPONENTES INTERACTIVOS (TABS) --- */
+
+/* Estilos para el switcher de noticias y blog */
+.news-tabs .filter-btn {
+    padding: 10px 24px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.news-tabs .filter-btn:hover {
+    color: var(--color-white);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.news-tabs .filter-btn.active {
+    background: var(--color-red);
+    border-color: var(--color-red);
+    color: var(--color-white);
+    box-shadow: 0 4px 15px rgba(226, 0, 26, 0.4);
+}

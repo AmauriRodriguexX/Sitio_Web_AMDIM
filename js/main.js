@@ -762,6 +762,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLinkedInFeed();
     initLegales();
     initModelosFilter();
+    initBlog();
 });
 
 // --- 3. NAVEGACIÓN Y COMPORTAMIENTO GENERAL ---
@@ -1612,4 +1613,83 @@ function initModelosFilter() {
             });
         });
     });
+}
+
+
+
+/**
+ * Controla y renderiza la sección de blog dinámico
+ */
+function initBlog() {
+    const blogPlaceholder = document.getElementById('blog-feed-placeholder');
+    if (!blogPlaceholder) return;
+
+    blogPlaceholder.innerHTML = '';
+
+    BLOG_POSTS.forEach(post => {
+        const article = document.createElement('article');
+        article.className = 'mock-linkedin-post';
+        article.style.height = '100%';
+        article.style.display = 'flex';
+        article.style.flexDirection = 'column';
+
+        article.innerHTML = `
+            <div class="post-header">
+                <div class="post-author-info">
+                    <div class="post-avatar" style="background-color: var(--color-red); font-size: 0.8rem;">AD</div>
+                    <div class="post-author-meta">
+                        <span class="post-author-name">${post.autor}</span>
+                        <span class="post-date">${post.fecha}</span>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined" style="color: var(--color-red);">rss_feed</span>
+            </div>
+            <div class="post-content">
+                <h4 style="color: var(--color-white); font-size: 1.05rem; line-height: 1.4; margin-bottom: 10px; font-family: var(--font-main); font-weight: 700;">
+                    ${post.titulo}
+                </h4>
+                <p class="post-text" style="margin-bottom: 15px;">
+                    ${post.resumen}
+                </p>
+                <div class="post-image-container" style="height: 160px;">
+                    <img src="${post.imagen}" alt="${post.titulo}" class="post-image">
+                </div>
+            </div>
+            <div class="post-footer">
+                <div class="post-actions">
+                    <span class="post-action-item">
+                        <span class="material-symbols-outlined">thumb_up</span> ${post.likes}
+                    </span>
+                    <span class="post-action-item">
+                        <span class="material-symbols-outlined">comment</span> ${post.comments}
+                    </span>
+                </div>
+                <button class="btn btn--ghost-light" style="padding: 4px 10px; font-size: 0.72rem; border-color: rgba(255,255,255,0.15);" onclick="showToast('Artículo: ${post.titulo}. Próximamente disponible en formato completo en nuestro nuevo Blog AMDIM.')">
+                    Leer más
+                </button>
+            </div>
+        `;
+
+        blogPlaceholder.appendChild(article);
+    });
+
+    // Pestañas (Tab switcher) para alternar entre LinkedIn y Blog
+    window.switchNewsTab = function(tab) {
+        const btnLinkedin = document.getElementById('btn-tab-linkedin');
+        const btnBlog = document.getElementById('btn-tab-blog');
+        const feedLinkedin = document.getElementById('linkedin-feed-placeholder');
+        const feedBlog = document.getElementById('blog-feed-placeholder');
+
+        if (tab === 'linkedin') {
+            btnLinkedin.classList.add('active');
+            btnBlog.classList.remove('active');
+            feedLinkedin.style.display = 'grid';
+            feedBlog.style.display = 'none';
+        } else {
+            btnLinkedin.classList.remove('active');
+            btnBlog.classList.add('active');
+            feedLinkedin.style.display = 'none';
+            feedBlog.style.display = 'grid';
+        }
+    };
 }
