@@ -361,6 +361,13 @@ a {
     margin: 0 auto;
 }
 
+@media (min-width: 769px) {
+    .nowrap-desktop {
+        white-space: nowrap;
+        max-width: none;
+    }
+}
+
 /* 7. SECCIÓN INICIO (HERO & BIENVENIDA) */
 #inicio {
     padding: 0;
@@ -1900,9 +1907,10 @@ form input[type="file"] {
     width: 100%;
 }
 
-#linkedin-feed-placeholder {
+#linkedin-feed-placeholder,
+#blog-feed-placeholder {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
     gap: 30px;
 }
 
