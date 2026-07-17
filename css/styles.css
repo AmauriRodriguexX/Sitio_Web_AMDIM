@@ -567,6 +567,17 @@ a {
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
 }
 
+/* Hover fondo blanco + texto negro solo en el botón "Ver LinkedIn Oficial" */
+#btn-linkedin-oficial::before {
+    background-color: #FFFFFF;
+}
+
+#btn-linkedin-oficial:hover {
+    color: #000000;
+    border-color: #FFFFFF;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+}
+
 /* 2. btn--secondary (Sin animación slide, color directo) */
 .btn--secondary {
     background-color: #000000;
@@ -615,6 +626,7 @@ a {
     color: #000000;
     border-color: #FFFFFF;
 }
+
 
 /* 5. btn--glass (Sobre imágenes o video) */
 .btn--glass {
@@ -984,13 +996,15 @@ a {
     z-index: 2;
 }
 
+/* .models-filter-container
+   Especificidad: (0,1,0) */
 .models-filter-container {
     display: flex;
     overflow-x: auto;
-    gap: 15px;
-    padding-bottom: 5px; /* Espacio para que respiren */
-    /* Ocultar barra de scroll pero permitir deslizamiento táctil fluido */
-    scrollbar-width: none; 
+    gap: 16px;
+    padding-top: 12px;
+    padding-bottom: 5px;
+    scrollbar-width: none;
     -ms-overflow-style: none;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
@@ -1114,12 +1128,14 @@ a {
 }
 
 .model-card-buttons .btn-download {
-    width: 100%;
+    flex: 1 1 100%;
     font-size: 0.82rem;
     padding: 12px 10px;
     text-align: center;
     font-weight: 600;
 }
+
+
 
 /* 10. SECCIÓN DISTRIBUIDORES (GEOLOCALIZACIÓN) */
 .search-bar {
@@ -1135,7 +1151,7 @@ a {
     padding: 15px 20px;
     background: rgba(255, 255, 255, 0.03);
     border: var(--glass-border);
-    border-radius: var(--border-radius-sm);
+    border-radius: var(--radius-pill);
     color: var(--color-white);
     font-family: var(--font-main);
     font-size: 0.95rem;
@@ -1318,8 +1334,9 @@ a {
 
 .distributor-card-actions {
     display: flex;
-    gap: 15px;
+    gap: 8px;
     margin-top: 2px;
+    flex-wrap: wrap;
 }
 
 .distributor-card-actions a {
@@ -1333,13 +1350,18 @@ a {
     align-items: center;
     gap: 4px;
     transition: var(--transition-fast);
-    border-bottom: 1px solid transparent;
-    padding-bottom: 1px;
+    /* Pill button — homologado con .btn */
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9999px;
+    padding: 6px 14px;
+    background: transparent;
 }
 
 .distributor-card-actions a:hover {
-    color: var(--color-red);
-    border-bottom-color: var(--color-red);
+    color: #fff;
+    border-color: var(--color-red);
+    background: var(--color-red);
+    box-shadow: 0 3px 10px rgba(237, 0, 0, 0.3);
 }
 
 /* Selector de Estados en Filtro */
@@ -1349,7 +1371,7 @@ a {
     color: var(--color-white);
     border: var(--glass-border);
     backdrop-filter: var(--glass-backdrop);
-    border-radius: var(--border-radius-sm);
+    border-radius: var(--radius-pill);
     font-family: var(--font-main);
     font-size: 0.95rem;
     cursor: pointer;
@@ -1581,9 +1603,120 @@ form small {
     text-align: right;
 }
 
+/* --- CV Dropzone --- */
+.cv-dropzone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 28px 20px;
+    border-radius: var(--border-radius-md);
+    background: rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+    text-align: center;
+}
+
+.cv-dropzone.drag-over {
+    background: rgba(226, 0, 26, 0.06);
+}
+
+/* Archivo cargado */
+.cv-dropzone.has-file {
+    background: rgba(226, 0, 26, 0.04);
+    cursor: default;
+}
+
+/* Animación continua — flecha subiendo siempre activa */
+@keyframes cvUpload {
+    0%   { transform: translateY(6px);  opacity: 0.25; }
+    55%  { transform: translateY(-8px); opacity: 1;    }
+    100% { transform: translateY(6px);  opacity: 0.25; }
+}
+
+.cv-dropzone__icon {
+    font-size: 2.8rem;
+    color: rgba(0, 0, 0, 0.45);
+    animation: cvUpload 2.2s ease-in-out infinite;
+}
+
+.cv-dropzone.drag-over .cv-dropzone__icon {
+    color: var(--color-red);
+}
+
+.cv-dropzone__text {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.cv-dropzone__link {
+    color: var(--color-red);
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cv-dropzone__hint {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.cv-dropzone__preview {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(226, 0, 26, 0.08);
+    border: 1px solid rgba(226, 0, 26, 0.3);
+    border-radius: var(--radius-pill);
+    font-size: 0.82rem;
+    color: var(--color-white);
+    font-weight: 600;
+    max-width: 100%;
+    word-break: break-all;
+}
+
+.cv-dropzone__remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-left: 4px;
+    transition: color 0.15s ease;
+}
+
+.cv-dropzone__remove:hover {
+    color: var(--color-red);
+}
+
+/* Estado con archivo seleccionado */
+.cv-dropzone.has-file {
+    border-color: rgba(226, 0, 26, 0.4);
+    border-style: solid;
+    background: rgba(226, 0, 26, 0.04);
+    cursor: default;
+}
+
 .btn-submit {
     width: 100%;
     margin-top: 25px;
+}
+
+/* Enviar Postulación en modal blanco: hover negro + texto blanco */
+.modal-content .btn-submit.btn--primary::before {
+    background-color: #111111;
+}
+
+.modal-content .btn-submit.btn--primary:hover {
+    color: #ffffff;
+    border-color: #111111;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 /* Mis Vacantes Activas List */
@@ -1695,6 +1828,11 @@ form small {
     color: #1a1a1a;
     cursor: pointer;
     z-index: 10;
+    transition: color 0.15s ease;
+}
+
+.modal-close-icon:hover {
+    color: var(--color-red);
 }
 
 /* Modificar texto dentro de modal blanco */
@@ -1973,6 +2111,19 @@ form input[type="file"] {
     font-size: 1rem;
     color: var(--color-text-secondary);
     line-height: 1.6;
+    margin: 0;
+    padding: 16px 20px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid var(--color-red);
+    border-radius: 8px;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.contacto-info p:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.16);
+    border-left-color: var(--color-red);
 }
 
 .contacto-info strong {
@@ -2416,10 +2567,10 @@ form input[type="file"] {
     .distributor-card-actions a {
         flex: 1;
         justify-content: center;
-        padding: 10px 0;
+        padding: 8px 14px;
         background: rgba(255, 255, 255, 0.05);
-        border-radius: 6px;
-        border-bottom: none;
+        border-radius: 9999px;
+        border: 2px solid rgba(255, 255, 255, 0.25);
     }
 
     .search-bar {

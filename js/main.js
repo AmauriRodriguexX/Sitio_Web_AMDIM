@@ -1202,9 +1202,79 @@ function initBolsaTrabajo() {
     const applyModal = document.getElementById('apply-job-modal');
     const formAplicar = document.getElementById('form-aplicar-vacante');
     const btnCloseApply = document.getElementById('btn-close-apply-modal');
+    const btnCloseApplyIcon = document.getElementById('btn-close-apply-modal-icon');
     const applyJobTitle = document.getElementById('apply-job-title');
     const applyJobDesc = document.getElementById('apply-job-desc');
     const applyJobId = document.getElementById('apply-job-id');
+
+    // --- CV Dropzone ---
+    (function initCvDropzone() {
+        const zone    = document.getElementById('cv-dropzone');
+        const input   = document.getElementById('apply-cv');
+        const preview = document.getElementById('cv-preview');
+        const fname   = document.getElementById('cv-filename');
+        const removeBtn = document.getElementById('cv-remove');
+        if (!zone || !input) return;
+
+        function showFile(file) {
+            fname.textContent = file.name;
+            preview.style.display = 'flex';
+            zone.classList.add('has-file');
+            // hide the prompt elements
+            zone.querySelector('.cv-dropzone__icon').style.display = 'none';
+            zone.querySelector('.cv-dropzone__text').style.display = 'none';
+            zone.querySelector('.cv-dropzone__hint').style.display = 'none';
+        }
+
+        function clearFile() {
+            input.value = '';
+            preview.style.display = 'none';
+            fname.textContent = '';
+            zone.classList.remove('has-file');
+            zone.querySelector('.cv-dropzone__icon').style.display = '';
+            zone.querySelector('.cv-dropzone__text').style.display = '';
+            zone.querySelector('.cv-dropzone__hint').style.display = '';
+        }
+
+        // Click on zone → open picker (but not if already has file)
+        zone.addEventListener('click', (e) => {
+            if (zone.classList.contains('has-file')) return;
+            input.click();
+        });
+
+        // Click on "selecciona un archivo" link
+        const link = zone.querySelector('.cv-dropzone__link');
+        if (link) link.addEventListener('click', (e) => { e.stopPropagation(); input.click(); });
+
+        // Native input change
+        input.addEventListener('change', () => {
+            if (input.files.length) showFile(input.files[0]);
+        });
+
+        // Remove button
+        removeBtn.addEventListener('click', (e) => { e.stopPropagation(); clearFile(); });
+
+        // Drag & Drop
+        zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('drag-over'); });
+        zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+        zone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            zone.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if (!file) return;
+            const allowed = ['.pdf', '.doc', '.docx'];
+            const ext = '.' + file.name.split('.').pop().toLowerCase();
+            if (!allowed.includes(ext)) {
+                alert('Solo se permiten archivos PDF, DOC o DOCX.');
+                return;
+            }
+            // Assign to input via DataTransfer
+            const dt = new DataTransfer();
+            dt.items.add(file);
+            input.files = dt.files;
+            showFile(file);
+        });
+    })();
 
     function getVacantes() {
         return JSON.parse(localStorage.getItem('amdim_vacantes')) || [];
@@ -1281,6 +1351,12 @@ function initBolsaTrabajo() {
 
     if (btnCloseApply) {
         btnCloseApply.addEventListener('click', () => {
+            applyModal.style.display = 'none';
+        });
+    }
+
+    if (btnCloseApplyIcon) {
+        btnCloseApplyIcon.addEventListener('click', () => {
             applyModal.style.display = 'none';
         });
     }
@@ -1693,3 +1769,4 @@ function initBlog() {
         }
     };
 }
+
