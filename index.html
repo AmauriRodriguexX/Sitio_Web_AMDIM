@@ -369,16 +369,16 @@
             <!-- Controles de Búsqueda y Geolocalización -->
             <div class="search-bar-container" style="max-width: 1200px; margin: 0 auto 30px auto; width: 100%; display: flex; flex-direction: column; gap: 12px;">
                 <div class="search-bar" style="margin-bottom: 0;">
-                    <div style="position: relative; flex-grow: 1; display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div style="position: relative; flex-grow: 1; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
                         <input type="text" id="distribuidor-search" placeholder="Buscar por ciudad, estado, C.P. o nombre..." style="flex-grow: 1;">
                         <select id="distribuidor-state-select" class="filter-select">
                             <option value="">Todos los Estados</option>
                             <!-- Generado dinámicamente por js/main.js -->
                         </select>
+                        <button id="btn-use-location" class="btn btn--primary" style="flex-shrink: 0;">
+                            Usar ubicación
+                        </button>
                     </div>
-                    <button id="btn-use-location" class="btn btn--primary" style="flex-shrink: 0;">
-                        Usar ubicación
-                    </button>
                 </div>
                 <div id="search-stats" style="font-size: 0.85rem; color: var(--color-text-muted); font-weight: 500; padding-left: 5px;">
                     Cargando distribuidores...

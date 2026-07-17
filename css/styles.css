@@ -2544,12 +2544,22 @@ form input[type="file"] {
         background: rgba(226, 0, 26, 0.1); /* Ligero fondo rojo */
     }
     
-    .bottom-nav-link .material-symbols-outlined, 
+    .bottom-nav-link .material-symbols-outlined,
     .bottom-nav-menu-toggle .material-symbols-outlined {
         font-size: 1.6rem;
     }
 }
 
+/* En tablet (iPad mini y similares) la barra de búsqueda de Distribuidores
+   sigue en fila; el botón "Usar ubicación" no debe forzarse a 100% de ancho
+   como el resto de los .btn en móvil */
+@media (min-width: 577px) and (max-width: 768px) {
+    .search-bar .btn {
+        width: auto;
+        display: inline-flex;
+        margin-top: 0;
+    }
+}
 
 @media (max-width: 576px) {
     /* Ajustar tarjeta de distribuidor para pantallas muy angostas */
