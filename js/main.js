@@ -1157,14 +1157,21 @@ function initDistribuidores() {
             return;
         }
 
-        // Si el distribuidor seleccionado ya no está en la lista filtrada, reseteamos la selección al primero
-        if (!selectedDistId || !displayList.some(d => d.id === selectedDistId)) {
+        // Por defecto (sin búsqueda ni filtro de estado), no se pre-selecciona ninguna sucursal
+        if (isCPSearch && displayList.length > 0) {
             selectedDistId = displayList[0].id;
+        } else if (filterState || rawText) {
+            if (!selectedDistId || !displayList.some(d => d.id === selectedDistId)) {
+                selectedDistId = displayList[0] ? displayList[0].id : null;
+            }
+        } else {
+            // Estado inicial: Vista general panorámica de todo México sin selección activa
+            selectedDistId = null;
         }
 
         displayList.forEach((dist, index) => {
             const card = document.createElement('div');
-            const isActive = dist.id === selectedDistId;
+            const isActive = selectedDistId && dist.id === selectedDistId;
             const isClosestCard = isCPSearch && index === 0;
 
             card.className = `distributor-card glass-card ${isActive ? 'active' : ''} ${isClosestCard ? 'closest-cp-card' : ''}`;
@@ -1216,10 +1223,22 @@ function initDistribuidores() {
             directoryList.appendChild(card);
         });
 
-        // Actualizar mapa con el distribuidor activo
-        const activeDist = displayList.find(d => d.id === selectedDistId) || displayList[0];
-        if (activeDist) {
-            actualizarMapa(activeDist);
+        // Actualizar mapa: si hay selección explícita (búsqueda/C.P./clic) enfocar; de lo contrario mantener la vista panorámica de México
+        if (selectedDistId) {
+            const activeDist = displayList.find(d => d.id === selectedDistId);
+            if (activeDist) {
+                actualizarMapa(activeDist);
+            }
+        } else {
+            // Restaurar mapa general panorámico de México
+            if (leafletMap) {
+                leafletMap.setView([23.6345, -102.5528], 5);
+                Object.keys(leafletMarkers).forEach(id => {
+                    const item = leafletMarkers[id];
+                    item.marker.setIcon(item.redIcon);
+                    item.marker.closePopup();
+                });
+            }
         }
     }
 
@@ -1341,6 +1360,28 @@ function initDistribuidores() {
                 );
             }
         });
+    }
+
+    const btnResetMap = document.getElementById('btn-reset-map');
+
+    function resetToInitialState() {
+        selectedDistId = null;
+        if (searchInput) searchInput.value = "";
+        if (stateSelect) stateSelect.value = "";
+        renderDistribuidores();
+        if (leafletMap) {
+            leafletMap.flyTo([23.6345, -102.5528], 5, { animate: true, duration: 1.2 });
+            Object.keys(leafletMarkers).forEach(id => {
+                const item = leafletMarkers[id];
+                item.marker.setIcon(item.redIcon);
+                item.marker.closePopup();
+            });
+        }
+        showToast("Vista panorámica de la República Mexicana restaurada.");
+    }
+
+    if (btnResetMap) {
+        btnResetMap.addEventListener('click', resetToInitialState);
     }
 
     // Inicializar mapa de la República y lista
