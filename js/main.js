@@ -929,6 +929,73 @@ function initDistribuidores() {
     let selectedDistId = null;
     let leafletMap = null;
     let leafletMarkers = {};
+    let mexicoStatesGeoJSONData = null;
+    let stateLayersGroup = null;
+    let stateLayersByName = {};
+
+    // Normaliza el nombre de un estado para poder comparar aunque haya
+    // variaciones de acentos/mayúsculas entre el listado de distribuidores y el GeoJSON
+    function cleanStateName(name) {
+        return cleanText(name || '');
+    }
+
+    const STATE_POLYGON_DEFAULT_STYLE = {
+        color: '#E2001A',
+        weight: 0,
+        opacity: 0,
+        fillOpacity: 0,
+        interactive: false
+    };
+
+    const STATE_POLYGON_ACTIVE_STYLE = {
+        color: '#E2001A',
+        weight: 3,
+        opacity: 1,
+        fillColor: '#E2001A',
+        fillOpacity: 0.08,
+        interactive: false
+    };
+
+    // Dibuja (una sola vez) los polígonos de los 32 Estados de forma invisible,
+    // listos para resaltarse con borde rojo cuando el usuario selecciona un Estado
+    function initStatePolygons() {
+        if (!leafletMap || stateLayersGroup) return;
+        mexicoStatesGeoJSONData = window.MEXICO_STATES_GEOJSON || null;
+        if (!mexicoStatesGeoJSONData) return;
+
+        stateLayersGroup = L.geoJSON(mexicoStatesGeoJSONData, {
+            style: () => ({ ...STATE_POLYGON_DEFAULT_STYLE }),
+            onEachFeature: (feature, layer) => {
+                const name = feature.properties && feature.properties.name;
+                if (name) {
+                    stateLayersByName[cleanStateName(name)] = layer;
+                }
+            }
+        }).addTo(leafletMap);
+    }
+
+    // Resalta con borde rojo el Estado seleccionado y hace zoom (fitBounds) a su contorno.
+    // Si stateName es vacío, restaura todos los polígonos a invisibles.
+    function highlightState(stateName) {
+        if (!stateLayersGroup) return false;
+
+        Object.values(stateLayersByName).forEach(layer => {
+            layer.setStyle(STATE_POLYGON_DEFAULT_STYLE);
+        });
+
+        if (!stateName) return false;
+
+        const layer = stateLayersByName[cleanStateName(stateName)];
+        if (!layer) return false;
+
+        layer.setStyle(STATE_POLYGON_ACTIVE_STYLE);
+        layer.bringToFront();
+
+        if (leafletMap) {
+            leafletMap.flyToBounds(layer.getBounds(), { padding: [40, 40], maxZoom: 8, animate: true, duration: 1.2 });
+        }
+        return true;
+    }
 
     function getDistribuidores() {
         return JSON.parse(localStorage.getItem('amdim_distribuidores')) || [];
@@ -1036,6 +1103,9 @@ function initDistribuidores() {
             subdomains: 'abcd',
             maxZoom: 19
         }).addTo(leafletMap);
+
+        // Polígonos invisibles de los 32 Estados, listos para resaltarse en rojo al seleccionar un Estado
+        initStatePolygons();
 
         // Icono de Pin Rojo Mitsubishi personalizado
         const redIcon = L.divIcon({
@@ -1157,15 +1227,12 @@ function initDistribuidores() {
             return;
         }
 
-        // Por defecto (sin búsqueda ni filtro de estado), no se pre-selecciona ninguna sucursal
+        // Lógica de selección de mapa según tipo de filtro
         if (isCPSearch && displayList.length > 0) {
+            // Búsqueda por C.P.: enfocar la sucursal más cercana
             selectedDistId = displayList[0].id;
-        } else if (filterState || rawText) {
-            if (!selectedDistId || !displayList.some(d => d.id === selectedDistId)) {
-                selectedDistId = displayList[0] ? displayList[0].id : null;
-            }
         } else {
-            // Estado inicial: Vista general panorámica de todo México sin selección activa
+            // Filtro por Estado o vista general: no pre-seleccionar ninguna sucursal específica
             selectedDistId = null;
         }
 
@@ -1223,14 +1290,41 @@ function initDistribuidores() {
             directoryList.appendChild(card);
         });
 
-        // Actualizar mapa: si hay selección explícita (búsqueda/C.P./clic) enfocar; de lo contrario mantener la vista panorámica de México
+        // Actualizar vista del mapa Leaflet limpia
         if (selectedDistId) {
+            highlightState(null);
             const activeDist = displayList.find(d => d.id === selectedDistId);
             if (activeDist) {
                 actualizarMapa(activeDist);
             }
+        } else if (filterState && displayList.length > 0 && leafletMap) {
+            // Filtro por Estado: resaltar en rojo el contorno del Estado y hacer zoom a su borde
+            const matchedPolygon = highlightState(filterState);
+
+            Object.keys(leafletMarkers).forEach(id => {
+                const item = leafletMarkers[id];
+                item.marker.setIcon(item.redIcon);
+                item.marker.closePopup();
+            });
+
+            if (!matchedPolygon) {
+                // Estado sin polígono definido en el GeoJSON: encuadrar por las sucursales encontradas
+                const bounds = L.latLngBounds();
+                let hasCoords = false;
+                displayList.forEach(dist => {
+                    if (dist.lat && dist.lng) {
+                        bounds.extend([dist.lat, dist.lng]);
+                        hasCoords = true;
+                    }
+                });
+
+                if (hasCoords) {
+                    leafletMap.fitBounds(bounds, { padding: [50, 50], maxZoom: 11 });
+                }
+            }
         } else {
-            // Restaurar mapa general panorámico de México
+            // Vista general panorámica de todo México sin selección activa
+            highlightState(null);
             if (leafletMap) {
                 leafletMap.setView([23.6345, -102.5528], 5);
                 Object.keys(leafletMarkers).forEach(id => {
