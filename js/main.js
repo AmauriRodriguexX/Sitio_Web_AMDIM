@@ -794,6 +794,29 @@ function initNavigation() {
                     video.play().catch(() => console.log('El auto-play requiere interacción previa.'));
                 }
             }
+
+            // Invalidate size del mapa Leaflet al ir a Distribuidores
+            if (targetId === 'distribuidores') {
+                setTimeout(() => {
+                    if (window.distribuidorLeafletMap) {
+                        window.distribuidorLeafletMap.invalidateSize();
+                    }
+                }, 150);
+            }
+
+            // Recargar vacantes públicas al entrar a Bolsa de Trabajo
+            if (targetId === 'bolsa-trabajo') {
+                initBolsaTrabajo();
+            }
+
+            // Asegurar que el feed de LinkedIn se visualice en cuadrícula y cargue sus tarjetas
+            if (targetId === 'noticias') {
+                const feedContainer = document.getElementById('linkedin-feed-placeholder');
+                if (feedContainer) {
+                    feedContainer.style.display = 'grid';
+                }
+                initLinkedInFeed();
+            }
             
             // Hacer scroll hacia arriba suave
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -904,6 +927,8 @@ function initDistribuidores() {
     const mapContainer = document.getElementById('distribuidores-map');
 
     let selectedDistId = null;
+    let leafletMap = null;
+    let leafletMarkers = {};
 
     function getDistribuidores() {
         return JSON.parse(localStorage.getItem('amdim_distribuidores')) || [];
@@ -915,6 +940,60 @@ function initDistribuidores() {
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .trim();
+    }
+
+    // Extraer C.P. numérico de un texto de dirección
+    function extractCP(dir) {
+        const match = dir.match(/\b\d{5}\b/);
+        return match ? parseInt(match[0], 10) : null;
+    }
+
+    // Coordenadas aproximadas por rango de C.P. en la República Mexicana
+    function getCoordinatesFromCP(cpNum) {
+        if (cpNum >= 1000 && cpNum <= 19999) return { lat: 19.4326, lng: -99.1332 }; // CDMX / EdoMex
+        if (cpNum >= 20000 && cpNum <= 20999) return { lat: 21.8853, lng: -102.2916 }; // Aguascalientes
+        if (cpNum >= 21000 && cpNum <= 22999) return { lat: 32.6245, lng: -115.4523 }; // Baja California
+        if (cpNum >= 23000 && cpNum <= 23999) return { lat: 24.1426, lng: -110.3128 }; // Baja California Sur
+        if (cpNum >= 24000 && cpNum <= 24999) return { lat: 19.8301, lng: -90.5349 }; // Campeche
+        if (cpNum >= 25000 && cpNum <= 27999) return { lat: 25.4267, lng: -101.0014 }; // Coahuila
+        if (cpNum >= 28000 && cpNum <= 28999) return { lat: 19.2452, lng: -103.7241 }; // Colima
+        if (cpNum >= 29000 && cpNum <= 30999) return { lat: 16.7569, lng: -93.1292 }; // Chiapas
+        if (cpNum >= 31000 && cpNum <= 33999) return { lat: 28.6330, lng: -106.0691 }; // Chihuahua
+        if (cpNum >= 34000 && cpNum <= 35999) return { lat: 24.0277, lng: -104.6532 }; // Durango
+        if (cpNum >= 36000 && cpNum <= 38999) return { lat: 21.0190, lng: -101.2574 }; // Guanajuato
+        if (cpNum >= 39000 && cpNum <= 41999) return { lat: 17.5515, lng: -99.5005 }; // Guerrero
+        if (cpNum >= 42000 && cpNum <= 43999) return { lat: 20.1011, lng: -98.7591 }; // Hidalgo
+        if (cpNum >= 44000 && cpNum <= 49999) return { lat: 20.6597, lng: -103.3496 }; // Jalisco
+        if (cpNum >= 50000 && cpNum <= 57999) return { lat: 19.2879, lng: -99.6532 }; // Estado de México
+        if (cpNum >= 58000 && cpNum <= 61999) return { lat: 19.7060, lng: -101.1950 }; // Michoacán
+        if (cpNum >= 62000 && cpNum <= 62999) return { lat: 18.9261, lng: -99.2308 }; // Morelos
+        if (cpNum >= 63000 && cpNum <= 63999) return { lat: 21.5042, lng: -104.8947 }; // Nayarit
+        if (cpNum >= 64000 && cpNum <= 67999) return { lat: 25.6866, lng: -100.3161 }; // Nuevo León
+        if (cpNum >= 68000 && cpNum <= 71999) return { lat: 17.0732, lng: -96.7266 }; // Oaxaca
+        if (cpNum >= 72000 && cpNum <= 75999) return { lat: 19.0414, lng: -98.2063 }; // Puebla
+        if (cpNum >= 76000 && cpNum <= 76999) return { lat: 20.5888, lng: -100.3899 }; // Querétaro
+        if (cpNum >= 77000 && cpNum <= 77999) return { lat: 21.1619, lng: -86.8515 }; // Quintana Roo
+        if (cpNum >= 78000 && cpNum <= 79999) return { lat: 22.1565, lng: -100.9855 }; // San Luis Potosí
+        if (cpNum >= 80000 && cpNum <= 82999) return { lat: 24.8091, lng: -107.3940 }; // Sinaloa
+        if (cpNum >= 83000 && cpNum <= 85999) return { lat: 29.0729, lng: -110.9559 }; // Sonora
+        if (cpNum >= 86000 && cpNum <= 86999) return { lat: 17.9892, lng: -92.9281 }; // Tabasco
+        if (cpNum >= 87000 && cpNum <= 89999) return { lat: 23.7369, lng: -99.1411 }; // Tamaulipas
+        if (cpNum >= 90000 && cpNum <= 90999) return { lat: 19.3182, lng: -98.2375 }; // Tlaxcala
+        if (cpNum >= 91000 && cpNum <= 96999) return { lat: 19.5438, lng: -96.9103 }; // Veracruz
+        if (cpNum >= 97000 && cpNum <= 97999) return { lat: 20.9674, lng: -89.5926 }; // Yucatán
+        if (cpNum >= 98000 && cpNum <= 99999) return { lat: 22.7709, lng: -102.5832 }; // Zacatecas
+        return { lat: 19.4326, lng: -99.1332 };
+    }
+
+    function calcularDistancia(lat1, lon1, lat2, lon2) {
+        const R = 6371; // km
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
     }
 
     // Inicializar el selector de estados dinámicamente
@@ -932,65 +1011,178 @@ function initDistribuidores() {
         });
     }
 
+    // Inicializar el Mapa de la República Mexicana (Leaflet.js)
+    function initRepublicaMap() {
+        if (!mapContainer || typeof L === 'undefined') return;
+        
+        // Evitar duplicar la instancia del mapa
+        if (leafletMap) return;
+
+        mapContainer.innerHTML = '';
+        
+        // Mapa centrado en la República Mexicana
+        leafletMap = L.map(mapContainer, {
+            center: [23.6345, -102.5528],
+            zoom: 5,
+            zoomControl: true
+        });
+
+        // Guardar referencia global para invalidadesize en SPA
+        window.distribuidorLeafletMap = leafletMap;
+
+        // Capa Oscura Premium CartoDB Dark Matter para coincidir con la estética de AMDIM
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(leafletMap);
+
+        // Icono de Pin Rojo Mitsubishi personalizado
+        const redIcon = L.divIcon({
+            className: 'mitsubishi-leaflet-pin',
+            html: `<div style="background-color: #E2001A; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #FFFFFF; box-shadow: 0 0 10px rgba(226,0,26,0.8);"></div>`,
+            iconSize: [14, 14],
+            iconAnchor: [7, 7]
+        });
+
+        const activeRedIcon = L.divIcon({
+            className: 'mitsubishi-leaflet-pin-active',
+            html: `<div style="background-color: #E2001A; width: 22px; height: 22px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 15px rgba(226,0,26,1); animation: pulsePin 1.5s infinite;"></div>`,
+            iconSize: [22, 22],
+            iconAnchor: [11, 11]
+        });
+
+        const list = getDistribuidores();
+        leafletMarkers = {};
+
+        list.forEach(dist => {
+            if (dist.lat && dist.lng) {
+                const marker = L.marker([dist.lat, dist.lng], { icon: redIcon }).addTo(leafletMap);
+                
+                const popupContent = `
+                    <div style="font-family: inherit; color: #111; padding: 4px;">
+                        <strong style="color: #E2001A; font-size: 0.95rem; display: block; margin-bottom: 4px;">${dist.nombre}</strong>
+                        <span style="font-size: 0.8rem; color: #444; display: block; margin-bottom: 8px;">${dist.direccion}</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dist.direccion)}" target="_blank" style="display: inline-block; background: #E2001A; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; text-decoration: none; font-weight: 600;">Cómo llegar &rarr;</a>
+                    </div>
+                `;
+                
+                marker.bindPopup(popupContent);
+                
+                marker.on('click', () => {
+                    selectDistributor(dist);
+                });
+
+                leafletMarkers[dist.id] = { marker, redIcon, activeRedIcon };
+            }
+        });
+    }
+
     function renderDistribuidores() {
         const list = getDistribuidores();
-        const filterText = searchInput ? cleanText(searchInput.value) : "";
+        const rawText = searchInput ? searchInput.value.trim() : "";
+        const filterText = cleanText(rawText);
         const filterState = stateSelect ? stateSelect.value : "";
 
         directoryList.innerHTML = "";
 
-        const filteredList = list.filter(dist => {
-            const matchState = !filterState || dist.estado === filterState;
-            
-            const cleanName = cleanText(dist.nombre);
-            const cleanDir = cleanText(dist.direccion);
-            const cleanState = cleanText(dist.estado);
-            
-            const matchSearch = !filterText || 
-                                cleanName.includes(filterText) || 
-                                cleanDir.includes(filterText) ||
-                                cleanState.includes(filterText) ||
-                                dist.telefono.includes(filterText);
-                                
-            return matchState && matchSearch;
-        });
+        // Detectar si el usuario escribió un Código Postal (5 dígitos o números)
+        const isCPSearch = /^\d{2,5}$/.test(rawText);
+        let closestDistId = null;
+        let closestDistance = Infinity;
 
-        // Actualizar estadísticas de búsqueda
-        if (searchStats) {
-            if (filteredList.length === 1) {
-                searchStats.textContent = "1 distribuidor encontrado";
-            } else {
-                searchStats.textContent = `${filteredList.length} distribuidores encontrados ${filterState ? `en ${filterState}` : ''}`;
+        let displayList = [];
+
+        if (isCPSearch) {
+            const userCP = parseInt(rawText, 10);
+            const userCoords = getCoordinatesFromCP(userCP);
+
+            // Calcular distancia a todos los distribuidores
+            displayList = list.map(dist => {
+                const distCP = extractCP(dist.direccion);
+                let km = Infinity;
+
+                if (dist.lat && dist.lng && (dist.lat !== 19.4326 || dist.lng !== -99.1332)) {
+                    km = calcularDistancia(userCoords.lat, userCoords.lng, dist.lat, dist.lng);
+                } else if (distCP) {
+                    km = Math.abs(distCP - userCP) * 0.1; // fallback por diferencia numérica de C.P.
+                }
+
+                return { ...dist, distanciaKm: km };
+            });
+
+            // Ordenar por distancia (el más cercano primero)
+            displayList.sort((a, b) => a.distanciaKm - b.distanciaKm);
+
+            if (displayList.length > 0) {
+                closestDistId = displayList[0].id;
+                closestDistance = displayList[0].distanciaKm;
+            }
+
+            if (searchStats) {
+                const closestName = displayList[0] ? displayList[0].nombre : "";
+                const distFormatted = closestDistance < Infinity ? ` (a ${closestDistance.toFixed(1)} km)` : '';
+                searchStats.innerHTML = `<span style="color: var(--color-red); font-weight: 700;">📍 Distribuidor más cercano al C.P. ${rawText}:</span> <strong>${closestName}</strong>${distFormatted}. Se muestra el listado nacional ordenado por cercanía.`;
+            }
+        } else {
+            // Búsqueda normal por Texto (Nombre, Ciudad, Dirección, Estado)
+            displayList = list.filter(dist => {
+                const matchState = !filterState || dist.estado === filterState;
+                
+                const cleanName = cleanText(dist.nombre);
+                const cleanDir = cleanText(dist.direccion);
+                const cleanState = cleanText(dist.estado);
+                
+                const matchSearch = !filterText || 
+                                    cleanName.includes(filterText) || 
+                                    cleanDir.includes(filterText) ||
+                                    cleanState.includes(filterText) ||
+                                    dist.telefono.includes(filterText);
+                                    
+                return matchState && matchSearch;
+            });
+
+            if (searchStats) {
+                if (displayList.length === 1) {
+                    searchStats.textContent = "1 distribuidor encontrado";
+                } else {
+                    searchStats.textContent = `${displayList.length} distribuidores encontrados ${filterState ? `en ${filterState}` : ''}`;
+                }
             }
         }
 
-        if (filteredList.length === 0) {
+        if (displayList.length === 0) {
             directoryList.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--color-text-muted); padding: 40px 0;">No se encontraron distribuidores.</p>`;
             actualizarMapa(null);
             return;
         }
 
-        // Si el distribuidor seleccionado ya no está en la lista filtrada, reseteamos la selección
-        if (selectedDistId && !filteredList.some(d => d.id === selectedDistId)) {
-            selectedDistId = null;
+        // Si el distribuidor seleccionado ya no está en la lista filtrada, reseteamos la selección al primero
+        if (!selectedDistId || !displayList.some(d => d.id === selectedDistId)) {
+            selectedDistId = displayList[0].id;
         }
 
-        // Si no hay ninguno seleccionado, por defecto seleccionamos el primero
-        if (!selectedDistId && filteredList.length > 0) {
-            selectedDistId = filteredList[0].id;
-        }
-
-        filteredList.forEach(dist => {
+        displayList.forEach((dist, index) => {
             const card = document.createElement('div');
             const isActive = dist.id === selectedDistId;
-            card.className = `distributor-card glass-card ${isActive ? 'active' : ''}`;
+            const isClosestCard = isCPSearch && index === 0;
+
+            card.className = `distributor-card glass-card ${isActive ? 'active' : ''} ${isClosestCard ? 'closest-cp-card' : ''}`;
             card.dataset.id = dist.id;
+
+            const closestBadge = isClosestCard ? `
+                <div style="background: rgba(226, 0, 26, 0.2); border: 1px solid var(--color-red); color: var(--color-white); font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 10px;">
+                    <span class="material-symbols-outlined" style="font-size: 0.9rem; color: var(--color-red);">my_location</span>
+                    MÁS CERCANO A TU C.P. ${rawText} ${dist.distanciaKm < Infinity ? `(${dist.distanciaKm.toFixed(1)} km)` : ''}
+                </div>
+            ` : '';
             
             card.innerHTML = `
                 <div class="distributor-card-img">
                     <img src="assets/images/facades/real_facade.png" alt="${dist.nombre}" loading="lazy">
                 </div>
                 <div class="distributor-card-info">
+                    ${closestBadge}
                     <div class="distributor-card-header">
                         <h4>${dist.nombre}</h4>
                         <span class="distributor-card-state-badge">${dist.estado}</span>
@@ -1025,7 +1217,7 @@ function initDistribuidores() {
         });
 
         // Actualizar mapa con el distribuidor activo
-        const activeDist = filteredList.find(d => d.id === selectedDistId) || filteredList[0];
+        const activeDist = displayList.find(d => d.id === selectedDistId) || displayList[0];
         if (activeDist) {
             actualizarMapa(activeDist);
         }
@@ -1051,9 +1243,25 @@ function initDistribuidores() {
     function actualizarMapa(dist) {
         if (!mapContainer) return;
 
+        // Si Leaflet está disponible, centrar la cámara del Mapa de la República
+        if (leafletMap && dist && dist.lat && dist.lng) {
+            leafletMap.flyTo([dist.lat, dist.lng], 12, { animate: true, duration: 1.2 });
+
+            // Restaurar íconos anteriores y activar el seleccionado
+            Object.keys(leafletMarkers).forEach(id => {
+                const item = leafletMarkers[id];
+                if (id === dist.id) {
+                    item.marker.setIcon(item.activeRedIcon);
+                    item.marker.openPopup();
+                } else {
+                    item.marker.setIcon(item.redIcon);
+                }
+            });
+            return;
+        }
+
+        // Fallback a iframe de Google Maps si Leaflet no ha cargado
         if (dist) {
-            // Usar coordenadas lat/lng si son válidas (distintas a las del fallback de CDMX)
-            // O si es la de CDMX, usar la dirección para mayor precisión en la API de Google Maps
             const query = (dist.lat === 19.4326 && dist.lng === -99.1332) 
                 ? encodeURIComponent(dist.nombre + ", " + dist.direccion) 
                 : `${dist.lat},${dist.lng}`;
@@ -1068,29 +1276,10 @@ function initDistribuidores() {
                     style="border:0;">
                 </iframe>
             `;
-        } else {
-            mapContainer.innerHTML = `
-                <div class="map-placeholder-content">
-                    <span class="material-symbols-outlined" style="font-size: 3rem; color: var(--color-red); margin-bottom: 15px;">location_off</span>
-                    <h3>Red de Distribuidores Mitsubishi</h3>
-                    <p>Selecciona o busca un distribuidor para visualizar su ubicación.</p>
-                </div>
-            `;
         }
     }
 
-    function calcularDistancia(lat1, lon1, lat2, lon2) {
-        const R = 6371; // km
-        const dLat = (lat2 - lat1) * Math.PI / 180;
-        const dLon = (lon2 - lon1) * Math.PI / 180;
-        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                  Math.sin(dLon/2) * Math.sin(dLon/2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        return R * c;
-    }
-
-    // Buscador interactivo
+    // Buscador interactivo por CP o Texto
     if (searchInput) {
         searchInput.addEventListener('input', () => {
             renderDistribuidores();
@@ -1104,10 +1293,10 @@ function initDistribuidores() {
         });
     }
 
-    // Geolocalización real / simulada
+    // Geolocalización real por GPS
     if (btnUseLocation) {
         btnUseLocation.addEventListener('click', () => {
-            showToast("Solicitando permiso de ubicación...");
+            showToast("Solicitando tu ubicación actual...");
             
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
@@ -1123,8 +1312,7 @@ function initDistribuidores() {
                             let minDistance = Infinity;
                             
                             list.forEach(dist => {
-                                // Evitar calcular con coordenadas default
-                                if (dist.lat !== 19.4326 || dist.lng !== -99.1332) {
+                                if (dist.lat && dist.lng) {
                                     const d = calcularDistancia(userLat, userLng, dist.lat, dist.lng);
                                     if (d < minDistance) {
                                         minDistance = d;
@@ -1133,10 +1321,7 @@ function initDistribuidores() {
                                 }
                             });
                             
-                            // Si no encontramos con coordenadas válidas, tomamos el primero como fallback
-                            if (!closestDist && list.length > 0) {
-                                closestDist = list[0];
-                            }
+                            if (!closestDist && list.length > 0) closestDist = list[0];
                             
                             if (closestDist) {
                                 selectedDistId = closestDist.id;
@@ -1145,53 +1330,22 @@ function initDistribuidores() {
                                 
                                 renderDistribuidores();
                                 selectDistributor(closestDist);
-                                showToast(`Distribuidor más cercano encontrado: ${closestDist.nombre} (a ${(minDistance < Infinity) ? minDistance.toFixed(1) + ' km' : 'distancia no determinada'})`);
+                                showToast(`Distribuidor más cercano: ${closestDist.nombre} (a ${minDistance.toFixed(1)} km)`);
                             }
-                        }, 800);
+                        }, 500);
                     },
                     (error) => {
-                        console.warn("Error de geolocalización o permiso denegado: ", error);
-                        showToast("No pudimos obtener tu ubicación. Usando ubicación de referencia...");
-                        
-                        // Referencia CDMX (Ángel de la Independencia)
-                        const cdmxLat = 19.4270;
-                        const cdmxLng = -99.1677;
-                        
-                        setTimeout(() => {
-                            const list = getDistribuidores();
-                            let closestDist = list[0]; // Fallback default
-                            let minDistance = Infinity;
-                            
-                            list.forEach(dist => {
-                                if (dist.lat !== 19.4326 || dist.lng !== -99.1332) {
-                                    const d = calcularDistancia(cdmxLat, cdmxLng, dist.lat, dist.lng);
-                                    if (d < minDistance) {
-                                        minDistance = d;
-                                        closestDist = dist;
-                                    }
-                                }
-                            });
-                            
-                            if (closestDist) {
-                                selectedDistId = closestDist.id;
-                                if (stateSelect) stateSelect.value = "";
-                                if (searchInput) searchInput.value = "";
-                                
-                                renderDistribuidores();
-                                selectDistributor(closestDist);
-                                showToast(`Distribuidor más cercano en CDMX: ${closestDist.nombre}`);
-                            }
-                        }, 800);
+                        console.warn("Geolocalización no disponible: ", error);
+                        showToast("Ubicación denegada. Ingresa tu Código Postal en la barra de búsqueda.");
                     }
                 );
-            } else {
-                showToast("Geolocalización no soportada por tu navegador.");
             }
         });
     }
 
-    // Inicializar
+    // Inicializar mapa de la República y lista
     initStateSelect();
+    initRepublicaMap();
     renderDistribuidores();
 }
 
@@ -1277,7 +1431,62 @@ function initBolsaTrabajo() {
     })();
 
     function getVacantes() {
-        return JSON.parse(localStorage.getItem('amdim_vacantes')) || [];
+        const stored = localStorage.getItem('amdim_vacantes');
+        if (stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+            } catch (e) {}
+        }
+
+        // Vacantes iniciales predeterminadas en los distribuidores autorizados de México
+        const initialJobs = [
+            {
+                id: "vac-001",
+                titulo: "Asesor de Ventas Digitales & Vehículos Nuevos",
+                distribuidor: "Mitsubishi Guadalajara",
+                estado: "Jalisco",
+                descripcion: "Buscamos profesional en ventas automotrices con experiencia en atención digital, CRM y prospección para integrarse al equipo comercial de la gama SUVs y Pick-Ups."
+            },
+            {
+                id: "vac-002",
+                titulo: "Técnico Especializado en Diagnóstico PHEV",
+                distribuidor: "Mitsubishi Interlomas",
+                estado: "Estado de México",
+                descripcion: "Técnico certificado en sistemas eléctricos e híbridos enchufables (Outlander PHEV). Experiencia en uso de escáner MUT-III y mantenimiento especializado."
+            },
+            {
+                id: "vac-003",
+                titulo: "Gerente de Posventa y Servicio Técnico",
+                distribuidor: "Mitsubishi Monterrey Norte",
+                estado: "Nuevo León",
+                descripcion: "Liderar las operaciones del taller de servicio y refacciones, manteniendo los estándares de calidad de la marca y satisfacción del cliente."
+            },
+            {
+                id: "vac-004",
+                titulo: "Asesor de Servicio y Atención a Clientes",
+                distribuidor: "Mitsubishi Polanco",
+                estado: "Ciudad de México",
+                descripcion: "Recepción de unidades, diagnóstico primario, cotización de mantenimientos y seguimiento continuo con los propietarios."
+            },
+            {
+                id: "vac-005",
+                titulo: "Especialista en Financiamiento Automotriz",
+                distribuidor: "Mitsubishi Puebla Angelópolis",
+                estado: "Puebla",
+                descripcion: "Gestión de solicitudes de crédito automotriz, trámite de pólizas de seguro y vinculación con instituciones financieras asociadas."
+            },
+            {
+                id: "vac-006",
+                titulo: "Técnico en Mantenimiento de Pick-Ups L200",
+                distribuidor: "Mitsubishi Mérida",
+                estado: "Yucatán",
+                descripcion: "Técnico mecánico con experiencia en chasis, tracción 4WD y motores diésel/gasolina para flotillas y Pick-Ups."
+            }
+        ];
+
+        localStorage.setItem('amdim_vacantes', JSON.stringify(initialJobs));
+        return initialJobs;
     }
 
     // Populate job state select dropdown dynamically
@@ -1391,79 +1600,110 @@ function initLinkedInFeed() {
     const feedContainer = document.getElementById('linkedin-feed-placeholder');
     if (!feedContainer) return;
 
-    // Aquí AMDIM puede agregar sus publicaciones recientes manualmente
-    // Copiando el texto, agregando una imagen (opcional) y el enlace al post real de LinkedIn
-    const posts = [
+    feedContainer.style.display = 'grid';
+
+    // Publicaciones reales de LinkedIn de la AMDIM (únicamente imágenes originales de media.licdn.com)
+    const fallbackPosts = [
         {
-            fecha: "Hace 2 días",
-            texto: "Celebramos la convención nacional anual 2026 de la AMDIM. Un espacio donde nuestros 71 distribuidores autorizados de Mitsubishi Motors en México compartieron estrategias e innovación para seguir ofreciendo el mejor servicio del sector.",
-            imagen: "assets/images/news_convention.jpg",
-            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
-            likes: 48,
-            comentarios: 6
+            fecha: "Hace 2 semanas • Editado • 🌐",
+            texto: "Un pequeño gesto puede hacer una gran diferencia. 🐾❤️\n\nNos sumamos a la difusión de Operación Patitas 2026, una iniciativa de Mitsubishi Motors de México y Zadrigman que busca recaudar alimento para perritos en situación vulnerable.\n\nCada donativo cuenta. Si tienes la oportunidad, súmate llevando croquetas nuevas y selladas a los distribuidores participantes del 6 al 21 de julio.\n\nMás información: https://lnkd.in/gS3ECScN\n\n#AMDIM #DistribuidoresMitsubishi #MitsubishiMotorsMéxico",
+            imagen: "https://media.licdn.com/dms/image/v2/D5622AQECb_l9Qme_Gw/feedshare-shrink_800/B56Z9D4lqUGcAc-/0/1783550335882?e=1786579200&v=beta&t=t6XkDHYoT24rES_fPCeKDVM4Ahlz34S8N58uet9rK8Y",
+            avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
+            enlace: "https://www.linkedin.com/feed/update/urn:li:activity:7480752310281850880/",
+            likes: 6,
+            comentarios: 2
         },
         {
-            fecha: "Hace 1 semana",
-            texto: "¡Orgullosos del lanzamiento de la nueva L200 2026! Robustez, durabilidad y tecnología al servicio de los caminos mexicanos. Visita tu distribuidor autorizado Mitsubishi más cercano para agendar tu prueba de manejo.",
-            imagen: "assets/images/news_l200.jpg",
-            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
-            likes: 92,
-            comentarios: 15
-        },
-        {
-            fecha: "Hace 3 semanas",
-            texto: "AMDIM reafirma su compromiso con el desarrollo automotriz del país. Abrimos nuevas vacantes en nuestra bolsa de trabajo para integrar talento especializado en las áreas de ventas y servicio técnico certificado.",
-            imagen: "assets/images/news_jobs.jpg",
-            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
-            likes: 34,
+            fecha: "Hace 3 semanas • 🌐",
+            texto: "El futuro de la movilidad se vive hoy con Mitsubishi Outlander PHEV. 🚗⚡\n\nCon su tecnología híbrida enchufable, amplio espacio y equipamiento, este modelo ofrece una conducción eficiente sin renunciar al confort y desempeño.\n\nAcércate a tu distribuidor autorizado Mitsubishi Motors y conoce las condiciones comerciales vigentes.\n\n#AMDIM #MitsubishiMotorsMéxico #OutlanderPHEV",
+            imagen: "https://media.licdn.com/dms/image/v2/D5622AQFLzaZyegEWtA/feedshare-shrink_800/B56Z8VQW0IJoAc-/0/1782768037356?e=1786579200&v=beta&t=NAZw4W6PKkHZ50wPyxAfvhqSCAZyrgWV2PT4O4EeKmk",
+            avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
+            enlace: "https://www.linkedin.com/feed/update/urn:li:activity:7477471111908089856/",
+            likes: 2,
             comentarios: 2
         }
     ];
 
-    feedContainer.innerHTML = "";
-    // Mostrar solamente los primeros 5 posts más recientes
-    posts.slice(0, 5).forEach(post => {
-        const postCard = document.createElement('div');
-        postCard.className = 'mock-linkedin-post glass-card';
-        
-        postCard.addEventListener('click', () => {
-            window.open(post.enlace, '_blank');
-        });
+    // Función encargada de inyectar CUALQUIER lista de publicaciones JSON en NUESTRO diseño de tarjetas
+    function renderPostsInCustomCards(postsList) {
+        feedContainer.innerHTML = "";
+        postsList.forEach(post => {
+            const postCard = document.createElement('div');
+            postCard.className = 'mock-linkedin-post glass-card';
+            
+            postCard.addEventListener('click', () => {
+                window.open(post.enlace || "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/", '_blank');
+            });
 
-        const imgHTML = post.imagen ? `
-            <div class="post-image-container">
-                <img src="${post.imagen}" alt="Noticia AMDIM" class="post-image">
-            </div>
-        ` : '';
+            const imgHTML = post.imagen ? `
+                <div class="post-image-container">
+                    <img src="${post.imagen}" alt="Noticia AMDIM LinkedIn" class="post-image" onerror="this.style.display='none'">
+                </div>
+            ` : '';
 
-        postCard.innerHTML = `
-            <div class="post-header">
-                <div class="post-author-info">
-                    <div class="post-avatar">AM</div>
-                    <div class="post-author-meta">
-                        <strong class="post-author-name">Asociación Mexicana de Distribuidores Mitsubishi, A.C.</strong>
-                        <span class="post-date">${post.fecha}</span>
+            const avatarStyle = post.avatar 
+                ? `background: url('${post.avatar}') center/cover no-repeat #111; border: 1px solid rgba(225,39,39,0.3);` 
+                : `background: url('assets/images/logos/AMIDM_LOGO NUEVO solo rojo.png') center/contain no-repeat #111; border: 1px solid rgba(225,39,39,0.3);`;
+
+            const postUrl = post.enlace || "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/";
+
+            postCard.innerHTML = `
+                <div class="post-header">
+                    <div class="post-author-info">
+                        <div class="post-avatar" style="${avatarStyle}"></div>
+                        <div class="post-author-meta">
+                            <strong class="post-author-name">Asociación Mexicana Distribuidores Mitsubishi, A.C.</strong>
+                            <span class="post-date">${post.fecha || 'Reciente • 🌐'}</span>
+                        </div>
                     </div>
+                    <span class="material-symbols-outlined linkedin-icon-link">open_in_new</span>
                 </div>
-                <span class="material-symbols-outlined linkedin-icon-link">open_in_new</span>
-            </div>
-            <div class="post-content">
-                <p class="post-text">${post.texto}</p>
-                ${imgHTML}
-            </div>
-            <div class="post-footer">
-                <div class="post-actions">
-                    <span class="post-action-item">
-                        <span class="material-symbols-outlined">thumb_up</span> ${post.likes} Reacciones
-                    </span>
-                    <span class="post-action-item">
-                        <span class="material-symbols-outlined">comment</span> ${post.comentarios} Comentarios
-                    </span>
+                <div class="post-content">
+                    <p class="post-text">${(post.texto || '').replace(/\n/g, '<br>')}</p>
+                    ${imgHTML}
                 </div>
-            </div>
-        `;
-        feedContainer.appendChild(postCard);
-    });
+                <div class="post-footer" style="display: flex; flex-direction: column; gap: 14px;">
+                    <div class="post-actions">
+                        <span class="post-action-item">
+                            <span class="material-symbols-outlined" style="color:#0A66C2;">thumb_up</span> ${post.likes || 6} Reacciones
+                        </span>
+                        <span class="post-action-item">
+                            <span class="material-symbols-outlined">chat_bubble_outline</span> ${post.comentarios || 2} Comentarios
+                        </span>
+                    </div>
+                    <a href="${postUrl}" target="_blank" class="btn btn--outline-red btn-linkedin-link" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.82rem; padding: 10px 16px; border-radius: 8px; text-decoration: none;" onclick="event.stopPropagation();">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16" style="flex-shrink: 0;">
+                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                        </svg>
+                        Ver publicación en LinkedIn
+                    </a>
+                </div>
+            `;
+            feedContainer.appendChild(postCard);
+        });
+    }
+
+    // Renderizado síncrono inmediato para asegurar visibilidad en cualquier entorno (incluyendo file:// local)
+    renderPostsInCustomCards(fallbackPosts);
+
+    // Intento de conexión dinámico a la API JSON / Endpoint de publicaciones
+    // Si la API remota responde en servidor HTTP/HTTPS, se actualiza automáticamente con nuevos posts
+    if (window.location.protocol.startsWith('http')) {
+        const apiEndpoint = "assets/data/linkedin_posts.json";
+        fetch(apiEndpoint)
+            .then(response => {
+                if (!response.ok) throw new Error("Usando publicaciones pre-cargadas");
+                return response.json();
+            })
+            .then(data => {
+                if (Array.isArray(data) && data.length > 0) {
+                    renderPostsInCustomCards(data);
+                }
+            })
+            .catch(err => {
+                // Silencioso: mantiene las publicaciones institucionales ya renderizadas
+            });
+    }
 }
 
 // --- 7. SECCIÓN CONTACTO ---
@@ -1656,11 +1896,94 @@ function initLegales() {
 /**
  * Controla el filtrado dinámico de vehículos por categoría
  */
+// --- SECUENCIAS 360° OFICIALES DE MITSUBISHI MOTORS DE MÉXICO ---
+const MODEL_360_SEQUENCES = {
+    "mirage": [
+        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-1_706_VoEqGl8cOO.avif",
+        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-2_710_WiODj5XHV2.avif",
+        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-3_708_fXqQdHgqJH.avif",
+        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-4_704_FUhmdvDM1c.avif",
+        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-5_700_J8ipFiPbtF.avif",
+        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-6_702_RK9w4jsTAp.avif"
+    ],
+    "xpander": [
+        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-1_5046_H3n8HltPCe.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-2_5047_DIQN7NYvn3.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-3_5048_K84fF0Ng3D.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-4_5049_wiFuE1F3SG.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-5_5050_KKNgSex3yN.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-6_5051_1VGN2uYUs8.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-7_5052_14LIkMp4Dy.avif"
+    ],
+    "xpander-cross": [
+        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-1_4891_M7RsgObPeZ.avif",
+        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-2_5079_qjYrWVSnSW.avif",
+        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-3_5080_nn18NgfO37.avif",
+        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-4_5081_FPWA0iaTRj.avif",
+        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-5_5082_aGWgd7doju.avif",
+        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-6_5083_qQBZIbLih3.avif",
+        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-7_5084_CzQmhP7qjK.avif"
+    ],
+    "outlander-sport": [
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-red-metallic-1_3702_CshYUBWD5U.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-red-metallic-2_2681_Tz1XNxsVy5.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-red-metallic-3_2652_A76IWHlSVD.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-red-metallic-4_3705_UJd27or6u9.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-red-metallic-5_3648_iISIpOIdui.avif"
+    ],
+    "outlander": [
+        "https://mitsubishi-motors.mx/assets/Outlander-Moonstone-Gray-1_3082_tsw2wTDutt.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Moonstone-Gray-2_3033_YhFLLtG4Oo.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Moonstone-Gray-3_3111_ARIs0VaZtZ.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Moonstone-Gray-4_3112_yMm7LQUpoN.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Moonstone-Gray-5_3366_z491wQEEcH.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Moonstone-Gray-6_3371_6i56poa1Mk.avif"
+    ],
+    "outlander-phev": [
+        "https://mitsubishi-motors.mx/assets/phev-white-diamond-1_4955_IU5J4zFuKW.avif",
+        "https://mitsubishi-motors.mx/assets/phev-white-diamond-2_4956_3e2IGDuhUI.avif",
+        "https://mitsubishi-motors.mx/assets/phev-white-diamond-3_4957_ysxA0xhDYw.avif",
+        "https://mitsubishi-motors.mx/assets/phev-white-diamond-4_4958_U4K7W6geNv.avif",
+        "https://mitsubishi-motors.mx/assets/phev-white-diamond-5_4959_640067fCAb.avif"
+    ],
+    "montero": [
+        "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-1_3780_R8tzr6hySx.avif",
+        "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-2_3805_PuTg4P28ge.avif",
+        "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-3_3806_6cSV9RtpqD.avif",
+        "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-4_3783_AaN4Jm37RS.avif",
+        "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-5_3808_uvm8Sb88Am.avif"
+    ],
+    "l200": [
+        "https://mitsubishi-motors.mx/assets/l200-blade-silver-metallic-1_4272_0H6IBQKlhn.avif",
+        "https://mitsubishi-motors.mx/assets/l200-blade-silver-metallic-2_4273_GFQN0xAsWS.avif",
+        "https://mitsubishi-motors.mx/assets/l200-blade-silver-metallic-3_4226_z3TxIw1roX.avif",
+        "https://mitsubishi-motors.mx/assets/l200-blade-silver-metallic-4_4275_5nOzyOF2Xw.avif",
+        "https://mitsubishi-motors.mx/assets/l200-blade-silver-metallic-5_4251_EMlmk9P0Vb.avif"
+    ],
+    "l200-gsr": [
+        "https://mitsubishi-motors.mx/assets/GSR-white-diamond-1_3914_Cu1HgyWbPr.avif",
+        "https://mitsubishi-motors.mx/assets/GSR-white-diamond-2_3915_5oS5kUE099.avif",
+        "https://mitsubishi-motors.mx/assets/GSR-white-diamond-3_3916_EU4zDhuFtU.avif",
+        "https://mitsubishi-motors.mx/assets/GSR-white-diamond-4_3917_D6rfmRTytg.avif",
+        "https://mitsubishi-motors.mx/assets/GSR-white-diamond-5_3918_JXstwwQd7X.avif"
+    ]
+};
+
 function initModelosFilter() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const modelCards = document.querySelectorAll('.model-card');
 
     if (!filterButtons.length || !modelCards.length) return;
+
+    // Precargar secuencias 360 en segundo plano para fluidez instantánea
+    try {
+        Object.values(MODEL_360_SEQUENCES).forEach(seq => {
+            seq.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        });
+    } catch(e) {}
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -1687,6 +2010,102 @@ function initModelosFilter() {
                     card.style.display = 'none';
                 }
             });
+        });
+    });
+
+    // Visor Interactivo 360° mediante arrastre (manita) en Desktop y Slide en Móvil
+    modelCards.forEach(card => {
+        const modelKey = card.getAttribute('data-model');
+        const container = card.querySelector('.model-image-container');
+        const img = card.querySelector('img');
+        if (!container || !img) return;
+
+        const sequence = MODEL_360_SEQUENCES[modelKey];
+        if (!sequence || sequence.length === 0) return;
+
+        let isDragging = false;
+        let startX = 0;
+        let activeFrameIndex = 0;
+        const totalFrames = sequence.length;
+
+        const updateFrame = (deltaX) => {
+            // Sensibilidad: píxeles de arrastre por marco
+            const sensitivity = 22; 
+            const frameOffset = Math.floor(-deltaX / sensitivity);
+            let targetIndex = (activeFrameIndex + frameOffset) % totalFrames;
+            if (targetIndex < 0) targetIndex += totalFrames;
+
+            img.src = sequence[targetIndex];
+        };
+
+        // EVENTO CLICK EN EL BOTÓN 360° DEBAJO DEL AUTO
+        const badge360 = container.querySelector('.badge-360-below');
+        if (badge360) {
+            badge360.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // Avanzar al siguiente marco de ángulo 360°
+                activeFrameIndex = (activeFrameIndex + 1) % totalFrames;
+                img.src = sequence[activeFrameIndex];
+
+                // Efecto de pulso en el botón
+                badge360.style.transform = 'scale(0.92)';
+                setTimeout(() => {
+                    badge360.style.transform = '';
+                }, 150);
+            });
+        }
+
+        // EVENTOS DE RATÓN (DESKTOP DRAG CON MANITA)
+        container.addEventListener('mousedown', (e) => {
+            if (e.target.closest('.badge-360-below')) return; // No iniciar drag si clickea el botón 360
+            isDragging = true;
+            startX = e.clientX;
+            container.classList.add('is-dragging');
+            e.preventDefault();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const deltaX = e.clientX - startX;
+            updateFrame(deltaX);
+        });
+
+        window.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+            const deltaX = e.clientX - startX;
+            const sensitivity = 22;
+            const frameOffset = Math.floor(-deltaX / sensitivity);
+            activeFrameIndex = (activeFrameIndex + frameOffset) % totalFrames;
+            if (activeFrameIndex < 0) activeFrameIndex += totalFrames;
+
+            isDragging = false;
+            container.classList.remove('is-dragging');
+        });
+
+        // EVENTOS TÁCTILES (MÓVIL SLIDE)
+        container.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            container.classList.add('is-dragging');
+        }, { passive: true });
+
+        container.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const deltaX = e.touches[0].clientX - startX;
+            updateFrame(deltaX);
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            const endX = e.changedTouches[0] ? e.changedTouches[0].clientX : startX;
+            const deltaX = endX - startX;
+            const sensitivity = 22;
+            const frameOffset = Math.floor(-deltaX / sensitivity);
+            activeFrameIndex = (activeFrameIndex + frameOffset) % totalFrames;
+            if (activeFrameIndex < 0) activeFrameIndex += totalFrames;
+
+            isDragging = false;
+            container.classList.remove('is-dragging');
         });
     });
 }

@@ -13,6 +13,10 @@
     <!-- Google Fonts: Material Symbols Outlined & Tipografía de Apoyo -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
     
+    <!-- Leaflet.js para Mapa Interactivo de la República Mexicana (referencia amdk.mx/concesionarios) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <!-- Estilos base y de diseño premium -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -112,7 +116,7 @@
         <section id="nosotros" class="content-section" style="display: none;">
             <div class="section-header">
                 <h2>Quiénes somos</h2>
-                <p>Nuestra historia, misión y la estructura del equipo al servicio de la red.</p>
+                <p>Nuestra historia, filosofía y la estructura del equipo al servicio de la red.</p>
             </div>
             
             <div class="about-content">
@@ -120,23 +124,19 @@
                 <div class="about-hero-grid">
                     <article class="history glass-card">
                         <h3><span class="diamond-bullet"></span>Nuestra historia</h3>
-                        <p>La Asociación Mexicana de Distribuidores Mitsubishi A.C. (AMDIM) inició operaciones en abril del 2004 y actualmente representa a 69 Distribuidores Autorizados Mitsubishi Motors en México y puntos de venta. Nuestro propósito es promover, defender y fortalecer los intereses de nuestros asociados, impulsando las mejores prácticas del sector automotriz y fomentando una relación sólida y colaborativa con la marca, en beneficio de la red de Distribuidores y de los clientes en México.</p>
+                        <p>La Asociación Mexicana de Distribuidores Mitsubishi A.C. (AMDIM) inició operaciones en abril del 2004.</p>
+                        <p>Con la llegada de Mitsubishi Motors al mercado mexicano en 2018 y la formalización de sus operaciones en 2019, la marca consolidó una nueva etapa de crecimiento en el país, integrándose a la Alianza Renault-Nissan-Mitsubishi. Actualmente, la AMDIM tiene su sede en la Ciudad de México.</p>
                     </article>
                     <div class="about-visual-card glass-card">
-                        <img src="assets/images/facades/facade_dusk.jpg" alt="Distribuidor Autorizado Mitsubishi">
+                        <img src="assets/images/facades/real_facade.png" alt="Asociación Mexicana de Distribuidores Mitsubishi">
                     </div>
                 </div>
 
-                <!-- Misión y Visión -->
-                <div class="mission-vision">
-                    <article class="mission glass-card">
-                        <h3><span class="diamond-bullet"></span>Misión</h3>
-                        <p>Representar y fortalecer a los Distribuidores Mitsubishi en México, promoviendo sus intereses comunes, impulsando su desarrollo empresarial y fomentando la colaboración, comunicación y generación de valor para toda la red.</p>
-                    </article>
-                    
-                    <article class="vision glass-card">
-                        <h3><span class="diamond-bullet"></span>Visión</h3>
-                        <p>Consolidarnos como un organismo de referencia que represente y funcione para fortalecer a la Red de Distribuidores Mitsubishi en México, impulsando su desarrollo sostenible, competitividad y crecimiento en beneficio de sus asociados y clientes.</p>
+                <!-- Nuestra Filosofía -->
+                <div class="philosophy-container">
+                    <article class="philosophy glass-card">
+                        <h3><span class="diamond-bullet"></span>Nuestra filosofía</h3>
+                        <p>Representar a los Distribuidores Mitsubishi en México, impulsando la colaboración entre ellos, promoviendo y fortaleciendo sus intereses comunes, impulsando las mejores prácticas del sector automotriz y trabajando en conjunto con la marca y financiera para fortalecer la red y brindar una experiencia de excelencia a los clientes.</p>
                     </article>
                 </div>
 
@@ -144,40 +144,35 @@
                 <section class="organization glass-card">
                     <h3><span class="diamond-bullet"></span>Estructura organizacional</h3>
                     <div class="team-grid">
-                        <!-- Francisco Vargas Montoya -->
+                        <!-- Francisco Vargas -->
                         <div class="team-member glass-card">
                             <div class="member-avatar">FV</div>
-                            <h4 class="member-name">Francisco Vargas Montoya</h4>
-                            <p class="member-role">Director</p>
-                            <p class="member-email"><a href="mailto:fvm@amdim.com.mx">fvm@amdim.com.mx</a></p>
+                            <h4 class="member-name">Francisco Vargas</h4>
+                            <p class="member-role">Director General</p>
                         </div>
-                        <!-- Barbara Ibarguen Troncoso -->
+                        <!-- Barbara Ibarguen -->
                         <div class="team-member glass-card">
                             <div class="member-avatar">BI</div>
-                            <h4 class="member-name">Barbara Ibarguen Troncoso</h4>
+                            <h4 class="member-name">Barbara Ibarguen</h4>
                             <p class="member-role">Gerente de Marketing</p>
-                            <p class="member-email"><a href="mailto:bit@amdim.com.mx">bit@amdim.com.mx</a></p>
                         </div>
-                        <!-- Daniela Sánchez Pineda -->
+                        <!-- Daniela Sánchez -->
                         <div class="team-member glass-card">
                             <div class="member-avatar">DS</div>
-                            <h4 class="member-name">Daniela Sánchez Pineda</h4>
+                            <h4 class="member-name">Daniela Sánchez</h4>
                             <p class="member-role">Coordinadora de Paid Media & CRM</p>
-                            <p class="member-email"><a href="mailto:dsp@amdim.com.mx">dsp@amdim.com.mx</a></p>
                         </div>
-                        <!-- José Cipriano Volantín Carranco -->
+                        <!-- José Volantín -->
                         <div class="team-member glass-card">
                             <div class="member-avatar">JV</div>
-                            <h4 class="member-name">José Cipriano Volantín Carranco</h4>
+                            <h4 class="member-name">José Volantín</h4>
                             <p class="member-role">Coordinador de Estudios Económicos</p>
-                            <p class="member-email"><a href="mailto:jcv@amdim.com.mx">jcv@amdim.com.mx</a></p>
                         </div>
-                        <!-- Jazmín Martínez Gúzman -->
+                        <!-- Jazmín Martínez -->
                         <div class="team-member glass-card">
                             <div class="member-avatar">JM</div>
-                            <h4 class="member-name">Jazmín Martínez Gúzman</h4>
+                            <h4 class="member-name">Jazmín Martínez</h4>
                             <p class="member-role">Auxiliar Contable</p>
-                            <p class="member-email"><a href="mailto:jmg@amdim.com.mx">jmg@amdim.com.mx</a></p>
                         </div>
                     </div>
                 </section>
@@ -194,10 +189,11 @@
             <!-- Filtro de Modelos -->
             <div class="models-filter-wrapper">
                 <div class="models-filter-container">
-                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn active" data-filter="all">Todos los vehículos</button>
                     <button class="filter-btn" data-filter="comercial">Comercial</button>
                     <button class="filter-btn" data-filter="autos">Autos</button>
                     <button class="filter-btn" data-filter="camionetas">Camionetas</button>
+                    <button class="filter-btn" data-filter="hibrido">Híbrido/Enchufable</button>
                     <button class="filter-btn" data-filter="crossover">Crossover</button>
                 </div>
             </div>
@@ -205,154 +201,235 @@
             <!-- Listado de Modelos con imágenes y fichas técnicas -->
             <div id="models-container" class="models-grid">
                 <!-- Mirage G4 -->
-                <div class="model-card glass-card" data-model="mirage" data-category="autos" onclick="window.location.hash = '#distribuidores';">
+                <div class="model-card glass-card" data-model="mirage" data-category="autos">
                     <span class="model-badge">Sedán</span>
-                    <img src="https://mitsubishi-motors.mx/assets/Mirage-G4-GLX-gris-miniatura-lateral_3626_yroVpbrPFN.avif" alt="Mitsubishi Mirage G4">
+                    <div class="model-image-container">
+                        <img src="https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-1_706_VoEqGl8cOO.avif" alt="Mitsubishi Mirage G4">
+                        <div class="badge-360-below">
+                            <span class="material-symbols-outlined">360</span>
+                            <span>Gira 360°</span>
+                        </div>
+                    </div>
                     <h3>Mirage G4</h3>
                     <div class="model-price">Desde $322,900 MXN</div>
                     <p>El sedán eficiente con un excelente rendimiento de combustible, gran espacio interior y conectividad moderna para tu día a día.</p>
-                    <div class="model-card-buttons" onclick="event.stopPropagation();">
-                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-MirageG4-2026_3168_0nBiWODi6u.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-MirageG4-2026.pdf" class="btn btn--primary btn-download">
+                    <div class="model-card-buttons">
+                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-MirageG4-2026_3168_0nBiWODi6u.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-MirageG4-2026.pdf" class="btn btn--primary btn-download btn-full">
                             Descargar Ficha Técnica
                         </a>
-                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/MIG426/catalogo/MIG426.pdf" target="_blank" class="btn btn--ghost-light btn-download">
+                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/MIG426/catalogo/MIG426.pdf" target="_blank" class="btn btn--ghost-light btn-download btn-half">
                             Ver Catálogo
+                        </a>
+                        <a href="https://mitsubishi-motors.mx/comprar/financiamiento/cotizador" target="_blank" class="btn btn--outline-red btn-download btn-half">
+                            Financiamiento
                         </a>
                     </div>
                 </div>
                 
                 <!-- Xpander -->
-                <div class="model-card glass-card" data-model="xpander" data-category="autos" onclick="window.location.hash = '#distribuidores';">
+                <div class="model-card glass-card" data-model="xpander" data-category="autos">
                     <span class="model-badge">MPV / Familiar</span>
-                    <img src="https://mitsubishi-motors.mx/assets/Xpander-miniatura-side_3759_OiXrcEKnJk.avif" alt="Mitsubishi Xpander">
+                    <div class="model-image-container">
+                        <img src="https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-1_5046_H3n8HltPCe.avif" alt="Mitsubishi Xpander">
+                        <div class="badge-360-below">
+                            <span class="material-symbols-outlined">360</span>
+                            <span>Gira 360°</span>
+                        </div>
+                    </div>
                     <h3>Xpander</h3>
                     <div class="model-price">Desde $453,900 MXN</div>
                     <p>La camioneta familiar con espacio inteligente y versátil de 3 filas para 7 pasajeros, ideal para compartir grandes momentos.</p>
-                    <div class="model-card-buttons" onclick="event.stopPropagation();">
-                        <a href="https://mitsubishi-motors.mx/assets/Ficha-tecnica-Mitsubishi-Xpander-2026_3742_wNjkX9RH4s.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-Xpander-2026.pdf" class="btn btn--primary btn-download">
+                    <div class="model-card-buttons">
+                        <a href="https://mitsubishi-motors.mx/assets/Ficha-tecnica-Mitsubishi-Xpander-2026_3742_wNjkX9RH4s.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-Xpander-2026.pdf" class="btn btn--primary btn-download btn-full">
                             Descargar Ficha Técnica
                         </a>
-                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/XPAN26/catalogo/XPAN26.pdf" target="_blank" class="btn btn--ghost-light btn-download">
+                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/XPAN26/catalogo/XPAN26.pdf" target="_blank" class="btn btn--ghost-light btn-download btn-half">
                             Ver Catálogo
+                        </a>
+                        <a href="https://mitsubishi-motors.mx/comprar/financiamiento/cotizador" target="_blank" class="btn btn--outline-red btn-download btn-half">
+                            Financiamiento
                         </a>
                     </div>
                 </div>
 
                 <!-- Xpander Cross -->
-                <div class="model-card glass-card" data-model="xpander-cross" data-category="crossover" onclick="window.location.hash = '#distribuidores';">
+                <div class="model-card glass-card" data-model="xpander-cross" data-category="crossover">
                     <span class="model-badge">Crossover</span>
-                    <img src="https://mitsubishi-motors.mx/assets/Miniatura-XpanderCross-2026-left_3685_654PWr7hEH.avif" alt="Mitsubishi Xpander Cross">
+                    <div class="model-image-container">
+                        <img src="https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-1_4891_M7RsgObPeZ.avif" alt="Mitsubishi Xpander Cross">
+                        <div class="badge-360-below">
+                            <span class="material-symbols-outlined">360</span>
+                            <span>Gira 360°</span>
+                        </div>
+                    </div>
                     <h3>Xpander Cross</h3>
                     <div class="model-price">Desde $475,900 MXN</div>
                     <p>La versión crossover con diseño robusto, mayor altura al suelo y la comodidad ideal para tus aventuras familiares.</p>
-                    <div class="model-card-buttons" onclick="event.stopPropagation();">
-                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-XpanderCross-2026_3671_J82JLvBzHe.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-XpanderCross-2026.pdf" class="btn btn--primary btn-download">
+                    <div class="model-card-buttons">
+                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-XpanderCross-2026_3671_J82JLvBzHe.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-XpanderCross-2026.pdf" class="btn btn--primary btn-download btn-full">
                             Descargar Ficha Técnica
                         </a>
-                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/XPANC26/catalogo/XPANC26.pdf" target="_blank" class="btn btn--ghost-light btn-download">
+                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/XPANC26/catalogo/XPANC26.pdf" target="_blank" class="btn btn--ghost-light btn-download btn-half">
                             Ver Catálogo
+                        </a>
+                        <a href="https://mitsubishi-motors.mx/comprar/financiamiento/cotizador" target="_blank" class="btn btn--outline-red btn-download btn-half">
+                            Financiamiento
                         </a>
                     </div>
                 </div>
 
                 <!-- Outlander Sport -->
-                <div class="model-card glass-card" data-model="outlander-sport" data-category="camionetas" onclick="window.location.hash = '#distribuidores';">
+                <div class="model-card glass-card" data-model="outlander-sport" data-category="camionetas">
                     <span class="model-badge">SUV Compacto</span>
-                    <img src="https://mitsubishi-motors.mx/assets/Outlander-Sport-lateral-2025_2705_oGE47FRGHz.avif" alt="Mitsubishi Outlander Sport">
+                    <div class="model-image-container">
+                        <img src="https://mitsubishi-motors.mx/assets/Outlander-Sport-red-metallic-1_3702_CshYUBWD5U.avif" alt="Mitsubishi Outlander Sport">
+                        <div class="badge-360-below">
+                            <span class="material-symbols-outlined">360</span>
+                            <span>Gira 360°</span>
+                        </div>
+                    </div>
                     <h3>Outlander Sport</h3>
                     <div class="model-price">Desde $467,900 MXN</div>
                     <p>Un SUV dinámico, audaz y compacto, diseñado para destacar en la ciudad con tecnología avanzada y agilidad excepcional.</p>
-                    <div class="model-card-buttons" onclick="event.stopPropagation();">
-                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-Outlander-Sport-2026_2700_J8AQjmUAuA.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-Outlander-Sport-2026.pdf" class="btn btn--primary btn-download">
+                    <div class="model-card-buttons">
+                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-Outlander-Sport-2026_2700_J8AQjmUAuA.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-Outlander-Sport-2026.pdf" class="btn btn--primary btn-download btn-full">
                             Descargar Ficha Técnica
                         </a>
-                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/OUTS26/catalogo/OUTS26.pdf" target="_blank" class="btn btn--ghost-light btn-download">
+                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/OUTS26/catalogo/OUTS26.pdf" target="_blank" class="btn btn--ghost-light btn-download btn-half">
                             Ver Catálogo
+                        </a>
+                        <a href="https://mitsubishi-motors.mx/comprar/financiamiento/cotizador" target="_blank" class="btn btn--outline-red btn-download btn-half">
+                            Financiamiento
                         </a>
                     </div>
                 </div>
 
                 <!-- Outlander -->
-                <div class="model-card glass-card" data-model="outlander" data-category="camionetas" onclick="window.location.hash = '#distribuidores';">
+                <div class="model-card glass-card" data-model="outlander" data-category="camionetas">
                     <span class="model-badge">SUV Mediano</span>
-                    <img src="https://mitsubishi-motors.mx/assets/Outlander-MY26-Side_3046_x9NvKJLuqw.avif" alt="Mitsubishi Outlander">
+                    <div class="model-image-container">
+                        <img src="https://mitsubishi-motors.mx/assets/Outlander-Moonstone-Gray-1_3082_tsw2wTDutt.avif" alt="Mitsubishi Outlander">
+                        <div class="badge-360-below">
+                            <span class="material-symbols-outlined">360</span>
+                            <span>Gira 360°</span>
+                        </div>
+                    </div>
                     <h3>Outlander</h3>
                     <div class="model-price">Desde $609,900 MXN</div>
                     <p>Elegancia premium, confort de tres filas de asientos, seguridad de vanguardia y un manejo dinámico incomparable para toda la familia.</p>
-                    <div class="model-card-buttons" onclick="event.stopPropagation();">
-                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-Outlander-2026_3375_sBIEZGDcrF.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-Outlander-2026.pdf" class="btn btn--primary btn-download">
+                    <div class="model-card-buttons">
+                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-Outlander-2026_3375_sBIEZGDcrF.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-Outlander-2026.pdf" class="btn btn--primary btn-download btn-full">
                             Descargar Ficha Técnica
                         </a>
-                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/OUTL26/catalogo/OUTL26.pdf" target="_blank" class="btn btn--ghost-light btn-download">
+                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/OUTL26/catalogo/OUTL26.pdf" target="_blank" class="btn btn--ghost-light btn-download btn-half">
                             Ver Catálogo
+                        </a>
+                        <a href="https://mitsubishi-motors.mx/comprar/financiamiento/cotizador" target="_blank" class="btn btn--outline-red btn-download btn-half">
+                            Financiamiento
                         </a>
                     </div>
                 </div>
 
                 <!-- Outlander PHEV -->
-                <div class="model-card glass-card" data-model="outlander-phev" data-category="camionetas" onclick="window.location.hash = '#distribuidores';">
+                <div class="model-card glass-card" data-model="outlander-phev" data-category="hibrido">
                     <span class="model-badge">Híbrido Enchufable</span>
-                    <img src="https://mitsubishi-motors.mx/assets/PHEV-Lateral-Min_3900_M0spA5g2Fq.avif" alt="Mitsubishi Outlander PHEV">
+                    <div class="model-image-container">
+                        <img src="https://mitsubishi-motors.mx/assets/phev-white-diamond-1_4955_IU5J4zFuKW.avif" alt="Mitsubishi Outlander PHEV">
+                        <div class="badge-360-below">
+                            <span class="material-symbols-outlined">360</span>
+                            <span>Gira 360°</span>
+                        </div>
+                    </div>
                     <h3>Outlander PHEV</h3>
                     <div class="model-price">Desde $883,900 MXN</div>
                     <p>El SUV híbrido enchufable más vendido del mundo, combinando el poder eléctrico con tracción S-AWC de alto rendimiento.</p>
-                    <div class="model-card-buttons" onclick="event.stopPropagation();">
-                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-OutlanderPHEV-2026_4006_PmhJB2Zab4.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-OutlanderPHEV-2026.pdf" class="btn btn--primary btn-download">
+                    <div class="model-card-buttons">
+                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-OutlanderPHEV-2026_4006_PmhJB2Zab4.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-OutlanderPHEV-2026.pdf" class="btn btn--primary btn-download btn-full">
                             Descargar Ficha Técnica
                         </a>
-                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/OTPV26/catalogo/OTPV26.pdf" target="_blank" class="btn btn--ghost-light btn-download">
+                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/OTPV26/catalogo/OTPV26.pdf" target="_blank" class="btn btn--ghost-light btn-download btn-half">
                             Ver Catálogo
+                        </a>
+                        <a href="https://mitsubishi-motors.mx/comprar/financiamiento/cotizador" target="_blank" class="btn btn--outline-red btn-download btn-half">
+                            Financiamiento
                         </a>
                     </div>
                 </div>
 
                 <!-- Montero Sport -->
-                <div class="model-card glass-card" data-model="montero" data-category="camionetas" onclick="window.location.hash = '#distribuidores';">
+                <div class="model-card glass-card" data-model="montero" data-category="camionetas">
                     <span class="model-badge">SUV Off-Road</span>
-                    <img src="https://mitsubishi-motors.mx/assets/Montero-Sport-SE-Plus-Left-Mini_3821_EEkefUU84j.avif" alt="Mitsubishi Montero Sport">
+                    <div class="model-image-container">
+                        <img src="https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-1_3780_R8tzr6hySx.avif" alt="Mitsubishi Montero Sport">
+                        <div class="badge-360-below">
+                            <span class="material-symbols-outlined">360</span>
+                            <span>Gira 360°</span>
+                        </div>
+                    </div>
                     <h3>Montero Sport</h3>
                     <div class="model-price">Desde $980,900 MXN</div>
                     <p>Fuerza legendaria todoterreno combinada con lujo, confort de primer nivel, tecnología off-road y una presencia imponente.</p>
-                    <div class="model-card-buttons" onclick="event.stopPropagation();">
-                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-MonteroSport-2025_2807_6nTUKImw2g.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-MonteroSport-2025.pdf" class="btn btn--primary btn-download">
+                    <div class="model-card-buttons">
+                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-MonteroSport-2025_2807_6nTUKImw2g.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-MonteroSport-2025.pdf" class="btn btn--primary btn-download btn-full">
                             Descargar Ficha Técnica
                         </a>
-                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2025/MONT25/catalogo/MONT25.pdf" target="_blank" class="btn btn--ghost-light btn-download">
+                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2025/MONT25/catalogo/MONT25.pdf" target="_blank" class="btn btn--ghost-light btn-download btn-half">
                             Ver Catálogo
+                        </a>
+                        <a href="https://mitsubishi-motors.mx/comprar/financiamiento/cotizador" target="_blank" class="btn btn--outline-red btn-download btn-half">
+                            Financiamiento
                         </a>
                     </div>
                 </div>
 
                 <!-- L200 -->
-                <div class="model-card glass-card" data-model="l200" data-category="comercial" onclick="window.location.hash = '#distribuidores';">
+                <div class="model-card glass-card" data-model="l200" data-category="comercial">
                     <span class="model-badge">Pick-up</span>
-                    <img src="https://mitsubishi-motors.mx/assets/L200-Left-2025_2115_uCoM3EHVZX.avif" alt="Mitsubishi L200">
+                    <div class="model-image-container">
+                        <img src="https://mitsubishi-motors.mx/assets/l200-blade-silver-metallic-1_4272_0H6IBQKlhn.avif" alt="Mitsubishi L200">
+                        <div class="badge-360-below">
+                            <span class="material-symbols-outlined">360</span>
+                            <span>Gira 360°</span>
+                        </div>
+                    </div>
                     <h3>L200</h3>
                     <div class="model-price">Desde $582,900 MXN</div>
                     <p>La pick-up legendaria construida con un chasis ultra resistente, motor turbo diésel eficiente y tracción 4WD para el trabajo y la aventura.</p>
-                    <div class="model-card-buttons" onclick="event.stopPropagation();">
-                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-L200-2026-UT-011125_3624_bKj1RpMaqQ.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-L200-2026.pdf" class="btn btn--primary btn-download">
+                    <div class="model-card-buttons">
+                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-L200-2026-UT-011125_3624_bKj1RpMaqQ.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-L200-2026.pdf" class="btn btn--primary btn-download btn-full">
                             Descargar Ficha Técnica
                         </a>
-                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/L20026/catalogo/L20026.pdf" target="_blank" class="btn btn--ghost-light btn-download">
+                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/L20026/catalogo/L20026.pdf" target="_blank" class="btn btn--ghost-light btn-download btn-half">
                             Ver Catálogo
+                        </a>
+                        <a href="https://mitsubishi-motors.mx/comprar/financiamiento/cotizador" target="_blank" class="btn btn--outline-red btn-download btn-half">
+                            Financiamiento
                         </a>
                     </div>
                 </div>
 
                 <!-- L200 GSR -->
-                <div class="model-card glass-card" data-model="l200-gsr" data-category="comercial" onclick="window.location.hash = '#distribuidores';">
+                <div class="model-card glass-card" data-model="l200-gsr" data-category="comercial">
                     <span class="model-badge">Pick-up Premium</span>
-                    <img src="https://mitsubishi-motors.mx/assets/L200-GSR-Left-2025_3850_whxLhDaIpe.avif" alt="Mitsubishi L200 GSR">
+                    <div class="model-image-container">
+                        <img src="https://mitsubishi-motors.mx/assets/GSR-white-diamond-1_3914_Cu1HgyWbPr.avif" alt="Mitsubishi L200 GSR">
+                        <div class="badge-360-below">
+                            <span class="material-symbols-outlined">360</span>
+                            <span>Gira 360°</span>
+                        </div>
+                    </div>
                     <h3>L200 GSR</h3>
                     <div class="model-price">Desde $870,900 MXN</div>
                     <p>La máxima expresión de rudeza y sofisticación. Diseño oscurecido exclusivo GSR, confort premium y capacidades off-road incomparables.</p>
-                    <div class="model-card-buttons" onclick="event.stopPropagation();">
-                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-L200GSR-2026_2951_O0CkyCIGOh.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-L200GSR-2026.pdf" class="btn btn--primary btn-download">
+                    <div class="model-card-buttons">
+                        <a href="https://mitsubishi-motors.mx/assets/Ficha-Tecnica-Mitsubishi-L200GSR-2026_2951_O0CkyCIGOh.pdf" target="_blank" download="Ficha-Tecnica-Mitsubishi-L200GSR-2026.pdf" class="btn btn--primary btn-download btn-full">
                             Descargar Ficha Técnica
                         </a>
-                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/L200G26/catalogo/L200G26.pdf" target="_blank" class="btn btn--ghost-light btn-download">
+                        <a href="https://buckmitsu.s3.us-west-2.amazonaws.com/autos/modelos/2026/L200G26/catalogo/L200G26.pdf" target="_blank" class="btn btn--ghost-light btn-download btn-half">
                             Ver Catálogo
+                        </a>
+                        <a href="https://mitsubishi-motors.mx/comprar/financiamiento/cotizador" target="_blank" class="btn btn--outline-red btn-download btn-half">
+                            Financiamiento
                         </a>
                     </div>
                 </div>
@@ -432,8 +509,8 @@
         <!-- SECCIÓN: NOTICIAS -->
         <section id="noticias" class="content-section" style="display: none;">
             <div class="section-header">
-                <h2>Últimas noticias y blog</h2>
-                <p class="nowrap-desktop">Explora nuestras publicaciones en LinkedIn y artículos de interés del sector automotriz.</p>
+                <h2>Últimas noticias</h2>
+                <p class="nowrap-desktop">Explora nuestras publicaciones oficiales de la Asociación Mexicana de Distribuidores Mitsubishi en LinkedIn.</p>
             </div>
 
             <!-- Feed de Noticias y Blog -->
