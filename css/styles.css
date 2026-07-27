@@ -1500,14 +1500,14 @@ a {
 /* Botones adaptables: lado a lado si hay espacio, o 100% full width cada uno si la tarjeta es muy angosta */
 .distributor-card-actions {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
     margin-top: 8px;
     width: 100%;
 }
 
 .distributor-card-actions a {
-    flex: 1 1 125px; /* Si hay espacio quedan lado a lado; si se reduce la tarjeta pasan a 100% full width automáticamente sin salirse */
+    flex: 1 1 0;
     min-width: 0;
     font-size: 0.72rem;
     font-weight: 700;
@@ -1520,13 +1520,18 @@ a {
     align-items: center;
     text-align: center;
     white-space: nowrap;
-    gap: 4px;
+    gap: 5px;
     transition: var(--transition-fast);
-    /* Pill button — homologado con .btn */
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    /* Pill button — homologado con .btn de baja altura */
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 9999px;
-    padding: 7px 10px;
+    padding: 6px 10px;
     background: rgba(255, 255, 255, 0.03);
+}
+
+.distributor-card-actions a span.material-symbols-outlined {
+    font-size: 0.85rem;
+    flex-shrink: 0;
 }
 
 .distributor-card-actions a:hover {
@@ -2587,7 +2592,7 @@ form input[type="file"] {
     }
     
     .content-section {
-        padding: 95px 24px 60px 24px;
+        padding: 95px 24px 0px 24px;
     }
 
     .home-info {
@@ -2754,16 +2759,29 @@ form input[type="file"] {
 
     .distributor-card-actions {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: nowrap;
         gap: 6px;
-        margin-top: 6px;
+        margin-top: 8px;
         width: 100%;
     }
 
     .distributor-card-actions a {
-        width: 100%;
-        padding: 7px 8px;
-        font-size: 0.7rem;
+        flex: 1 1 0;
+        min-width: 0;
+        width: auto;
+        padding: 5px 6px;
+        font-size: 0.67rem;
+        letter-spacing: 0.2px;
+        border-radius: 9999px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .distributor-card-actions a span.material-symbols-outlined {
+        font-size: 0.78rem !important;
+        flex-shrink: 0;
     }
 
     .search-bar {

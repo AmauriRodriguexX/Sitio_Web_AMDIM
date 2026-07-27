@@ -1274,10 +1274,10 @@ function initDistribuidores() {
                     </div>
                     <div class="distributor-card-actions">
                         <a href="${dist.web}" target="_blank" onclick="event.stopPropagation();">
-                            <span class="material-symbols-outlined" style="font-size: 0.85rem;">language</span> Visitar Sitio
+                            <span class="material-symbols-outlined">language</span> Visitar Sitio
                         </a>
                         <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dist.direccion)}" target="_blank" onclick="event.stopPropagation();">
-                            <span class="material-symbols-outlined" style="font-size: 0.85rem;">navigation</span> Cómo llegar
+                            <span class="material-symbols-outlined">navigation</span> Cómo llegar
                         </a>
                     </div>
                 </div>
