@@ -1,20 +1,18 @@
+import urllib.request
+import re
 
-html_path = 'D:/t2o carpet especial/Sitio_Web_AMDIM/Sitio_Web_AMDIM/index.html'
-with open(html_path, 'r', encoding='utf-8') as f:
-    html = f.read()
+models = ['xpander', 'xpander-cross', 'outlander-sport', 'l200', 'l200-gsr']
 
-html = html.replace('<span class=\"material-symbols-outlined icon-align\">download</span> ', '')
-html = html.replace('<span class=\"material-symbols-outlined icon-align\">my_location</span> ', '')
-
-with open(html_path, 'w', encoding='utf-8') as f:
-    f.write(html)
-
-js_path = 'D:/t2o carpet especial/Sitio_Web_AMDIM/Sitio_Web_AMDIM/js/main.js'
-with open(js_path, 'r', encoding='utf-8') as f:
-    js = f.read()
-
-js = js.replace('<span class=\"material-symbols-outlined icon-align\" style=\"font-size: 1rem;\">send</span> ', '')
-
-with open(js_path, 'w', encoding='utf-8') as f:
-    f.write(js)
-
+for key in models:
+    url = f'https://www.mitsubishi-motors.mx/modelos/{key}'
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    try:
+        html = urllib.request.urlopen(req).read().decode('utf-8')
+        imgs = re.findall(r'https://mitsubishi-motors\.mx/assets/[a-zA-Z0-9_\-]+\.avif', html)
+        unique_imgs = sorted(list(set(imgs)))
+        print(f"=== {key} ===")
+        for img in unique_imgs:
+            if any(c in img.lower() for c in ['red', 'orange', 'yellow', 'blue', 'sunrise', 'energetic', 'impulse', 'gsr']):
+                print(img)
+    except Exception as e:
+        print(f"ERR {key}: {e}")

@@ -1156,107 +1156,52 @@ function initDistribuidores() {
 
         directoryList.innerHTML = "";
 
-        // Detectar si el usuario escribió un Código Postal (5 dígitos o números)
-        const isCPSearch = /^\d{2,5}$/.test(rawText);
-        let closestDistId = null;
-        let closestDistance = Infinity;
+        // Búsqueda inteligente por Texto (Nombre, Ciudad, Dirección, Estado, Teléfono)
+        const displayList = list.filter(dist => {
+            const matchState = !filterState || dist.estado === filterState;
+            
+            const cleanName = cleanText(dist.nombre);
+            const cleanDir = cleanText(dist.direccion);
+            const cleanState = cleanText(dist.estado);
+            
+            const matchSearch = !filterText || 
+                                cleanName.includes(filterText) || 
+                                cleanDir.includes(filterText) ||
+                                cleanState.includes(filterText) ||
+                                dist.telefono.includes(filterText);
+                                
+            return matchState && matchSearch;
+        });
 
-        let displayList = [];
-
-        if (isCPSearch) {
-            const userCP = parseInt(rawText, 10);
-            const userCoords = getCoordinatesFromCP(userCP);
-
-            // Calcular distancia a todos los distribuidores
-            displayList = list.map(dist => {
-                const distCP = extractCP(dist.direccion);
-                let km = Infinity;
-
-                if (dist.lat && dist.lng && (dist.lat !== 19.4326 || dist.lng !== -99.1332)) {
-                    km = calcularDistancia(userCoords.lat, userCoords.lng, dist.lat, dist.lng);
-                } else if (distCP) {
-                    km = Math.abs(distCP - userCP) * 0.1; // fallback por diferencia numérica de C.P.
-                }
-
-                return { ...dist, distanciaKm: km };
-            });
-
-            // Ordenar por distancia (el más cercano primero)
-            displayList.sort((a, b) => a.distanciaKm - b.distanciaKm);
-
-            if (displayList.length > 0) {
-                closestDistId = displayList[0].id;
-                closestDistance = displayList[0].distanciaKm;
-            }
-
-            if (searchStats) {
-                const closestName = displayList[0] ? displayList[0].nombre : "";
-                const distFormatted = closestDistance < Infinity ? ` (a ${closestDistance.toFixed(1)} km)` : '';
-                searchStats.innerHTML = `<span style="color: var(--color-red); font-weight: 700;">📍 Distribuidor más cercano al C.P. ${rawText}:</span> <strong>${closestName}</strong>${distFormatted}. Se muestra el listado nacional ordenado por cercanía.`;
-            }
-        } else {
-            // Búsqueda normal por Texto (Nombre, Ciudad, Dirección, Estado)
-            displayList = list.filter(dist => {
-                const matchState = !filterState || dist.estado === filterState;
-                
-                const cleanName = cleanText(dist.nombre);
-                const cleanDir = cleanText(dist.direccion);
-                const cleanState = cleanText(dist.estado);
-                
-                const matchSearch = !filterText || 
-                                    cleanName.includes(filterText) || 
-                                    cleanDir.includes(filterText) ||
-                                    cleanState.includes(filterText) ||
-                                    dist.telefono.includes(filterText);
-                                    
-                return matchState && matchSearch;
-            });
-
-            if (searchStats) {
-                if (displayList.length === 1) {
-                    searchStats.textContent = "1 distribuidor encontrado";
-                } else {
-                    searchStats.textContent = `${displayList.length} distribuidores encontrados ${filterState ? `en ${filterState}` : ''}`;
-                }
+        if (searchStats) {
+            if (displayList.length === 1) {
+                searchStats.textContent = `1 distribuidor encontrado ${filterState ? `en ${filterState}` : ''}`;
+            } else {
+                searchStats.textContent = `${displayList.length} distribuidores encontrados ${filterState ? `en ${filterState}` : ''}`;
             }
         }
 
         if (displayList.length === 0) {
-            directoryList.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--color-text-muted); padding: 40px 0;">No se encontraron distribuidores.</p>`;
-            actualizarMapa(null);
+            directoryList.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--color-text-muted); padding: 40px 0;">No se encontraron distribuidores que coincidan con "${rawText}".</p>`;
+            if (leafletMap) {
+                highlightState(null);
+                leafletMap.setView([23.6345, -102.5528], 5);
+            }
             return;
         }
 
-        // Lógica de selección de mapa según tipo de filtro
-        if (isCPSearch && displayList.length > 0) {
-            // Búsqueda por C.P.: enfocar la sucursal más cercana
-            selectedDistId = displayList[0].id;
-        } else {
-            // Filtro por Estado o vista general: no pre-seleccionar ninguna sucursal específica
-            selectedDistId = null;
-        }
-
-        displayList.forEach((dist, index) => {
+        displayList.forEach(dist => {
             const card = document.createElement('div');
             const isActive = selectedDistId && dist.id === selectedDistId;
-            const isClosestCard = isCPSearch && index === 0;
 
-            card.className = `distributor-card glass-card ${isActive ? 'active' : ''} ${isClosestCard ? 'closest-cp-card' : ''}`;
+            card.className = `distributor-card glass-card ${isActive ? 'active' : ''}`;
             card.dataset.id = dist.id;
 
-            const closestBadge = isClosestCard ? `
-                <div style="background: rgba(226, 0, 26, 0.2); border: 1px solid var(--color-red); color: var(--color-white); font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 10px;">
-                    <span class="material-symbols-outlined" style="font-size: 0.9rem; color: var(--color-red);">my_location</span>
-                    MÁS CERCANO A TU C.P. ${rawText} ${dist.distanciaKm < Infinity ? `(${dist.distanciaKm.toFixed(1)} km)` : ''}
-                </div>
-            ` : '';
-            
             card.innerHTML = `
                 <div class="distributor-card-img">
                     <img src="assets/images/facades/real_facade.png" alt="${dist.nombre}" loading="lazy">
                 </div>
                 <div class="distributor-card-info">
-                    ${closestBadge}
                     <div class="distributor-card-header">
                         <h4>${dist.nombre}</h4>
                         <span class="distributor-card-state-badge">${dist.estado}</span>
@@ -1290,27 +1235,31 @@ function initDistribuidores() {
             directoryList.appendChild(card);
         });
 
-        // Actualizar vista del mapa Leaflet limpia
+        // Actualización inteligente del Mapa con zoom automático a los resultados
+        if (!leafletMap) return;
+
         if (selectedDistId) {
+            // Un distribuidor fue cliqueado explícitamente en el listado o marcador
             highlightState(null);
             const activeDist = displayList.find(d => d.id === selectedDistId);
             if (activeDist) {
                 actualizarMapa(activeDist);
             }
-        } else if (filterState && displayList.length > 0 && leafletMap) {
-            // Filtro por Estado: resaltar en rojo el contorno del Estado y hacer zoom a su borde
-            const matchedPolygon = highlightState(filterState);
+        } else if (filterText !== "" || filterState !== "") {
+            // Se realizó una búsqueda por ciudad, estado o nombre:
+            // Hacer ZOOM automático a los distribuidores filtrados
+            if (displayList.length === 1) {
+                // Si la búsqueda arrojó 1 solo distribuidor (ej. Interlomas, Coapa, Toluca, etc.),
+                // enfocar y abrir su marcador directamente
+                actualizarMapa(displayList[0]);
+            } else {
+                // Si la búsqueda arrojó múltiples distribuidores (ej. CDMX, Jalisco, Monterrey),
+                // encuadrar la cámara para mostrar todos los distribuidores coincidentes con zoom adecuado
+                highlightState(filterState || null);
 
-            Object.keys(leafletMarkers).forEach(id => {
-                const item = leafletMarkers[id];
-                item.marker.setIcon(item.redIcon);
-                item.marker.closePopup();
-            });
-
-            if (!matchedPolygon) {
-                // Estado sin polígono definido en el GeoJSON: encuadrar por las sucursales encontradas
                 const bounds = L.latLngBounds();
                 let hasCoords = false;
+
                 displayList.forEach(dist => {
                     if (dist.lat && dist.lng) {
                         bounds.extend([dist.lat, dist.lng]);
@@ -1318,21 +1267,31 @@ function initDistribuidores() {
                     }
                 });
 
+                // Resaltar los pines coincidentes en el mapa
+                const matchedIds = new Set(displayList.map(d => d.id));
+                Object.keys(leafletMarkers).forEach(id => {
+                    const item = leafletMarkers[id];
+                    if (matchedIds.has(id)) {
+                        item.marker.setIcon(item.activeRedIcon || item.redIcon);
+                    } else {
+                        item.marker.setIcon(item.redIcon);
+                        item.marker.closePopup();
+                    }
+                });
+
                 if (hasCoords) {
-                    leafletMap.fitBounds(bounds, { padding: [50, 50], maxZoom: 11 });
+                    leafletMap.flyToBounds(bounds, { padding: [50, 50], maxZoom: 13, animate: true, duration: 1.2 });
                 }
             }
         } else {
-            // Vista general panorámica de todo México sin selección activa
+            // Vista general panorámica de todo México sin filtro activo
             highlightState(null);
-            if (leafletMap) {
-                leafletMap.setView([23.6345, -102.5528], 5);
-                Object.keys(leafletMarkers).forEach(id => {
-                    const item = leafletMarkers[id];
-                    item.marker.setIcon(item.redIcon);
-                    item.marker.closePopup();
-                });
-            }
+            leafletMap.setView([23.6345, -102.5528], 5);
+            Object.keys(leafletMarkers).forEach(id => {
+                const item = leafletMarkers[id];
+                item.marker.setIcon(item.redIcon);
+                item.marker.closePopup();
+            });
         }
     }
 
@@ -1741,21 +1700,57 @@ function initLinkedInFeed() {
     const fallbackPosts = [
         {
             fecha: "Hace 2 semanas • Editado • 🌐",
-            texto: "Un pequeño gesto puede hacer una gran diferencia. 🐾❤️\n\nNos sumamos a la difusión de Operación Patitas 2026, una iniciativa de Mitsubishi Motors de México y Zadrigman que busca recaudar alimento para perritos en situación vulnerable.\n\nCada donativo cuenta. Si tienes la oportunidad, súmate llevando croquetas nuevas y selladas a los distribuidores participantes del 6 al 21 de julio.\n\nMás información: https://lnkd.in/gS3ECScN\n\n#AMDIM #DistribuidoresMitsubishi #MitsubishiMotorsMéxico",
+            texto: "Un pequeño gesto puede hacer una gran diferencia. 🐾❤️\n\nNos sumamos a la difusión de Operación Patitas 2026, una iniciativa de Mitsubishi Motors de México y Zadrigman que busca recaudar alimento para perritos en situación vulnerable.\n\nCada donativo cuenta. Si tienes la oportunidad, súmate llevando croquetas nuevas y selladas a los distribuidores participantes.\n\nMás información: https://lnkd.in/gS3ECScN\n\n#AMDIM #DistribuidoresMitsubishi #MitsubishiMotorsMéxico",
             imagen: "https://media.licdn.com/dms/image/v2/D5622AQECb_l9Qme_Gw/feedshare-shrink_800/B56Z9D4lqUGcAc-/0/1783550335882?e=1786579200&v=beta&t=t6XkDHYoT24rES_fPCeKDVM4Ahlz34S8N58uet9rK8Y",
             avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
-            enlace: "https://www.linkedin.com/feed/update/urn:li:activity:7480752310281850880/",
-            likes: 6,
-            comentarios: 2
+            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
+            likes: 18,
+            comentarios: 4
         },
         {
             fecha: "Hace 3 semanas • 🌐",
             texto: "El futuro de la movilidad se vive hoy con Mitsubishi Outlander PHEV. 🚗⚡\n\nCon su tecnología híbrida enchufable, amplio espacio y equipamiento, este modelo ofrece una conducción eficiente sin renunciar al confort y desempeño.\n\nAcércate a tu distribuidor autorizado Mitsubishi Motors y conoce las condiciones comerciales vigentes.\n\n#AMDIM #MitsubishiMotorsMéxico #OutlanderPHEV",
             imagen: "https://media.licdn.com/dms/image/v2/D5622AQFLzaZyegEWtA/feedshare-shrink_800/B56Z8VQW0IJoAc-/0/1782768037356?e=1786579200&v=beta&t=NAZw4W6PKkHZ50wPyxAfvhqSCAZyrgWV2PT4O4EeKmk",
             avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
-            enlace: "https://www.linkedin.com/feed/update/urn:li:activity:7477471111908089856/",
-            likes: 2,
-            comentarios: 2
+            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
+            likes: 24,
+            comentarios: 5
+        },
+        {
+            fecha: "Hace 1 mes • 🌐",
+            texto: "Fortaleciendo la presencia institucional y operativa en México. 🏢🇲🇽\n\nEn la Asociación Mexicana de Distribuidores Mitsubishi impulsamos el trabajo coordinado entre la marca y nuestra Red de Distribuidores a nivel nacional.\n\nSeguimos construyendo proyectos estratégicos en beneficio de nuestros asociados y clientes.\n\n#AMDIM #OficinasCentrales #RedDeDistribuidores #MitsubishiMéxico",
+            imagen: "assets/images/facades/real_facade.jpg",
+            avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
+            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
+            likes: 31,
+            comentarios: 8
+        },
+        {
+            fecha: "Hace 1 mes • 🌐",
+            texto: "Reconocemos el compromiso y profesionalismo de cada uno de los distribuidores que integran la red en el país. 🏆👏\n\nGracias a su dedicación diaria seguimos consolidando la excelencia en servicio, ventas y posventa para cada cliente en la República Mexicana.\n\n#AMDIM #ExcelenciaMitsubishi #RedDeDistribuidores #OrgulloAMDIM",
+            imagen: "assets/images/facades/facade_showroom.jpg",
+            avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
+            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
+            likes: 42,
+            comentarios: 12
+        },
+        {
+            fecha: "Hace 2 meses • 🌐",
+            texto: "Impulsando el desarrollo profesional en la industria automotriz. 💼🏢\n\nEn AMDIM trabajamos en sinergia con la red para promover la capacitación constante de asesores comerciales y técnicos de posventa.\n\n¿Quieres formar parte de la Red Mitsubishi? Revisa nuestra Bolsa de Trabajo.\n\n#AMDIM #BolsaDeTrabajo #TalentoAutomotriz #DesarrolloProfesional",
+            imagen: "assets/images/facades/facade_day.jpg",
+            avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
+            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
+            likes: 29,
+            comentarios: 6
+        },
+        {
+            fecha: "Hace 2 meses • 🌐",
+            texto: "Más de 20 años acompañando a los distribuidores Mitsubishi en México. 🌟🤝\n\nTrabajamos continuamente para ofrecer el mejor soporte institucional, representando a los distribuidores de la marca y fortaleciendo su presencia en el mercado nacional.\n\n#AMDIM #Trayectoria #AsociaciónAutomotriz #MitsubishiMotors",
+            imagen: "assets/images/facades/real_facade.jpg",
+            avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
+            enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
+            likes: 35,
+            comentarios: 7
         }
     ];
 
@@ -2042,29 +2037,29 @@ const MODEL_360_SEQUENCES = {
         "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-6_702_RK9w4jsTAp.avif"
     ],
     "xpander": [
-        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-1_5046_H3n8HltPCe.avif",
-        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-2_5047_DIQN7NYvn3.avif",
-        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-3_5048_K84fF0Ng3D.avif",
-        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-4_5049_wiFuE1F3SG.avif",
-        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-5_5050_KKNgSex3yN.avif",
-        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-6_5051_1VGN2uYUs8.avif",
-        "https://mitsubishi-motors.mx/assets/xpander-quartz-white-pearl-7_5052_14LIkMp4Dy.avif"
+        "https://mitsubishi-motors.mx/assets/xpander-red-metallic-1_5025_kFcWmaAk5b.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-red-metallic-2_5026_1t9f1V1xef.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-red-metallic-3_5027_zTaRlq3mbI.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-red-metallic-4_5028_shUfjwy82v.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-red-metallic-5_5029_y7XPrOqf8g.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-red-metallic-6_5030_HKCzHgOo9b.avif",
+        "https://mitsubishi-motors.mx/assets/xpander-red-metallic-7_5031_vw6Y9WsJNg.avif"
     ],
     "xpander-cross": [
-        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-1_4891_M7RsgObPeZ.avif",
-        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-2_5079_qjYrWVSnSW.avif",
-        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-3_5080_nn18NgfO37.avif",
-        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-4_5081_FPWA0iaTRj.avif",
-        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-5_5082_aGWgd7doju.avif",
-        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-6_5083_qQBZIbLih3.avif",
-        "https://mitsubishi-motors.mx/assets/cross-quartz-white-pearl-7_5084_CzQmhP7qjK.avif"
+        "https://mitsubishi-motors.mx/assets/cross-sunrise-orange-metallic-1_4912_9JWCJxexYY.avif",
+        "https://mitsubishi-motors.mx/assets/cross-sunrise-orange-metallic-2_5073_3w0FKXmmOi.avif",
+        "https://mitsubishi-motors.mx/assets/cross-sunrise-orange-metallic-3_5074_uvg5ZMBicj.avif",
+        "https://mitsubishi-motors.mx/assets/cross-sunrise-orange-metallic-4_5075_JD57Q53Jtz.avif",
+        "https://mitsubishi-motors.mx/assets/cross-sunrise-orange-metallic-5_5076_Rt7gw5gBG2.avif",
+        "https://mitsubishi-motors.mx/assets/cross-sunrise-orange-metallic-6_5077_BYgkZze4Sm.avif",
+        "https://mitsubishi-motors.mx/assets/cross-sunrise-orange-metallic-7_5078_5ahI17ROa3.avif"
     ],
     "outlander-sport": [
-        "https://mitsubishi-motors.mx/assets/Outlander-Sport-red-metallic-1_3702_CshYUBWD5U.avif",
-        "https://mitsubishi-motors.mx/assets/Outlander-Sport-red-metallic-2_2681_Tz1XNxsVy5.avif",
-        "https://mitsubishi-motors.mx/assets/Outlander-Sport-red-metallic-3_2652_A76IWHlSVD.avif",
-        "https://mitsubishi-motors.mx/assets/Outlander-Sport-red-metallic-4_3705_UJd27or6u9.avif",
-        "https://mitsubishi-motors.mx/assets/Outlander-Sport-red-metallic-5_3648_iISIpOIdui.avif"
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-1_3664_Q4BHtIY6RY.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-2_2674_rZVYRT1ecu.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-3_2673_HZsumDpqRZ.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-4_3666_lQDWp1gOut.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-5_3662_K3OQY39O1t.avif"
     ],
     "outlander": [
         "https://mitsubishi-motors.mx/assets/Outlander-Moonstone-Gray-1_3082_tsw2wTDutt.avif",
@@ -2089,18 +2084,18 @@ const MODEL_360_SEQUENCES = {
         "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-5_3808_uvm8Sb88Am.avif"
     ],
     "l200": [
-        "https://mitsubishi-motors.mx/assets/l200-blade-silver-metallic-1_4272_0H6IBQKlhn.avif",
-        "https://mitsubishi-motors.mx/assets/l200-blade-silver-metallic-2_4273_GFQN0xAsWS.avif",
-        "https://mitsubishi-motors.mx/assets/l200-blade-silver-metallic-3_4226_z3TxIw1roX.avif",
-        "https://mitsubishi-motors.mx/assets/l200-blade-silver-metallic-4_4275_5nOzyOF2Xw.avif",
-        "https://mitsubishi-motors.mx/assets/l200-blade-silver-metallic-5_4251_EMlmk9P0Vb.avif"
+        "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-1_4262_R1Lm6cdVyB.avif",
+        "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-2_4263_SG0ZGOEomI.avif",
+        "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-3_4264_rP5JJD1wZE.avif",
+        "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-4_4265_aRNSM6cpsP.avif",
+        "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-5_4266_e2tKFDOWr8.avif"
     ],
     "l200-gsr": [
-        "https://mitsubishi-motors.mx/assets/GSR-white-diamond-1_3914_Cu1HgyWbPr.avif",
-        "https://mitsubishi-motors.mx/assets/GSR-white-diamond-2_3915_5oS5kUE099.avif",
-        "https://mitsubishi-motors.mx/assets/GSR-white-diamond-3_3916_EU4zDhuFtU.avif",
-        "https://mitsubishi-motors.mx/assets/GSR-white-diamond-4_3917_D6rfmRTytg.avif",
-        "https://mitsubishi-motors.mx/assets/GSR-white-diamond-5_3918_JXstwwQd7X.avif"
+        "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-1_3919_ghhNVLxsm7.avif",
+        "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-2_3920_02lBRRjcWQ.avif",
+        "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-3_3921_cSnMpRyDoc.avif",
+        "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-4_3924_VQV3aJTBji.avif",
+        "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-5_3928_Cd68tvSkqz.avif"
     ]
 };
 
@@ -2148,100 +2143,150 @@ function initModelosFilter() {
         });
     });
 
-    // Visor Interactivo 360° mediante arrastre (manita) en Desktop y Slide en Móvil
+    // Sistema híbrido: Giro sutil 360° automático en hover + Arrastre manual (Click & Drag) al presionar el mouse
     modelCards.forEach(card => {
-        const modelKey = card.getAttribute('data-model');
         const container = card.querySelector('.model-image-container');
-        const img = card.querySelector('img');
-        if (!container || !img) return;
-
+        const title = card.querySelector('h3');
+        const modelKey = card.getAttribute('data-model');
         const sequence = MODEL_360_SEQUENCES[modelKey];
-        if (!sequence || sequence.length === 0) return;
 
-        let isDragging = false;
-        let startX = 0;
-        let activeFrameIndex = 0;
-        const totalFrames = sequence.length;
+        let hasDragged = false;
 
-        const updateFrame = (deltaX) => {
-            // Sensibilidad: píxeles de arrastre por marco
-            const sensitivity = 22; 
-            const frameOffset = Math.floor(-deltaX / sensitivity);
-            let targetIndex = (activeFrameIndex + frameOffset) % totalFrames;
-            if (targetIndex < 0) targetIndex += totalFrames;
+        if (container && sequence && sequence.length > 0) {
+            container.innerHTML = '';
+            container.style.cursor = 'grab';
 
-            img.src = sequence[targetIndex];
-        };
-
-        // EVENTO CLICK EN EL BOTÓN 360° DEBAJO DEL AUTO
-        const badge360 = container.querySelector('.badge-360-below');
-        if (badge360) {
-            badge360.addEventListener('click', (e) => {
-                e.stopPropagation();
-                // Avanzar al siguiente marco de ángulo 360°
-                activeFrameIndex = (activeFrameIndex + 1) % totalFrames;
-                img.src = sequence[activeFrameIndex];
-
-                // Efecto de pulso en el botón
-                badge360.style.transform = 'scale(0.92)';
-                setTimeout(() => {
-                    badge360.style.transform = '';
-                }, 150);
+            const imgElements = sequence.map((src, idx) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = (title ? title.textContent : 'Modelo') + ` vista 360 ${idx + 1}`;
+                img.className = (idx === 0) ? 'three-sixty-image active-360' : 'three-sixty-image';
+                container.appendChild(img);
+                return img;
             });
+
+            let activeIdx = 0;
+            let rotateInterval = null;
+            let isMouseDown = false;
+            let startX = 0;
+            let startFrameIdx = 0;
+            let isHovering = false;
+
+            const setActiveFrame = (newIdx) => {
+                if (newIdx === activeIdx) return;
+                imgElements[activeIdx].classList.remove('active-360');
+                imgElements[newIdx].classList.add('active-360');
+                activeIdx = newIdx;
+            };
+
+            const startAutoRotate = () => {
+                if (rotateInterval) clearInterval(rotateInterval);
+                rotateInterval = setInterval(() => {
+                    if (!isMouseDown) {
+                        const nextIdx = (activeIdx + 1) % sequence.length;
+                        setActiveFrame(nextIdx);
+                    }
+                }, 520); // Cadencia pausada y sutil a 520ms
+            };
+
+            const stopAutoRotate = () => {
+                if (rotateInterval) {
+                    clearInterval(rotateInterval);
+                    rotateInterval = null;
+                }
+            };
+
+            // 1. Giro Automático al Pasar el Cursor (Hover)
+            card.addEventListener('mouseenter', () => {
+                isHovering = true;
+                if (!isMouseDown) {
+                    startAutoRotate();
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                isHovering = false;
+                stopAutoRotate();
+                if (!isMouseDown) {
+                    setActiveFrame(0);
+                }
+            });
+
+            // 2. Control Manual por Arrastre al Presionar el Mouse (Click & Drag)
+            const onMouseDown = (e) => {
+                if (e.button && e.button !== 0) return;
+                isMouseDown = true;
+                hasDragged = false;
+                startX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+                startFrameIdx = activeIdx;
+                stopAutoRotate();
+                container.style.cursor = 'grabbing';
+            };
+
+            const onMouseMove = (e) => {
+                if (!isMouseDown) return;
+                const currentX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+                const deltaX = currentX - startX;
+
+                if (Math.abs(deltaX) > 5) {
+                    hasDragged = true;
+                }
+
+                if (hasDragged) {
+                    const width = container.getBoundingClientRect().width || 300;
+                    const frameShift = Math.floor((deltaX / width) * sequence.length * 1.3);
+                    let targetIdx = (startFrameIdx + frameShift) % sequence.length;
+                    if (targetIdx < 0) targetIdx += sequence.length;
+                    setActiveFrame(targetIdx);
+                }
+            };
+
+            const onMouseUp = () => {
+                if (isMouseDown) {
+                    isMouseDown = false;
+                    container.style.cursor = 'grab';
+                    if (isHovering) {
+                        startAutoRotate();
+                    } else {
+                        setActiveFrame(0);
+                    }
+                }
+            };
+
+            container.addEventListener('mousedown', onMouseDown);
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+
+            // Soporte Táctil (Mobile)
+            container.addEventListener('touchstart', onMouseDown, { passive: true });
+            window.addEventListener('touchmove', onMouseMove, { passive: true });
+            window.addEventListener('touchend', onMouseUp);
         }
 
-        // EVENTOS DE RATÓN (DESKTOP DRAG CON MANITA)
-        container.addEventListener('mousedown', (e) => {
-            if (e.target.closest('.badge-360-below')) return; // No iniciar drag si clickea el botón 360
-            isDragging = true;
-            startX = e.clientX;
-            container.classList.add('is-dragging');
-            e.preventDefault();
-        });
+        // Redirección al hacer clic a Distribuidores (solo si no se realizó un arrastre manual)
+        const goToDistribuidores = (e) => {
+            if (e.target.closest('.model-card-buttons')) return;
+            if (hasDragged) {
+                hasDragged = false;
+                return;
+            }
+            const distLink = document.querySelector('a[href="#distribuidores"]');
+            if (distLink) {
+                distLink.click();
+                const distSection = document.getElementById('distribuidores');
+                if (distSection) {
+                    distSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        };
 
-        window.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            const deltaX = e.clientX - startX;
-            updateFrame(deltaX);
-        });
-
-        window.addEventListener('mouseup', (e) => {
-            if (!isDragging) return;
-            const deltaX = e.clientX - startX;
-            const sensitivity = 22;
-            const frameOffset = Math.floor(-deltaX / sensitivity);
-            activeFrameIndex = (activeFrameIndex + frameOffset) % totalFrames;
-            if (activeFrameIndex < 0) activeFrameIndex += totalFrames;
-
-            isDragging = false;
-            container.classList.remove('is-dragging');
-        });
-
-        // EVENTOS TÁCTILES (MÓVIL SLIDE)
-        container.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            startX = e.touches[0].clientX;
-            container.classList.add('is-dragging');
-        }, { passive: true });
-
-        container.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            const deltaX = e.touches[0].clientX - startX;
-            updateFrame(deltaX);
-        }, { passive: true });
-
-        container.addEventListener('touchend', (e) => {
-            if (!isDragging) return;
-            const endX = e.changedTouches[0] ? e.changedTouches[0].clientX : startX;
-            const deltaX = endX - startX;
-            const sensitivity = 22;
-            const frameOffset = Math.floor(-deltaX / sensitivity);
-            activeFrameIndex = (activeFrameIndex + frameOffset) % totalFrames;
-            if (activeFrameIndex < 0) activeFrameIndex += totalFrames;
-
-            isDragging = false;
-            container.classList.remove('is-dragging');
-        });
+        if (container) {
+            container.addEventListener('click', goToDistribuidores);
+        }
+        if (title) {
+            title.style.cursor = 'pointer';
+            title.addEventListener('click', goToDistribuidores);
+        }
     });
 }
 
