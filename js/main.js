@@ -936,7 +936,24 @@ function initDistribuidores() {
     // Normaliza el nombre de un estado para poder comparar aunque haya
     // variaciones de acentos/mayúsculas entre el listado de distribuidores y el GeoJSON
     function cleanStateName(name) {
-        return cleanText(name || '');
+        const clean = cleanText(name || '');
+        if (clean === 'cdmx' || clean === 'df' || clean === 'distrito federal') return 'ciudad de mexico';
+        if (clean === 'edomex' || clean === 'estado de mexico' || clean === 'mexico') return 'estado de mexico';
+        if (clean === 'ags' || clean === 'aguascalientes') return 'aguascalientes';
+        if (clean === 'pue' || clean === 'puebla') return 'puebla';
+        if (clean === 'ver' || clean === 'veracruz') return 'veracruz';
+        if (clean === 'jal' || clean === 'jalisco') return 'jalisco';
+        if (clean === 'nl' || clean === 'nuevo leon') return 'nuevo leon';
+        if (clean === 'sin' || clean === 'sinaloa') return 'sinaloa';
+        if (clean === 'yuc' || clean === 'yucatan') return 'yucatan';
+        if (clean === 'qro' || clean === 'queretaro') return 'queretaro';
+        if (clean === 'gto' || clean === 'guanajuato') return 'guanajuato';
+        if (clean === 'chih' || clean === 'chihuahua') return 'chihuahua';
+        if (clean === 'son' || clean === 'sonora') return 'sonora';
+        if (clean === 'dgo' || clean === 'durango') return 'durango';
+        if (clean === 'bc' || clean === 'baja california') return 'baja california';
+        if (clean === 'bcs' || clean === 'baja california sur') return 'baja california sur';
+        return clean;
     }
 
     const STATE_POLYGON_DEFAULT_STYLE = {
@@ -992,7 +1009,7 @@ function initDistribuidores() {
         layer.bringToFront();
 
         if (leafletMap) {
-            leafletMap.flyToBounds(layer.getBounds(), { padding: [40, 40], maxZoom: 8, animate: true, duration: 1.2 });
+            leafletMap.flyToBounds(layer.getBounds(), { padding: [40, 40], maxZoom: 9, animate: true, duration: 1.2 });
         }
         return true;
     }
@@ -1235,39 +1252,48 @@ function initDistribuidores() {
             directoryList.appendChild(card);
         });
 
-        // Actualización inteligente del Mapa con zoom automático a los resultados
+        // Actualización inteligente del Mapa con zoom automático y resalte de contorno de Estado
         if (!leafletMap) return;
 
         if (selectedDistId) {
-            // Un distribuidor fue cliqueado explícitamente en el listado o marcador
-            highlightState(null);
+            // Caso A: Distribuidor seleccionado en tarjeta o marcador
             const activeDist = displayList.find(d => d.id === selectedDistId);
             if (activeDist) {
+                highlightState(activeDist.estado);
                 actualizarMapa(activeDist);
             }
-        } else if (filterText !== "" || filterState !== "") {
-            // Se realizó una búsqueda por ciudad, estado o nombre:
-            // Hacer ZOOM automático a los distribuidores filtrados
-            if (displayList.length === 1) {
-                // Si la búsqueda arrojó 1 solo distribuidor (ej. Interlomas, Coapa, Toluca, etc.),
-                // enfocar y abrir su marcador directamente
-                actualizarMapa(displayList[0]);
-            } else {
-                // Si la búsqueda arrojó múltiples distribuidores (ej. CDMX, Jalisco, Monterrey),
-                // encuadrar la cámara para mostrar todos los distribuidores coincidentes con zoom adecuado
-                highlightState(filterState || null);
+        } else if (filterState) {
+            // Caso B: El usuario seleccionó un Estado en el dropdown -> Resaltar su contorno GeoJSON en rojo
+            const highlighted = highlightState(filterState);
+            const matchedIds = new Set(displayList.map(d => d.id));
+            Object.keys(leafletMarkers).forEach(id => {
+                const item = leafletMarkers[id];
+                if (matchedIds.has(id)) {
+                    item.marker.setIcon(item.redIcon);
+                } else {
+                    item.marker.setIcon(item.redIcon);
+                    item.marker.closePopup();
+                }
+            });
 
+            if (!highlighted && displayList.length > 0) {
                 const bounds = L.latLngBounds();
                 let hasCoords = false;
-
                 displayList.forEach(dist => {
                     if (dist.lat && dist.lng) {
                         bounds.extend([dist.lat, dist.lng]);
                         hasCoords = true;
                     }
                 });
+                if (hasCoords) {
+                    leafletMap.flyToBounds(bounds, { padding: [50, 50], maxZoom: 11, animate: true, duration: 1.2 });
+                }
+            }
+        } else if (filterText !== "") {
+            // Caso C: El usuario escribió en el buscador (verificar si coincide con un nombre de Estado o sucursal)
+            const matchedState = highlightState(rawText);
 
-                // Resaltar los pines coincidentes en el mapa
+            if (matchedState) {
                 const matchedIds = new Set(displayList.map(d => d.id));
                 Object.keys(leafletMarkers).forEach(id => {
                     const item = leafletMarkers[id];
@@ -1278,13 +1304,37 @@ function initDistribuidores() {
                         item.marker.closePopup();
                     }
                 });
+            } else if (displayList.length === 1) {
+                highlightState(displayList[0].estado);
+                actualizarMapa(displayList[0]);
+            } else {
+                highlightState(null);
+                const bounds = L.latLngBounds();
+                let hasCoords = false;
 
+                displayList.forEach(dist => {
+                    if (dist.lat && dist.lng) {
+                        bounds.extend([dist.lat, dist.lng]);
+                        hasCoords = true;
+                    }
+                });
+
+                const matchedIds = new Set(displayList.map(d => d.id));
+                Object.keys(leafletMarkers).forEach(id => {
+                    const item = leafletMarkers[id];
+                    if (matchedIds.has(id)) {
+                        item.marker.setIcon(item.activeRedIcon || item.redIcon);
+                    } else {
+                        item.marker.setIcon(item.redIcon);
+                        item.marker.closePopup();
+                    }
+                });
                 if (hasCoords) {
                     leafletMap.flyToBounds(bounds, { padding: [50, 50], maxZoom: 13, animate: true, duration: 1.2 });
                 }
             }
         } else {
-            // Vista general panorámica de todo México sin filtro activo
+            // Caso D: Vista general panorámica sin filtro
             highlightState(null);
             leafletMap.setView([23.6345, -102.5528], 5);
             Object.keys(leafletMarkers).forEach(id => {
@@ -1351,16 +1401,137 @@ function initDistribuidores() {
         }
     }
 
-    // Buscador interactivo por CP o Texto
+    // --- AUTOCOMPLETE DROPDOWN INTERACTIVO ---
+    const autocompleteDropdown = document.getElementById('search-autocomplete-dropdown');
+
+    function closeAutocomplete() {
+        if (autocompleteDropdown) {
+            autocompleteDropdown.style.display = 'none';
+            autocompleteDropdown.innerHTML = '';
+        }
+    }
+
+    function renderAutocomplete(query) {
+        if (!autocompleteDropdown) return;
+        const cleanQuery = cleanText(query || '');
+        
+        if (cleanQuery.length < 1) {
+            closeAutocomplete();
+            return;
+        }
+
+        const list = getDistribuidores();
+        const matches = [];
+        const addedStates = new Set();
+
+        // 1. Coincidencias con Nombres de Estados (ej. "Jal", "CDMX", "Pue", "Sin", "Son", "Ver")
+        const allStates = [...new Set(list.map(d => d.estado))].filter(Boolean);
+        
+        allStates.forEach(state => {
+            const cleanSt = cleanText(state);
+            const aliasSt = cleanStateName(state);
+            
+            if (cleanSt.includes(cleanQuery) || aliasSt.includes(cleanQuery) || cleanQuery.includes(cleanSt) || cleanQuery.includes(aliasSt)) {
+                if (!addedStates.has(cleanSt)) {
+                    addedStates.add(cleanSt);
+                    matches.push({
+                        type: 'state',
+                        label: state,
+                        subText: 'Estado',
+                        icon: 'map',
+                        isState: true,
+                        stateValue: state
+                    });
+                }
+            }
+        });
+
+        // 2. Coincidencias con Nombres de Distribuidores o Ciudades (ej. "Interlomas", "Coapa", "Aeropuerto", "Angelopolis", "Guadalajara")
+        list.forEach(dist => {
+            const cleanName = cleanText(dist.nombre);
+            const cleanDir = cleanText(dist.direccion);
+            
+            if (cleanName.includes(cleanQuery) || cleanDir.includes(cleanQuery)) {
+                matches.push({
+                    type: 'dealer',
+                    label: dist.nombre,
+                    subText: dist.estado,
+                    icon: 'storefront',
+                    isState: false,
+                    distObj: dist
+                });
+            }
+        });
+
+        if (matches.length === 0) {
+            closeAutocomplete();
+            return;
+        }
+
+        autocompleteDropdown.innerHTML = '';
+        const topMatches = matches.slice(0, 7);
+
+        topMatches.forEach(match => {
+            const item = document.createElement('div');
+            item.className = `autocomplete-item ${match.isState ? 'is-state' : ''}`;
+            item.innerHTML = `
+                <span class="material-symbols-outlined autocomplete-item-icon">${match.icon}</span>
+                <span style="font-weight: 600;">${match.label}</span>
+                <span class="autocomplete-item-tag">${match.subText}</span>
+            `;
+
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (match.type === 'state') {
+                    if (stateSelect) stateSelect.value = match.stateValue;
+                    if (searchInput) searchInput.value = match.label;
+                    selectedDistId = null;
+                } else if (match.type === 'dealer') {
+                    if (searchInput) searchInput.value = match.label;
+                    selectedDistId = match.distObj.id;
+                }
+                closeAutocomplete();
+                renderDistribuidores();
+            });
+
+            autocompleteDropdown.appendChild(item);
+        });
+
+        autocompleteDropdown.style.display = 'block';
+    }
+
+    // Buscador interactivo por Texto con Autocomplete
     if (searchInput) {
-        searchInput.addEventListener('input', () => {
+        searchInput.addEventListener('input', (e) => {
+            selectedDistId = null;
             renderDistribuidores();
+            renderAutocomplete(e.target.value);
+        });
+
+        searchInput.addEventListener('focus', (e) => {
+            if (e.target.value.trim().length >= 1) {
+                renderAutocomplete(e.target.value);
+            }
+        });
+
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAutocomplete();
+            }
         });
     }
+
+    // Cerrar autocomplete al hacer clic fuera del buscador
+    document.addEventListener('click', (e) => {
+        if (autocompleteDropdown && !e.target.closest('.search-input-wrapper')) {
+            closeAutocomplete();
+        }
+    });
 
     // Filtro por Estado
     if (stateSelect) {
         stateSelect.addEventListener('change', () => {
+            closeAutocomplete();
             renderDistribuidores();
         });
     }
