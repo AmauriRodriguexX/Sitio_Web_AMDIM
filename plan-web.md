@@ -96,9 +96,13 @@ Utilizaremos de manera estricta las fuentes tipográficas oficiales de Mitsubish
 
 ### C. Tarjetas de Modelos (Sección Modelos)
 * **Estilo:** Tarjetas con fondo `#161616`, esquinas ligeramente redondeadas (4px) para un look deportivo e industrial.
-* **Interacción (Hover):**
+* **Interacción (Hover & Arrastre 360°):**
   * La imagen del vehículo se escala ligeramente (`transform: scale(1.05)`).
-  * Sombra exterior con un resplandor rojo Mitsubishi muy sutil (`box-shadow: 0 10px 20px rgba(226, 0, 26, 0.15)`).
+  * Cadencia pausada de rotación a 950ms por fotograma.
+  * Código JS neutro y desacoplado por modelo (`MODEL_360_SEQUENCES`).
+  * **Configuración de Giro Aprobada:**
+    * **Izquierda a Derecha:** `mirage`, `xpander`, `xpander-cross`, `outlander-sport`, `outlander-phev`, `montero`, `l200`, `l200-gsr`.
+    * **Sentido Inverso Específico:** `outlander` normal (`Outlander-Moonstone-Gray`) configurada con su orden numérico `[1_3082, 2_3033, 3_3111, 4_3112, 5_3366, 6_3371]`.
 * **Botonera:** Botón de "Ficha Técnica" estilizado como botón delineado (*outlined button*) con animación de relleno rojo en hover.
 
 ### E. Buscador e Interfaz de Distribuidores

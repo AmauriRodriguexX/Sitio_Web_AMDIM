@@ -40,3 +40,12 @@ Este manual define las reglas específicas para la identidad del logotipo e isot
 3. **Restricciones del Logotipo:**
    * Prohibido rotar, deformar, cambiar colores, delinear, o colocar sobre fondos degradados que afecten su legibilidad.
    * Respetar un área de seguridad equivalente a **3 CM perimetrales** a los lados del logotipo.
+
+## Reglas de Secuencia 360° y Rotación de Vehículos (PROHIBIDO ALTERAR SIN INDICACIÓN EXPLÍCITA)
+1. **Desacoplamiento Total de Tarjetas:**
+   * El código JavaScript (`modelCards.forEach` en `js/main.js`) **DEBE PERMANECER 100% NEUTRO Y GENÉRICO** (`nextIdx = (activeIdx + 1) % sequence.length`).
+   * Prohibido reutilizar banderas condicionales globales (como `INVERTED_ROTATION_MODELS` o multiplicadores compartidos) que puedan afectar el cálculo de tarjetas vecinas al modificar un solo modelo.
+2. **Orden Oficial Aprobado de la Galería 360° (`MODEL_360_SEQUENCES`):**
+   * **Modelos Estándar (Giro Izquierda a Derecha):** `mirage`, `xpander`, `xpander-cross`, `outlander-sport`, `outlander-phev`, `montero`, `l200` y `l200-gsr`.
+   * **Outlander Normal (`outlander`):** Mantiene EXCLUSIVAMENTE su arreglo de imágenes en el orden numérico `[1_3082, 2_3033, 3_3111, 4_3112, 5_3366, 6_3371]` para girar en el sentido inverso aprobado por el usuario.
+

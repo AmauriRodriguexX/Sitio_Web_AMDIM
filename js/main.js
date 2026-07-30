@@ -76,7 +76,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d8",
         "nombre": "MITSUBISHI CANCUN",
-        "telefono": "529988811940",
+        "telefono": "9988811940",
         "web": "https://mitsubishi-cancun.mx",
         "direccion": "Av. Bonampak Supermanzana 8, Zona Hotelera, 77500 Cancún, Q.R.",
         "estado": "Quintana Roo",
@@ -96,7 +96,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d10",
         "nombre": "MITSUBISHI CD GUZMÁN",
-        "telefono": "523414105605",
+        "telefono": "3414105605",
         "web": "https://mitsubishi-cdguzman.mx",
         "direccion": "Calz Madero y Carranza 485 Col, Centro, 49000 Cdad. Guzmán, Jal.",
         "estado": "Jalisco",
@@ -106,7 +106,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d11",
         "nombre": "MITSUBISHI CELAYA",
-        "telefono": "524611599018",
+        "telefono": "4611599018",
         "web": "https://mitsubishi-celaya.mx",
         "direccion": "Nogal 818, Col, Primera Seccion, Jardines de Celaya 1ra Secc, 38080 Celaya, Gto.",
         "estado": "Guanajuato",
@@ -116,7 +116,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d12",
         "nombre": "MITSUBISHI CHIAPAS",
-        "telefono": "529611212284",
+        "telefono": "9611212284",
         "web": "https://mitsubishi-chiapas.mx",
         "direccion": "Blvd. Belisario Domínguez 4000, Jardines de Tuxtla, 29020 Tuxtla Gutiérrez, Chis.",
         "estado": "Chiapas",
@@ -126,7 +126,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d13",
         "nombre": "MITSUBISHI CHIHUAHUA",
-        "telefono": "526144422700",
+        "telefono": "6144422700",
         "web": "https://mitsubishi-chihuahua.mx",
         "direccion": "Blvrd Antonio Ortiz Mena 431 Col, Unidad Presidentes, 31210 Chihuahua, Chih.",
         "estado": "Chihuahua",
@@ -136,7 +136,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d14",
         "nombre": "MITSUBISHI COAPA",
-        "telefono": "525510781315",
+        "telefono": "5510781315",
         "web": "https://mitsubishi-coapa.mx",
         "direccion": "Calz. del Hueso 975, Coapa, Granjas Coapa, Tlalpan, 14330 Ciudad de México, CDMX",
         "estado": "Ciudad de México",
@@ -146,7 +146,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d15",
         "nombre": "MITSUBISHI COATZACOALCOS",
-        "telefono": "529212131020",
+        "telefono": "9212131020",
         "web": "https://mitsubishi-coatzacoalcos.mx",
         "direccion": "Carretera Coatzacoalcos, 4 S/N, Heroes de Nacozari, 96599 Coatzacoalcos, Ver.",
         "estado": "Veracruz",
@@ -156,7 +156,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d16",
         "nombre": "MITSUBISHI COLIMA",
-        "telefono": "523123307172",
+        "telefono": "3123307172",
         "web": "https://mitsubishi-colima.mx",
         "direccion": "Carlos de La Madrid Béjar 895, El Tecolote, 28090 Colima, Col.",
         "estado": "Colima",
@@ -166,7 +166,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d17",
         "nombre": "MITSUBISHI CÓRDOBA",
-        "telefono": "522717129006",
+        "telefono": "2717129006",
         "web": "https://mitsubishi-cordoba.mx",
         "direccion": "Zona Diez, 21 de Mayo 292.95, La Posta, 94570 Córdoba, Ver.",
         "estado": "Veracruz",
@@ -186,7 +186,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d19",
         "nombre": "MITSUBISHI COUNTRY",
-        "telefono": "523321012100",
+        "telefono": "3321012100",
         "web": "https://mitsubishi-country.mx",
         "direccion": "Av. Manuel Ávila Camacho 2023- A, Country Club, 44610 Guadalajara, Jal.",
         "estado": "Jalisco",
@@ -196,7 +196,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d20",
         "nombre": "MITSUBISHI CUAUTITLÁN",
-        "telefono": "525593314444",
+        "telefono": "5593314444",
         "web": "https://mitsubishi-cuautitlan.mx",
         "direccion": "Autopista México - Querétaro km 38.4, El Sabino, 54713 San Mateo Ixtacalco, Méx.",
         "estado": "Estado de México",
@@ -206,7 +206,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d21",
         "nombre": "MITSUBISHI CULIACÁN",
-        "telefono": "526675495050",
+        "telefono": "6675495050",
         "web": "https://mitsubishi-culiacan.mx",
         "direccion": "Blvd. Pedro Infante 2301-L-2, Col. Jardines, Desarrollo Urbano Tres Ríos, 80100 Culiacán Rosales, Sin.",
         "estado": "Sinaloa",
@@ -216,7 +216,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d22",
         "nombre": "MITSUBISHI DURANGO",
-        "telefono": "526188264434",
+        "telefono": "6188264434",
         "web": "https://mitsubishi-durango.mx",
         "direccion": "Blvd. Domingo Arrieta 1100 Col, Jalisco, 34170 Durango, Dgo.",
         "estado": "Durango",
@@ -226,7 +226,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d23",
         "nombre": "MITSUBISHI FLETEROS",
-        "telefono": "528111584400",
+        "telefono": "8111584400",
         "web": "https://mitsubishi-fleteros.mx",
         "direccion": "Gral. Pablo A Gonzalez 124, San Jerónimo, 64640 Monterrey, N.L.",
         "estado": "Nuevo León",
@@ -236,7 +236,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d24",
         "nombre": "MITSUBISHI GONZALEZ GALLO",
-        "telefono": "523324512800",
+        "telefono": "3324512800",
         "web": "https://mitsubishi-gonzalezgallo.mx",
         "direccion": "Calz. Jesús González Gallo 534, La Aurora, 44790 Guadalajara, Jal.",
         "estado": "Jalisco",
@@ -246,7 +246,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d25",
         "nombre": "MITSUBISHI HERMOSILLO CENTRO",
-        "telefono": "526622135520",
+        "telefono": "6622135520",
         "web": "https://mitsubishi-hermosillocentro.mx",
         "direccion": "Blvr. Abelardo L. Rodríguez 110 Col, Centro, 06700 Hermosillo, Son.",
         "estado": "Sonora",
@@ -256,7 +256,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d26",
         "nombre": "MITSUBISHI INSURGENTES",
-        "telefono": "525591839002",
+        "telefono": "5591839002",
         "web": "https://mitsubishi-insurgentes.mx",
         "direccion": "Av. Insurgentes Sur 1247, Extremadura Insurgentes, Benito Juárez, 03740 Ciudad de México, CDMX",
         "estado": "Ciudad de México",
@@ -266,7 +266,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d27",
         "nombre": "MITSUBISHI INTERLOMAS",
-        "telefono": "525530003430",
+        "telefono": "5530003430",
         "web": "https://mitsubishi-interlomas.mx",
         "direccion": "P.º de la Herradura 422, Interlomas, Parques de la Herradura, 52760 Naucalpan de Juárez, Méx.",
         "estado": "Estado de México",
@@ -276,7 +276,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d28",
         "nombre": "MITSUBISHI JUAREZ",
-        "telefono": "526564786000",
+        "telefono": "6564786000",
         "web": "https://mitsubishi-juarez.mx",
         "direccion": "Av de la Raza 6529, Del Futuro, 32320 Juárez, Chih.",
         "estado": "Chihuahua",
@@ -296,7 +296,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d30",
         "nombre": "MITSUBISHI LAGUNA",
-        "telefono": "528717294900",
+        "telefono": "8717294900",
         "web": "https://mitsubishi-laguna.mx",
         "direccion": "Av. Juarez 3701 Col, Nuevo Torreón, 27060 Torreón, Coah.",
         "estado": "Coahuila",
@@ -306,7 +306,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d31",
         "nombre": "MITSUBISHI LEÓN",
-        "telefono": "524777717800",
+        "telefono": "4777717800",
         "web": "https://mitsubishi-leon.mx",
         "direccion": "Blvd. Adolfo López Mateos 2710 Col, Industrial Julian de Obregon, 37290 León de los Aldama, Gto.",
         "estado": "Guanajuato",
@@ -316,7 +316,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d32",
         "nombre": "MITSUBISHI LINDA VISTA",
-        "telefono": "528140024300",
+        "telefono": "8140024300",
         "web": "https://mitsubishi-lindavista.mx",
         "direccion": "Av. Constituyentes de Nuevo León 114, Col. Alamos Corregidora, 64590 Monterrey, N.L.",
         "estado": "Nuevo León",
@@ -326,7 +326,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d33",
         "nombre": "MITSUBISHI LÓPEZ MATEOS",
-        "telefono": "523337704444",
+        "telefono": "3337704444",
         "web": "https://mitsubishi-lopezmateos.mx",
         "direccion": "Av. Adolfo López Mateos Sur 4221 Col, Loma Bonita, 45086 Zapopan, Jal.",
         "estado": "Jalisco",
@@ -336,7 +336,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d34",
         "nombre": "MITSUBISHI LOS FUERTES",
-        "telefono": "522222230232",
+        "telefono": "2222230232",
         "web": "https://mitsubishi-losfuertes.mx",
         "direccion": "Diag. Defensores de la República 872 Col, Adolfo López Mateos, 72240 Heroica Puebla de Zaragoza, Pue.",
         "estado": "Puebla",
@@ -356,7 +356,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d36",
         "nombre": "MITSUBISHI MAZATLÁN",
-        "telefono": "526699899090",
+        "telefono": "6699899090",
         "web": "https://mitsubishi-mazatlan.mx",
         "direccion": "Dr. Jesús Kumate 209 Col, Hacienda las Cruces, 82110 Mazatlán, Sin.",
         "estado": "Sinaloa",
@@ -366,7 +366,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d37",
         "nombre": "MITSUBISHI MERIDA",
-        "telefono": "529999449797",
+        "telefono": "9999449797",
         "web": "https://mitsubishi-merida.mx",
         "direccion": "Calle 6, Prol. Paseo Montejo 318 Col, Gonzalo Guerrero, 97118 Mérida, Yuc.",
         "estado": "Mérida",
@@ -376,7 +376,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d38",
         "nombre": "MITSUBISHI MEXICALI",
-        "telefono": "526865615757",
+        "telefono": "6865615757",
         "web": "https://mitsubishi-mexicali.mx",
         "direccion": "Blvd. Lázaro Cárdenas 1598 Col, Ex-Ejido Zacatecas, 21090 Mexicali, B.C.",
         "estado": "Baja California",
@@ -386,7 +386,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d39",
         "nombre": "MITSUBISHI MONCLOVA",
-        "telefono": "528666416847",
+        "telefono": "8666416847",
         "web": "https://mitsubishi-monclova.mx",
         "direccion": "Blvd Harold R. Pape 310 Col, Santa Isabel, 25732 Monclova, Coah.",
         "estado": "Coahuila",
@@ -396,7 +396,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d40",
         "nombre": "MITSUBISHI MORELIA",
-        "telefono": "524431284338",
+        "telefono": "4431284338",
         "web": "https://mitsubishi-morelia.mx",
         "direccion": "Av Acueducto 2547, Col. Chapultepec Ote, 58260 Morelia, Mich.",
         "estado": "Michoacán",
@@ -406,7 +406,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d41",
         "nombre": "MITSUBISHI MORELOS",
-        "telefono": "527779801300",
+        "telefono": "7779801300",
         "web": "https://mitsubishi-morelos.mx",
         "direccion": "José María Morelos 65 Col, Chipitlan, 62070 Cuernavaca, Mor.",
         "estado": "Morelos",
@@ -416,7 +416,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d42",
         "nombre": "MITSUBISHI OAXACA",
-        "telefono": "529515016070",
+        "telefono": "9515016070",
         "web": "https://mitsubishi-oaxaca.mx",
         "direccion": "AV UNIVERSIDAD 553-A COL, Avenida Universidad 553-A, Exhacienda Candiani, 68120 Oaxaca de Juárez, Oax.",
         "estado": "Oaxaca",
@@ -426,7 +426,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d43",
         "nombre": "MITSUBISHI PACHUCA",
-        "telefono": "527714541921",
+        "telefono": "7714541921",
         "web": "https://mitsubishi-pachuca.mx",
         "direccion": "Blvd. Felipe Ángeles 400 Col, Parque Urbano, Pachoacan, 42083 Pachuca de Soto, Hgo.",
         "estado": "Hidalgo",
@@ -446,7 +446,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d45",
         "nombre": "MITSUBISHI POZA RICA",
-        "telefono": "527821188080",
+        "telefono": "7821188080",
         "web": "https://mitsubishi-pozarica.mx",
         "direccion": "Av 20 de Noviembre 206 Col, Cazones, 93230 Poza Rica de Hidalgo, Ver.",
         "estado": "Veracruz",
@@ -456,7 +456,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d46",
         "nombre": "MITSUBISHI PUERTO VALLARTA",
-        "telefono": "523223080777",
+        "telefono": "3223080777",
         "web": "https://mitsubishi-puertovallarta.mx",
         "direccion": "Boulevard Vallarta Tepic 5162A, Col. Las Juntas, Puerto Vallarta, Jalisco.",
         "estado": "Jalisco",
@@ -466,7 +466,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d47",
         "nombre": "MITSUBISHI REYNOSA",
-        "telefono": "528992931300",
+        "telefono": "8992931300",
         "web": "https://mitsubishi-reynosa.mx",
         "direccion": "Blvd. Hidalgo 285 Col, Fuentes del Valle, 88746 Reynosa, Tamps.",
         "estado": "Tamaulipas",
@@ -476,7 +476,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d48",
         "nombre": "MITSUBISHI SALTILLO",
-        "telefono": "528447979000",
+        "telefono": "8447979000",
         "web": "https://mitsubishi-saltillo.mx",
         "direccion": "Blvd. Venustiano Carranza 5586 Col, La Hacienda, 25256 Saltillo, Coah.",
         "estado": "Coahuila",
@@ -486,7 +486,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d49",
         "nombre": "MITSUBISHI SAN ÁNGEL",
-        "telefono": "525553373000",
+        "telefono": "5553373000",
         "web": "https://mitsubishi-sanangel.mx",
         "direccion": "Av. Revolución 1321, Col. Tlacopac, Àlvaro Obregòn, Álvaro Obregón, 01049 Ciudad de México, CDMX",
         "estado": "Ciudad de México",
@@ -496,7 +496,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d50",
         "nombre": "MITSUBISHI SAN LUIS POTOSÍ",
-        "telefono": "524448635301",
+        "telefono": "4448635301",
         "web": "https://mitsubishi-sanluispotosi.mx",
         "direccion": "Av. Benito Juarez 1110, Valle Dorado, 78399 San Luis Potosí, S.L.P.",
         "estado": "San Luis Potosí",
@@ -516,7 +516,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d52",
         "nombre": "MITSUBISHI SATÉLITE",
-        "telefono": "525553667833",
+        "telefono": "5553667833",
         "web": "https://mitsubishi-satelite.mx",
         "direccion": "Perif. Blvd. Manuel Ávila Camacho 2304 Col, San Lucas Tepetlacalco, 53240 Tlalnepantla, Méx.",
         "estado": "Estado de México",
@@ -526,7 +526,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d53",
         "nombre": "MITSUBISHI SENDERO",
-        "telefono": "528141050000",
+        "telefono": "8141050000",
         "web": "https://mitsubishi-sendero.mx",
         "direccion": "Avenida Universidad 1003, Centro, 66400 San Nicolás de los Garza, N.L.",
         "estado": "Nuevo León",
@@ -536,7 +536,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d54",
         "nombre": "MITSUBISHI TABASCO",
-        "telefono": "529933136666",
+        "telefono": "9933136666",
         "web": "https://mitsubishi-tabasco.mx",
         "direccion": "Ave Juan Estrada Torres s/n esq. Ciudad deportiva, Primero de Mayo, 86190 Villahermosa, Tab.",
         "estado": "Tabasco",
@@ -546,7 +546,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d55",
         "nombre": "MITSUBISHI TAMPICO",
-        "telefono": "528331151600",
+        "telefono": "8331151600",
         "web": "https://mitsubishi-tampico.mx",
         "direccion": "Av. Miguel Hidalgo. 6303 Nvo. Aeropuerto, Lomas del Chairel, 89337 Tampico, Tamps.",
         "estado": "Tamaulipas",
@@ -556,7 +556,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d56",
         "nombre": "MITSUBISHI TEHUACÁN",
-        "telefono": "522383825199",
+        "telefono": "2383825199",
         "web": "https://mitsubishi-tehuacan.mx",
         "direccion": "Av Independencia Pte 1409-B, Arcadia, 75760 Tehuacán, Pue.",
         "estado": "Puebla",
@@ -566,7 +566,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d57",
         "nombre": "MITSUBISHI TEPIC",
-        "telefono": "523112172202",
+        "telefono": "3112172202",
         "web": "https://mitsubishi-tepic.mx",
         "direccion": "Av Insurgentes 1997, Los Llanitos, 63170 Tepic, Nay.",
         "estado": "Nayarit",
@@ -576,7 +576,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d58",
         "nombre": "MITSUBISHI TIJUANA",
-        "telefono": "526649691979",
+        "telefono": "6649691979",
         "web": "https://mitsubishi-tijuana.mx",
         "direccion": "Av. Vía Rápida Pte. 15471, La Cienega Poniente, 22114 Tijuana, B.C.",
         "estado": "Tijuana",
@@ -586,7 +586,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d59",
         "nombre": "MITSUBISHI TLAHUAC",
-        "telefono": "525554266301",
+        "telefono": "5554266301",
         "web": "https://mitsubishi-tlahuac.mx",
         "direccion": "Av. Tlahuac 4799, El Vergel, Iztapalapa, 09880 Ciudad de México, CDMX",
         "estado": "Ciudad de México",
@@ -596,7 +596,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d60",
         "nombre": "MITSUBISHI TLAXCALA",
-        "telefono": "522464613435",
+        "telefono": "2464613435",
         "web": "https://mitsubishi-tlaxcala.mx",
         "direccion": "Autopista Tlaxcala - Apizaco, quinta sección, 90459 Santa María Atlihuetzian, Tlax.",
         "estado": "Tlaxcala",
@@ -606,7 +606,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d61",
         "nombre": "MITSUBISHI TOLUCA",
-        "telefono": "527221801888",
+        "telefono": "7221801888",
         "web": "https://mitsubishi-toluca.mx",
         "direccion": "Av. Lic. Benito Juárez García 1610 Col, San Francisco Coaxusco, 52158 Toluca de Lerdo, Méx.",
         "estado": "Estado de México",
@@ -626,7 +626,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d63",
         "nombre": "MITSUBISHI VALLEJO",
-        "telefono": "525595506568",
+        "telefono": "5595506568",
         "web": "https://mitsubishi-vallejo.mx",
         "direccion": "Calz. Vallejo 1059, Nueva Vallejo II Secc, Gustavo A. Madero, 07720 Ciudad de México, CDMX",
         "estado": "Ciudad de México",
@@ -636,7 +636,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d64",
         "nombre": "MITSUBISHI XALAPA",
-        "telefono": "522281730244",
+        "telefono": "2281730244",
         "web": "https://mitsubishi-xalapa.mx",
         "direccion": "C. Lázaro Cárdenas 4107 Col, Sipeh Animas, 91190 Xalapa-Enríquez, Ver.",
         "estado": "Veracruz",
@@ -646,7 +646,7 @@ const DISTRIBUIDORES_INICIALES = [
     {
         "id": "d65",
         "nombre": "MITSUBISHI ZACATECAS",
-        "telefono": "524923072040",
+        "telefono": "4923072040",
         "web": "https://mitsubishi-zacatecas.mx",
         "direccion": "Calz. Revolución Mexicana 1A, Col. Tierra y Libertad, Primera Sección, 98615 Guadalupe, Zac.",
         "estado": "Zacatecas",
@@ -742,7 +742,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const storedDists = localStorage.getItem('amdim_distribuidores');
     const parsedDists = storedDists ? JSON.parse(storedDists) : null;
     const hasEstadoField = parsedDists && parsedDists[0] && parsedDists[0].hasOwnProperty('estado');
-    if (!storedDists || parsedDists.length < 71 || !hasEstadoField) {
+    const isOldPhoneFormat = parsedDists && parsedDists[0] && parsedDists[0].telefono && parsedDists[0].telefono.length > 10;
+    if (!storedDists || !parsedDists || parsedDists.length < 71 || !hasEstadoField || isOldPhoneFormat) {
         localStorage.setItem('amdim_distribuidores', JSON.stringify(DISTRIBUIDORES_INICIALES));
     }
     
@@ -960,21 +961,24 @@ function initDistribuidores() {
         color: '#E2001A',
         weight: 0,
         opacity: 0,
+        fill: false,
+        fillColor: 'transparent',
         fillOpacity: 0,
         interactive: false
     };
 
     const STATE_POLYGON_ACTIVE_STYLE = {
         color: '#E2001A',
-        weight: 3,
+        weight: 2,
         opacity: 1,
-        fillColor: '#E2001A',
-        fillOpacity: 0.08,
+        fill: false,
+        fillColor: 'transparent',
+        fillOpacity: 0,
         interactive: false
     };
 
     // Dibuja (una sola vez) los polígonos de los 32 Estados de forma invisible,
-    // listos para resaltarse con borde rojo cuando el usuario selecciona un Estado
+    // listos para resaltarse con borde rojo delgado cuando el usuario selecciona un Estado
     function initStatePolygons() {
         if (!leafletMap || stateLayersGroup) return;
         mexicoStatesGeoJSONData = window.MEXICO_STATES_GEOJSON || null;
@@ -991,7 +995,7 @@ function initDistribuidores() {
         }).addTo(leafletMap);
     }
 
-    // Resalta con borde rojo el Estado seleccionado y hace zoom (fitBounds) a su contorno.
+    // Resalta con borde rojo delgado el Estado seleccionado y hace zoom automático (fitBounds) a su contorno inmediatamente.
     // Si stateName es vacío, restaura todos los polígonos a invisibles.
     function highlightState(stateName) {
         if (!stateLayersGroup) return false;
@@ -1009,7 +1013,7 @@ function initDistribuidores() {
         layer.bringToFront();
 
         if (leafletMap) {
-            leafletMap.flyToBounds(layer.getBounds(), { padding: [40, 40], maxZoom: 9, animate: true, duration: 1.2 });
+            leafletMap.flyToBounds(layer.getBounds(), { padding: [35, 35], maxZoom: 9, animate: true, duration: 1.1 });
         }
         return true;
     }
@@ -1026,47 +1030,11 @@ function initDistribuidores() {
             .trim();
     }
 
-    // Extraer C.P. numérico de un texto de dirección
-    function extractCP(dir) {
-        const match = dir.match(/\b\d{5}\b/);
-        return match ? parseInt(match[0], 10) : null;
-    }
-
-    // Coordenadas aproximadas por rango de C.P. en la República Mexicana
-    function getCoordinatesFromCP(cpNum) {
-        if (cpNum >= 1000 && cpNum <= 19999) return { lat: 19.4326, lng: -99.1332 }; // CDMX / EdoMex
-        if (cpNum >= 20000 && cpNum <= 20999) return { lat: 21.8853, lng: -102.2916 }; // Aguascalientes
-        if (cpNum >= 21000 && cpNum <= 22999) return { lat: 32.6245, lng: -115.4523 }; // Baja California
-        if (cpNum >= 23000 && cpNum <= 23999) return { lat: 24.1426, lng: -110.3128 }; // Baja California Sur
-        if (cpNum >= 24000 && cpNum <= 24999) return { lat: 19.8301, lng: -90.5349 }; // Campeche
-        if (cpNum >= 25000 && cpNum <= 27999) return { lat: 25.4267, lng: -101.0014 }; // Coahuila
-        if (cpNum >= 28000 && cpNum <= 28999) return { lat: 19.2452, lng: -103.7241 }; // Colima
-        if (cpNum >= 29000 && cpNum <= 30999) return { lat: 16.7569, lng: -93.1292 }; // Chiapas
-        if (cpNum >= 31000 && cpNum <= 33999) return { lat: 28.6330, lng: -106.0691 }; // Chihuahua
-        if (cpNum >= 34000 && cpNum <= 35999) return { lat: 24.0277, lng: -104.6532 }; // Durango
-        if (cpNum >= 36000 && cpNum <= 38999) return { lat: 21.0190, lng: -101.2574 }; // Guanajuato
-        if (cpNum >= 39000 && cpNum <= 41999) return { lat: 17.5515, lng: -99.5005 }; // Guerrero
-        if (cpNum >= 42000 && cpNum <= 43999) return { lat: 20.1011, lng: -98.7591 }; // Hidalgo
-        if (cpNum >= 44000 && cpNum <= 49999) return { lat: 20.6597, lng: -103.3496 }; // Jalisco
-        if (cpNum >= 50000 && cpNum <= 57999) return { lat: 19.2879, lng: -99.6532 }; // Estado de México
-        if (cpNum >= 58000 && cpNum <= 61999) return { lat: 19.7060, lng: -101.1950 }; // Michoacán
-        if (cpNum >= 62000 && cpNum <= 62999) return { lat: 18.9261, lng: -99.2308 }; // Morelos
-        if (cpNum >= 63000 && cpNum <= 63999) return { lat: 21.5042, lng: -104.8947 }; // Nayarit
-        if (cpNum >= 64000 && cpNum <= 67999) return { lat: 25.6866, lng: -100.3161 }; // Nuevo León
-        if (cpNum >= 68000 && cpNum <= 71999) return { lat: 17.0732, lng: -96.7266 }; // Oaxaca
-        if (cpNum >= 72000 && cpNum <= 75999) return { lat: 19.0414, lng: -98.2063 }; // Puebla
-        if (cpNum >= 76000 && cpNum <= 76999) return { lat: 20.5888, lng: -100.3899 }; // Querétaro
-        if (cpNum >= 77000 && cpNum <= 77999) return { lat: 21.1619, lng: -86.8515 }; // Quintana Roo
-        if (cpNum >= 78000 && cpNum <= 79999) return { lat: 22.1565, lng: -100.9855 }; // San Luis Potosí
-        if (cpNum >= 80000 && cpNum <= 82999) return { lat: 24.8091, lng: -107.3940 }; // Sinaloa
-        if (cpNum >= 83000 && cpNum <= 85999) return { lat: 29.0729, lng: -110.9559 }; // Sonora
-        if (cpNum >= 86000 && cpNum <= 86999) return { lat: 17.9892, lng: -92.9281 }; // Tabasco
-        if (cpNum >= 87000 && cpNum <= 89999) return { lat: 23.7369, lng: -99.1411 }; // Tamaulipas
-        if (cpNum >= 90000 && cpNum <= 90999) return { lat: 19.3182, lng: -98.2375 }; // Tlaxcala
-        if (cpNum >= 91000 && cpNum <= 96999) return { lat: 19.5438, lng: -96.9103 }; // Veracruz
-        if (cpNum >= 97000 && cpNum <= 97999) return { lat: 20.9674, lng: -89.5926 }; // Yucatán
-        if (cpNum >= 98000 && cpNum <= 99999) return { lat: 22.7709, lng: -102.5832 }; // Zacatecas
-        return { lat: 19.4326, lng: -99.1332 };
+    // Normalizar dirección eliminando C.P. para deshabilitar búsquedas por Código Postal
+    function cleanDirNoCP(dir) {
+        return cleanText(dir)
+            .replace(/\bc\.?p\.?\s*\d{4,5}\b/gi, "")
+            .replace(/\b\d{4,5}\b/gi, "");
     }
 
     function calcularDistancia(lat1, lon1, lat2, lon2) {
@@ -1080,17 +1048,17 @@ function initDistribuidores() {
         return R * c;
     }
 
-    // Inicializar el selector de estados dinámicamente
+    // Inicializar el selector de estados dinámicamente (Texto en MAYÚSCULAS)
     function initStateSelect() {
         if (!stateSelect) return;
         const list = getDistribuidores();
         const states = [...new Set(list.map(d => d.estado))].filter(Boolean).sort();
         
-        stateSelect.innerHTML = '<option value="">Todos los Estados</option>';
+        stateSelect.innerHTML = '<option value="">TODOS LOS ESTADOS</option>';
         states.forEach(state => {
             const option = document.createElement('option');
             option.value = state;
-            option.textContent = state;
+            option.textContent = state.toUpperCase();
             stateSelect.appendChild(option);
         });
     }
@@ -1121,7 +1089,7 @@ function initDistribuidores() {
             maxZoom: 19
         }).addTo(leafletMap);
 
-        // Polígonos invisibles de los 32 Estados, listos para resaltarse en rojo al seleccionar un Estado
+        // Polígonos invisibles de los 32 Estados, listos para resaltarse con borde delgado rojo al seleccionar un Estado
         initStatePolygons();
 
         // Icono de Pin Rojo Mitsubishi personalizado
@@ -1148,9 +1116,9 @@ function initDistribuidores() {
                 
                 const popupContent = `
                     <div style="font-family: inherit; color: #111; padding: 4px;">
-                        <strong style="color: #E2001A; font-size: 0.95rem; display: block; margin-bottom: 4px;">${dist.nombre}</strong>
-                        <span style="font-size: 0.8rem; color: #444; display: block; margin-bottom: 8px;">${dist.direccion}</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dist.direccion)}" target="_blank" style="display: inline-block; background: #E2001A; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; text-decoration: none; font-weight: 600;">Cómo llegar &rarr;</a>
+                        <strong style="color: #E2001A; font-size: 0.95rem; display: block; margin-bottom: 4px; text-transform: uppercase;">${dist.nombre.toUpperCase()}</strong>
+                        <span style="font-size: 0.8rem; color: #444; display: block; margin-bottom: 8px; text-transform: uppercase;">${dist.direccion.toUpperCase()}</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dist.direccion)}" target="_blank" style="display: inline-block; background: #E2001A; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; text-decoration: none; font-weight: 600;">CÓMO LLEGAR &rarr;</a>
                     </div>
                 `;
                 
@@ -1173,12 +1141,18 @@ function initDistribuidores() {
 
         directoryList.innerHTML = "";
 
-        // Búsqueda inteligente por Texto (Nombre, Ciudad, Dirección, Estado, Teléfono)
+        // Detectar si el usuario ingresó un C.P. (ej. 52786, 01000, 93230)
+        const isPostalCodeQuery = /^\d{4,5}$/.test(rawText) || /^c\.?p\.?\s*\d{4,5}$/i.test(rawText);
+
+        // Búsqueda inteligente por Texto (Nombre, Ciudad, Dirección, Estado, Teléfono - excluyendo C.P.)
         const displayList = list.filter(dist => {
             const matchState = !filterState || dist.estado === filterState;
             
+            // Si la consulta es explícitamente un código postal, se inhabilitan coincidencias
+            if (isPostalCodeQuery) return false;
+
             const cleanName = cleanText(dist.nombre);
-            const cleanDir = cleanText(dist.direccion);
+            const cleanDir = cleanDirNoCP(dist.direccion);
             const cleanState = cleanText(dist.estado);
             
             const matchSearch = !filterText || 
@@ -1191,15 +1165,27 @@ function initDistribuidores() {
         });
 
         if (searchStats) {
-            if (displayList.length === 1) {
-                searchStats.textContent = `1 distribuidor encontrado ${filterState ? `en ${filterState}` : ''}`;
+            if (isPostalCodeQuery) {
+                searchStats.textContent = `BÚSQUEDA POR CÓDIGO POSTAL INHABILITADA (BUSCA POR ESTADO O NOMBRE)`;
+            } else if (displayList.length === 1) {
+                searchStats.textContent = `1 DISTRIBUIDOR ENCONTRADO ${filterState ? `EN ${filterState.toUpperCase()}` : ''}`;
             } else {
-                searchStats.textContent = `${displayList.length} distribuidores encontrados ${filterState ? `en ${filterState}` : ''}`;
+                searchStats.textContent = `${displayList.length} DISTRIBUIDORES ENCONTRADOS ${filterState ? `EN ${filterState.toUpperCase()}` : ''}`;
             }
         }
 
-        if (displayList.length === 0) {
-            directoryList.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--color-text-muted); padding: 40px 0;">No se encontraron distribuidores que coincidan con "${rawText}".</p>`;
+        if (isPostalCodeQuery || displayList.length === 0) {
+            const msg = isPostalCodeQuery 
+                ? 'LAS BÚSQUEDAS POR CÓDIGO POSTAL ESTÁN DESACTIVADAS. POR FAVOR SELECCIONA UN ESTADO O ESCRIBE EL NOMBRE DE TU DISTRIBUIDOR.'
+                : `NO SE ENCONTRARON DISTRIBUIDORES QUE COINCIDAN CON "${rawText.toUpperCase()}".`;
+
+            directoryList.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--color-text-muted); padding: 40px 0; text-transform: uppercase;">${msg}</p>`;
+            
+            // Requisito: Inhabilitar por completo cualquier movimiento, zoom o animación del mapa al ingresar un C.P.
+            if (isPostalCodeQuery) {
+                return;
+            }
+
             if (leafletMap) {
                 highlightState(null);
                 leafletMap.setView([23.6345, -102.5528], 5);
@@ -1216,30 +1202,30 @@ function initDistribuidores() {
 
             card.innerHTML = `
                 <div class="distributor-card-img">
-                    <img src="assets/images/facades/real_facade.png" alt="${dist.nombre}" loading="lazy">
+                    <img src="assets/images/facades/real_facade.png" alt="${dist.nombre.toUpperCase()}" loading="lazy">
                 </div>
                 <div class="distributor-card-info">
                     <div class="distributor-card-header">
-                        <h4>${dist.nombre}</h4>
-                        <span class="distributor-card-state-badge">${dist.estado}</span>
+                        <h4>${dist.nombre.toUpperCase()}</h4>
+                        <span class="distributor-card-state-badge">${dist.estado.toUpperCase()}</span>
                     </div>
                     <div class="distributor-card-body">
                         <p style="display: flex; align-items: center; gap: 8px;">
                             <span class="material-symbols-outlined" style="font-size: 0.95rem; color: var(--color-red);">call</span>
-                            <strong>Teléfono:</strong> 
+                            <strong>TELÉFONO:</strong> 
                             <a href="tel:${dist.telefono.replace(/\s+/g, '')}" style="color: var(--color-text-secondary); text-decoration: none;" onclick="event.stopPropagation();">${dist.telefono}</a>
                         </p>
                         <p style="display: flex; align-items: flex-start; gap: 8px;">
                             <span class="material-symbols-outlined" style="font-size: 0.95rem; color: var(--color-red); margin-top: 2px;">location_on</span>
-                            <span>${dist.direccion}</span>
+                            <span style="text-transform: uppercase;">${dist.direccion.toUpperCase()}</span>
                         </p>
                     </div>
                     <div class="distributor-card-actions">
                         <a href="${dist.web}" target="_blank" onclick="event.stopPropagation();">
-                            <span class="material-symbols-outlined">language</span> Visitar Sitio
+                            <span class="material-symbols-outlined">language</span> VISITAR SITIO
                         </a>
                         <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dist.direccion)}" target="_blank" onclick="event.stopPropagation();">
-                            <span class="material-symbols-outlined">navigation</span> Cómo llegar
+                            <span class="material-symbols-outlined">navigation</span> CÓMO LLEGAR
                         </a>
                     </div>
                 </div>
@@ -1252,7 +1238,7 @@ function initDistribuidores() {
             directoryList.appendChild(card);
         });
 
-        // Actualización inteligente del Mapa con zoom automático y resalte de contorno de Estado
+        // Actualización inteligente del Mapa con zoom automático por Estado inmediatamente
         if (!leafletMap) return;
 
         if (selectedDistId) {
@@ -1263,7 +1249,7 @@ function initDistribuidores() {
                 actualizarMapa(activeDist);
             }
         } else if (filterState) {
-            // Caso B: El usuario seleccionó un Estado en el dropdown -> Resaltar su contorno GeoJSON en rojo
+            // Caso B: El usuario seleccionó un Estado en el dropdown -> Zoom automático inmediato al contorno delgado en rojo
             const highlighted = highlightState(filterState);
             const matchedIds = new Set(displayList.map(d => d.id));
             Object.keys(leafletMarkers).forEach(id => {
@@ -1286,11 +1272,11 @@ function initDistribuidores() {
                     }
                 });
                 if (hasCoords) {
-                    leafletMap.flyToBounds(bounds, { padding: [50, 50], maxZoom: 11, animate: true, duration: 1.2 });
+                    leafletMap.flyToBounds(bounds, { padding: [40, 40], maxZoom: 10, animate: true, duration: 1.1 });
                 }
             }
         } else if (filterText !== "") {
-            // Caso C: El usuario escribió en el buscador (verificar si coincide con un nombre de Estado o sucursal)
+            // Caso C: El usuario escribió en el buscador -> Si es nombre de Estado, hace Zoom automático inmediato
             const matchedState = highlightState(rawText);
 
             if (matchedState) {
@@ -1330,7 +1316,7 @@ function initDistribuidores() {
                     }
                 });
                 if (hasCoords) {
-                    leafletMap.flyToBounds(bounds, { padding: [50, 50], maxZoom: 13, animate: true, duration: 1.2 });
+                    leafletMap.flyToBounds(bounds, { padding: [40, 40], maxZoom: 11, animate: true, duration: 1.1 });
                 }
             }
         } else {
@@ -1343,6 +1329,15 @@ function initDistribuidores() {
                 item.marker.closePopup();
             });
         }
+    }
+
+    // Filtro por Estado (resetea seleccion previa para hacer zoom inmediato)
+    if (stateSelect) {
+        stateSelect.addEventListener('change', () => {
+            selectedDistId = null;
+            closeAutocomplete();
+            renderDistribuidores();
+        });
     }
 
     function selectDistributor(dist) {
@@ -1414,8 +1409,10 @@ function initDistribuidores() {
     function renderAutocomplete(query) {
         if (!autocompleteDropdown) return;
         const cleanQuery = cleanText(query || '');
+        const trimmedQuery = (query || '').trim();
+        const isPostalCodeQuery = /^\d{4,5}$/.test(trimmedQuery) || /^c\.?p\.?\s*\d{4,5}$/i.test(trimmedQuery);
         
-        if (cleanQuery.length < 1) {
+        if (cleanQuery.length < 1 || isPostalCodeQuery) {
             closeAutocomplete();
             return;
         }
@@ -1436,8 +1433,8 @@ function initDistribuidores() {
                     addedStates.add(cleanSt);
                     matches.push({
                         type: 'state',
-                        label: state,
-                        subText: 'Estado',
+                        label: state.toUpperCase(),
+                        subText: 'ESTADO',
                         icon: 'map',
                         isState: true,
                         stateValue: state
@@ -1449,13 +1446,13 @@ function initDistribuidores() {
         // 2. Coincidencias con Nombres de Distribuidores o Ciudades (ej. "Interlomas", "Coapa", "Aeropuerto", "Angelopolis", "Guadalajara")
         list.forEach(dist => {
             const cleanName = cleanText(dist.nombre);
-            const cleanDir = cleanText(dist.direccion);
+            const cleanDir = cleanDirNoCP(dist.direccion);
             
             if (cleanName.includes(cleanQuery) || cleanDir.includes(cleanQuery)) {
                 matches.push({
                     type: 'dealer',
-                    label: dist.nombre,
-                    subText: dist.estado,
+                    label: dist.nombre.toUpperCase(),
+                    subText: dist.estado.toUpperCase(),
                     icon: 'storefront',
                     isState: false,
                     distObj: dist
@@ -1476,18 +1473,18 @@ function initDistribuidores() {
             item.className = `autocomplete-item ${match.isState ? 'is-state' : ''}`;
             item.innerHTML = `
                 <span class="material-symbols-outlined autocomplete-item-icon">${match.icon}</span>
-                <span style="font-weight: 600;">${match.label}</span>
-                <span class="autocomplete-item-tag">${match.subText}</span>
+                <span style="font-weight: 600;">${match.label.toUpperCase()}</span>
+                <span class="autocomplete-item-tag">${match.subText.toUpperCase()}</span>
             `;
 
             item.addEventListener('click', (e) => {
                 e.stopPropagation();
                 if (match.type === 'state') {
                     if (stateSelect) stateSelect.value = match.stateValue;
-                    if (searchInput) searchInput.value = match.label;
+                    if (searchInput) searchInput.value = match.label.toUpperCase();
                     selectedDistId = null;
                 } else if (match.type === 'dealer') {
-                    if (searchInput) searchInput.value = match.label;
+                    if (searchInput) searchInput.value = match.label.toUpperCase();
                     selectedDistId = match.distObj.id;
                 }
                 closeAutocomplete();
@@ -1579,7 +1576,7 @@ function initDistribuidores() {
                     },
                     (error) => {
                         console.warn("Geolocalización no disponible: ", error);
-                        showToast("Ubicación denegada. Ingresa tu Código Postal en la barra de búsqueda.");
+                        showToast("Ubicación denegada. Usa la barra de búsqueda por ciudad, estado o nombre.");
                     }
                 );
             }
@@ -1760,11 +1757,11 @@ function initBolsaTrabajo() {
         const list = getVacantes();
         const states = [...new Set(list.map(job => job.estado).filter(Boolean))].sort();
         
-        jobStateSelect.innerHTML = '<option value="">Todos los Estados</option>';
+        jobStateSelect.innerHTML = '<option value="">TODOS LOS ESTADOS</option>';
         states.forEach(state => {
             const option = document.createElement('option');
             option.value = state;
-            option.textContent = state;
+            option.textContent = state.toUpperCase();
             jobStateSelect.appendChild(option);
         });
     }
@@ -2201,11 +2198,11 @@ function initLegales() {
 const MODEL_360_SEQUENCES = {
     "mirage": [
         "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-1_706_VoEqGl8cOO.avif",
-        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-2_710_WiODj5XHV2.avif",
-        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-3_708_fXqQdHgqJH.avif",
-        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-4_704_FUhmdvDM1c.avif",
+        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-6_702_RK9w4jsTAp.avif",
         "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-5_700_J8ipFiPbtF.avif",
-        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-6_702_RK9w4jsTAp.avif"
+        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-4_704_FUhmdvDM1c.avif",
+        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-3_708_fXqQdHgqJH.avif",
+        "https://mitsubishi-motors.mx/assets/mirage-g4-cool-silver-metallic-2_710_WiODj5XHV2.avif"
     ],
     "xpander": [
         "https://mitsubishi-motors.mx/assets/xpander-red-metallic-1_5025_kFcWmaAk5b.avif",
@@ -2227,10 +2224,10 @@ const MODEL_360_SEQUENCES = {
     ],
     "outlander-sport": [
         "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-1_3664_Q4BHtIY6RY.avif",
-        "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-2_2674_rZVYRT1ecu.avif",
-        "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-3_2673_HZsumDpqRZ.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-5_3662_K3OQY39O1t.avif",
         "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-4_3666_lQDWp1gOut.avif",
-        "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-5_3662_K3OQY39O1t.avif"
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-3_2673_HZsumDpqRZ.avif",
+        "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-2_2674_rZVYRT1ecu.avif"
     ],
     "outlander": [
         "https://mitsubishi-motors.mx/assets/Outlander-Moonstone-Gray-1_3082_tsw2wTDutt.avif",
@@ -2242,31 +2239,31 @@ const MODEL_360_SEQUENCES = {
     ],
     "outlander-phev": [
         "https://mitsubishi-motors.mx/assets/phev-white-diamond-1_4955_IU5J4zFuKW.avif",
-        "https://mitsubishi-motors.mx/assets/phev-white-diamond-2_4956_3e2IGDuhUI.avif",
-        "https://mitsubishi-motors.mx/assets/phev-white-diamond-3_4957_ysxA0xhDYw.avif",
+        "https://mitsubishi-motors.mx/assets/phev-white-diamond-5_4959_640067fCAb.avif",
         "https://mitsubishi-motors.mx/assets/phev-white-diamond-4_4958_U4K7W6geNv.avif",
-        "https://mitsubishi-motors.mx/assets/phev-white-diamond-5_4959_640067fCAb.avif"
+        "https://mitsubishi-motors.mx/assets/phev-white-diamond-3_4957_ysxA0xhDYw.avif",
+        "https://mitsubishi-motors.mx/assets/phev-white-diamond-2_4956_3e2IGDuhUI.avif"
     ],
     "montero": [
         "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-1_3780_R8tzr6hySx.avif",
-        "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-2_3805_PuTg4P28ge.avif",
-        "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-3_3806_6cSV9RtpqD.avif",
+        "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-5_3808_uvm8Sb88Am.avif",
         "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-4_3783_AaN4Jm37RS.avif",
-        "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-5_3808_uvm8Sb88Am.avif"
+        "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-3_3806_6cSV9RtpqD.avif",
+        "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-2_3805_PuTg4P28ge.avif"
     ],
     "l200": [
         "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-1_4262_R1Lm6cdVyB.avif",
-        "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-2_4263_SG0ZGOEomI.avif",
-        "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-3_4264_rP5JJD1wZE.avif",
+        "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-5_4266_e2tKFDOWr8.avif",
         "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-4_4265_aRNSM6cpsP.avif",
-        "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-5_4266_e2tKFDOWr8.avif"
+        "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-3_4264_rP5JJD1wZE.avif",
+        "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-2_4263_SG0ZGOEomI.avif"
     ],
     "l200-gsr": [
         "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-1_3919_ghhNVLxsm7.avif",
-        "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-2_3920_02lBRRjcWQ.avif",
-        "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-3_3921_cSnMpRyDoc.avif",
+        "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-5_3928_Cd68tvSkqz.avif",
         "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-4_3924_VQV3aJTBji.avif",
-        "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-5_3928_Cd68tvSkqz.avif"
+        "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-3_3921_cSnMpRyDoc.avif",
+        "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-2_3920_02lBRRjcWQ.avif"
     ]
 };
 
@@ -2357,7 +2354,7 @@ function initModelosFilter() {
                         const nextIdx = (activeIdx + 1) % sequence.length;
                         setActiveFrame(nextIdx);
                     }
-                }, 520); // Cadencia pausada y sutil a 520ms
+                }, 950); // Cadencia lenta, pausada y elegante (950ms por cuadro)
             };
 
             const stopAutoRotate = () => {

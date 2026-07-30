@@ -1219,8 +1219,43 @@ a {
     max-width: 315px !important;
 }
 
+/* Homologación de sombra inferior negra para Outlander Sport, L200 y L200 GSR */
+.model-card[data-model="outlander-sport"] .model-image-container::after,
+.model-card[data-model="l200"] .model-image-container::after,
+.model-card[data-model="l200-gsr"] .model-image-container::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 18px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 45%, rgba(0, 0, 0, 0.2) 75%, transparent 90%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(5px);
+    opacity: 0.85;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.model-card[data-model="outlander-sport"]:hover .model-image-container::after,
+.model-card[data-model="l200"]:hover .model-image-container::after,
+.model-card[data-model="l200-gsr"]:hover .model-image-container::after {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+}
+
+.model-card[data-model="outlander-sport"] img,
+.model-card[data-model="l200"] img,
+.model-card[data-model="l200-gsr"] img {
+    position: absolute;
+    z-index: 1;
+    filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.85)) brightness(0.95) contrast(1.08);
+}
+
 .model-card:hover img {
-    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.9));
 }
 
 .model-card h3 {
@@ -1532,6 +1567,11 @@ a {
     background-repeat: no-repeat;
     background-position: right 15px top 50%;
     background-size: 12px auto;
+    text-transform: uppercase;
+}
+
+#distribuidor-search {
+    text-transform: uppercase;
 }
 
 .filter-select:focus {
@@ -1542,6 +1582,7 @@ a {
 .filter-select option {
     background: #111;
     color: var(--color-white);
+    text-transform: uppercase;
 }
 
 /* Ajustes de Altura Fija y Prevención de Scroll General (Desktop) */
@@ -2109,6 +2150,7 @@ form input[type="file"] {
     font-size: 0.9rem;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.15s ease;
+    text-transform: uppercase;
 }
 
 .autocomplete-item:hover,
