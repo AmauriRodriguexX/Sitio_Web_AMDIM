@@ -1219,32 +1219,7 @@ a {
     max-width: 315px !important;
 }
 
-/* Homologación de sombra inferior negra para Outlander Sport, L200 y L200 GSR */
-.model-card[data-model="outlander-sport"] .model-image-container::after,
-.model-card[data-model="l200"] .model-image-container::after,
-.model-card[data-model="l200-gsr"] .model-image-container::after {
-    content: '';
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 18px;
-    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 45%, rgba(0, 0, 0, 0.2) 75%, transparent 90%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    filter: blur(5px);
-    opacity: 0.85;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
 
-.model-card[data-model="outlander-sport"]:hover .model-image-container::after,
-.model-card[data-model="l200"]:hover .model-image-container::after,
-.model-card[data-model="l200-gsr"]:hover .model-image-container::after {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.05);
-}
 
 .model-card[data-model="outlander-sport"] img,
 .model-card[data-model="l200"] img,
@@ -2121,6 +2096,37 @@ form input[type="file"] {
     position: relative;
     flex-grow: 1;
     min-width: 260px;
+}
+
+.search-clear-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+    padding: 0;
+}
+
+.search-clear-btn:hover {
+    color: #FFFFFF;
+    background-color: var(--color-red);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.search-clear-btn span {
+    font-size: 1.1rem;
+    line-height: 1;
 }
 
 .autocomplete-dropdown {

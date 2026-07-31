@@ -418,7 +418,10 @@
                 <div class="search-bar" style="margin-bottom: 0;">
                     <div style="position: relative; flex-grow: 1; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
                         <div class="search-input-wrapper">
-                            <input type="text" id="distribuidor-search" placeholder="BUSCAR POR CIUDAD, ESTADO O NOMBRE..." style="width: 100%;" autocomplete="off">
+                            <input type="text" id="distribuidor-search" placeholder="BUSCAR POR CIUDAD, ESTADO O NOMBRE..." style="width: 100%; padding-right: 42px;" autocomplete="off">
+                            <button type="button" id="distribuidor-search-clear" class="search-clear-btn" aria-label="Limpiar búsqueda" style="display: none;">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
                             <div id="search-autocomplete-dropdown" class="autocomplete-dropdown" style="display: none;"></div>
                         </div>
                         <select id="distribuidor-state-select" class="filter-select">

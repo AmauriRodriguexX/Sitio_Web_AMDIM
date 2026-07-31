@@ -921,6 +921,7 @@ function initMobileMenu() {
 
 function initDistribuidores() {
     const searchInput = document.getElementById('distribuidor-search');
+    const clearBtn = document.getElementById('distribuidor-search-clear');
     const stateSelect = document.getElementById('distribuidor-state-select');
     const searchStats = document.getElementById('search-stats');
     const directoryList = document.getElementById('directory-list');
@@ -933,6 +934,12 @@ function initDistribuidores() {
     let mexicoStatesGeoJSONData = null;
     let stateLayersGroup = null;
     let stateLayersByName = {};
+
+    function toggleClearBtn() {
+        if (clearBtn && searchInput) {
+            clearBtn.style.display = searchInput.value.trim().length > 0 ? 'flex' : 'none';
+        }
+    }
 
     // Normaliza el nombre de un estado para poder comparar aunque haya
     // variaciones de acentos/mayúsculas entre el listado de distribuidores y el GeoJSON
@@ -1134,6 +1141,7 @@ function initDistribuidores() {
     }
 
     function renderDistribuidores() {
+        toggleClearBtn();
         const list = getDistribuidores();
         const rawText = searchInput ? searchInput.value.trim() : "";
         const filterText = cleanText(rawText);
@@ -1501,11 +1509,13 @@ function initDistribuidores() {
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             selectedDistId = null;
+            toggleClearBtn();
             renderDistribuidores();
             renderAutocomplete(e.target.value);
         });
 
         searchInput.addEventListener('focus', (e) => {
+            toggleClearBtn();
             if (e.target.value.trim().length >= 1) {
                 renderAutocomplete(e.target.value);
             }
@@ -1515,6 +1525,20 @@ function initDistribuidores() {
             if (e.key === 'Escape') {
                 closeAutocomplete();
             }
+        });
+    }
+
+    // Botón X para borrar la búsqueda rápidamente
+    if (clearBtn && searchInput) {
+        clearBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            searchInput.value = '';
+            selectedDistId = null;
+            toggleClearBtn();
+            closeAutocomplete();
+            renderDistribuidores();
+            searchInput.focus();
         });
     }
 
