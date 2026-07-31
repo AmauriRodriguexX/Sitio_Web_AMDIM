@@ -1226,7 +1226,7 @@ a {
 .model-card[data-model="l200-gsr"] img {
     position: absolute;
     z-index: 1;
-    filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.85)) brightness(0.95) contrast(1.08);
+    filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.85));
 }
 
 .model-card:hover img {
