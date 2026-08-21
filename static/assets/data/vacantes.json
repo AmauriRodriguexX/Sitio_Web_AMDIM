@@ -1,0 +1,50 @@
+[
+    {
+        "id": "vac-001",
+        "titulo": "Asesor de Ventas Digitales & Vehículos Nuevos",
+        "distribuidor": "Mitsubishi Guadalajara",
+        "estado": "Jalisco",
+        "descripcion": "Buscamos profesional en ventas automotrices con experiencia en atención digital, CRM y prospección para integrarse al equipo comercial de la gama SUVs y Pick-Ups.",
+        "enlaceLinkedIn": "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/jobs/"
+    },
+    {
+        "id": "vac-002",
+        "titulo": "Técnico Especializado en Diagnóstico PHEV",
+        "distribuidor": "Mitsubishi Interlomas",
+        "estado": "Estado de México",
+        "descripcion": "Técnico certificado en sistemas eléctricos e híbridos enchufables (Outlander PHEV). Experiencia en uso de escáner MUT-III y mantenimiento especializado.",
+        "enlaceLinkedIn": "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/jobs/"
+    },
+    {
+        "id": "vac-003",
+        "titulo": "Gerente de Posventa y Servicio Técnico",
+        "distribuidor": "Mitsubishi Monterrey Norte",
+        "estado": "Nuevo León",
+        "descripcion": "Liderar las operaciones del taller de servicio y refacciones, manteniendo los estándares de calidad de la marca y satisfacción del cliente.",
+        "enlaceLinkedIn": "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/jobs/"
+    },
+    {
+        "id": "vac-004",
+        "titulo": "Asesor de Servicio y Atención a Clientes",
+        "distribuidor": "Mitsubishi Polanco",
+        "estado": "Ciudad de México",
+        "descripcion": "Recepción de unidades, diagnóstico primario, cotización de mantenimientos y seguimiento continuo con los propietarios.",
+        "enlaceLinkedIn": "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/jobs/"
+    },
+    {
+        "id": "vac-005",
+        "titulo": "Especialista en Financiamiento Automotriz",
+        "distribuidor": "Mitsubishi Puebla Angelópolis",
+        "estado": "Puebla",
+        "descripcion": "Gestión de solicitudes de crédito automotriz, trámite de pólizas de seguro y vinculación con instituciones financieras asociadas.",
+        "enlaceLinkedIn": "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/jobs/"
+    },
+    {
+        "id": "vac-006",
+        "titulo": "Técnico en Mantenimiento de Pick-Ups L200",
+        "distribuidor": "Mitsubishi Mérida",
+        "estado": "Yucatán",
+        "descripcion": "Técnico mecánico con experiencia en chasis, tracción 4WD y motores diésel/gasolina para flotillas y Pick-Ups.",
+        "enlaceLinkedIn": "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/jobs/"
+    }
+]
