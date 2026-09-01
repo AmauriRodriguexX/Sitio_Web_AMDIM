@@ -1,6 +1,7 @@
 <!-- BottomNavBar.svelte -->
 <script lang="ts">
   import { page } from '$app/stores';
+  import { base } from '$app/paths';
   import { globalState } from '$lib/state.svelte';
 
   const bottomLinks = [
@@ -10,14 +11,19 @@
     { href: '/bolsa-trabajo', icon: 'work', title: 'Bolsa de Trabajo' },
     { href: '/noticias', icon: 'article', title: 'Noticias' }
   ];
+
+  function isActiveLink(href: string) {
+    const currentPath = $page.url.pathname.slice(base.length).replace(/\/+$/, '') || '/';
+    return currentPath === href;
+  }
 </script>
 
 <nav class="mobile-bottom-nav">
   {#each bottomLinks as link}
-    <a 
-      href={link.href} 
-      class="bottom-nav-link" 
-      class:active={$page.url.pathname === link.href}
+    <a
+      href="{base}{link.href}"
+      class="bottom-nav-link"
+      class:active={isActiveLink(link.href)}
       title={link.title}
       onclick={() => globalState.closeMobileMenu()}
     >
@@ -37,4 +43,3 @@
     <span></span>
   </button>
 </nav>
-
