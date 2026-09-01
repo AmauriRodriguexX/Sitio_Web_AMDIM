@@ -1,6 +1,7 @@
 <!-- distribuidores/+page.svelte -->
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { base } from '$app/paths';
   import { globalState } from '$lib/state.svelte';
   import { DISTRIBUIDORES_INICIALES, type Distribuidor } from '$lib/data';
 
@@ -620,7 +621,7 @@
               onclick={() => selectDistributor(dist, false)}
             >
               <div class="distributor-card-img">
-                <img src="/assets/images/facades/real_facade.png" alt={dist.nombre.toUpperCase()} loading="lazy">
+                <img src="{base}/assets/images/facades/real_facade.png" alt={dist.nombre.toUpperCase()} loading="lazy">
               </div>
               <div class="distributor-card-info">
                 <div class="distributor-card-header">
@@ -654,4 +655,3 @@
     </div>
   </div>
 </section>
-
