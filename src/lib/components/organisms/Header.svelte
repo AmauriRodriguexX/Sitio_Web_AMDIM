@@ -2,6 +2,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
+  import { base } from '$app/paths';
   import { globalState } from '$lib/state.svelte';
 
   let isScrolled = $state(false);
@@ -27,16 +28,16 @@
   ];
 
   function isActiveLink(href: string) {
-    const currentPath = $page.url.pathname.replace(/\/+$/, '') || '/';
+    const currentPath = $page.url.pathname.slice(base.length).replace(/\/+$/, '') || '/';
     return currentPath === href;
   }
 </script>
 
 <header id="site-header" class="glass-panel" class:scrolled={isScrolled}>
   <div class="logo-container">
-    <a href="/" onclick={() => globalState.closeMobileMenu()}>
+    <a href="{base}/" onclick={() => globalState.closeMobileMenu()}>
       <!-- Logotipo oficial de AMDIM -->
-      <img src="/assets/images/logos/AMIDM_LOGO NUEVO solo rojo.png" alt="AMDIM Logo" class="brand-logo">
+      <img src="{base}/assets/images/logos/AMIDM_LOGO NUEVO solo rojo.png" alt="AMDIM Logo" class="brand-logo">
     </a>
   </div>
   
@@ -56,9 +57,9 @@
     <ul>
       {#each links as link}
         <li>
-          <a 
-            href={link.href} 
-            class="nav-link" 
+          <a
+            href="{base}{link.href}"
+            class="nav-link"
             class:active={isActiveLink(link.href)}
             onclick={() => globalState.closeMobileMenu()}
           >
@@ -78,4 +79,3 @@
   class:open={globalState.mobileMenuOpen}
   onclick={() => globalState.closeMobileMenu()}
 ></div>
-
