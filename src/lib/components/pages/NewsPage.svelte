@@ -1,6 +1,7 @@
 <!-- noticias/+page.svelte -->
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { base } from '$app/paths';
   import { globalState } from '$lib/state.svelte';
 
   let activeTab = $state<'linkedin' | 'blog'>('linkedin');
@@ -27,7 +28,7 @@
     {
       fecha: "Hace 1 mes • 🌐",
       texto: "Fortaleciendo la presencia institucional y operativa en México. 🏢🇲🇽\n\nEn la Asociación Mexicana de Distribuidores Mitsubishi impulsamos el trabajo coordinado entre la marca y nuestra Red de Distribuidores a nivel nacional.\n\nSeguimos construyendo proyectos estratégicos en beneficio de nuestros asociados y clientes.\n\n#AMDIM #OficinasCentrales #RedDeDistribuidores #MitsubishiMéxico",
-      imagen: "/assets/images/facades/real_facade.jpg",
+      imagen: `${base}/assets/images/facades/real_facade.jpg`,
       avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
       enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
       likes: 31,
@@ -36,7 +37,7 @@
     {
       fecha: "Hace 1 mes • 🌐",
       texto: "Reconocemos el compromiso y profesionalismo de cada uno de los distribuidores que integran la red en el país. 🏆👏\n\nGracias a su dedicación diaria seguimos consolidando la excelencia en servicio, ventas y posventa para cada cliente en la República Mexicana.\n\n#AMDIM #ExcelenciaMitsubishi #RedDeDistribuidores #OrgulloAMDIM",
-      imagen: "/assets/images/facades/facade_showroom.jpg",
+      imagen: `${base}/assets/images/facades/facade_showroom.jpg`,
       avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
       enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
       likes: 42,
@@ -45,7 +46,7 @@
     {
       fecha: "Hace 2 meses • 🌐",
       texto: "Impulsando el desarrollo profesional en la industria automotriz. 💼🏢\n\nEn AMDIM trabajamos en sinergia con la red para promover la capacitación constante de asesores comerciales y técnicos de posventa.\n\n¿Quieres formar parte de la Red Mitsubishi? Revisa nuestra Bolsa de Trabajo.\n\n#AMDIM #BolsaDeTrabajo #TalentoAutomotriz #DesarrolloProfesional",
-      imagen: "/assets/images/facades/facade_day.jpg",
+      imagen: `${base}/assets/images/facades/facade_day.jpg`,
       avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
       enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
       likes: 29,
@@ -54,7 +55,7 @@
     {
       fecha: "Hace 2 meses • 🌐",
       texto: "Más de 20 años acompañando a los distribuidores Mitsubishi en México. 🌟🤝\n\nTrabajamos continuamente para ofrecer el mejor soporte institucional, representando a los distribuidores de la marca y fortaleciendo su presencia en el mercado nacional.\n\n#AMDIM #Trayectoria #AsociaciónAutomotriz #MitsubishiMotors",
-      imagen: "/assets/images/facades/real_facade.jpg",
+      imagen: `${base}/assets/images/facades/real_facade.jpg`,
       avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQGTp5LaNbXKEQ/company-logo_100_100/B4EZzTWD7LIMAQ-/0/1773072302143/asociacin_mexicana_distribuidores_mitsubishi_logo?e=1786579200&v=beta&t=V3HrtQXdCXPlvyIrtYDWAyoIOzWqG0aY6hPH1ojIfY4",
       enlace: "https://www.linkedin.com/company/asociaci%C3%B3n-mexicana-distribuidores-mitsubishi/",
       likes: 35,
@@ -68,7 +69,7 @@
       autor: "Francisco Vargas",
       fecha: "Hace 1 semana • 🌐",
       resumen: "Un repaso detallado por la historia de Mitsubishi Motors en México, desde sus inicios en 2004 hasta la consolidación como marca independiente y parte de la Alianza.",
-      imagen: "/assets/images/news_convention.jpg",
+      imagen: `${base}/assets/images/news_convention.jpg`,
       likes: 15,
       comments: 3
     },
@@ -77,7 +78,7 @@
       autor: "Barbara Ibarguen",
       fecha: "Hace 3 semanas • 🌐",
       resumen: "Descubre por qué Outlander PHEV sigue siendo el híbrido enchufable más galardonado a nivel global y cómo optimiza tus viajes diarios.",
-      imagen: "/assets/images/news_l200.jpg",
+      imagen: `${base}/assets/images/news_l200.jpg`,
       likes: 22,
       comments: 6
     },
@@ -86,27 +87,28 @@
       autor: "José Volantín",
       fecha: "Hace 1 mes • 🌐",
       resumen: "Mantén tu Pick-up L200 en las mejores condiciones con estos sencillos consejos de posventa de nuestros distribuidores autorizados.",
-      imagen: "/assets/images/news_jobs.jpg",
+      imagen: `${base}/assets/images/news_jobs.jpg`,
       likes: 18,
       comments: 4
     }
   ];
 
   const LOCAL_POST_IMAGES = [
-    '/assets/images/news_convention.jpg',
-    '/assets/images/news_l200.jpg',
-    '/assets/images/news_jobs.jpg',
-    '/assets/images/facades/real_facade.jpg',
-    '/assets/images/facades/facade_showroom.jpg',
-    '/assets/images/facades/facade_day.jpg'
+    `${base}/assets/images/news_convention.jpg`,
+    `${base}/assets/images/news_l200.jpg`,
+    `${base}/assets/images/news_jobs.jpg`,
+    `${base}/assets/images/facades/real_facade.jpg`,
+    `${base}/assets/images/facades/facade_showroom.jpg`,
+    `${base}/assets/images/facades/facade_day.jpg`
   ];
 
   function resolveImagePath(image: string | undefined, index: number) {
     if (!image) return LOCAL_POST_IMAGES[index % LOCAL_POST_IMAGES.length];
 
     // Los datos heredados usan rutas relativas. En una ruta como /noticias/
-    // éstas apuntan a /noticias/assets/... y producen 404.
-    return image.startsWith('assets/') ? `/${image}` : image;
+    // éstas apuntan a /noticias/assets/... y producen 404. En GitHub Pages
+    // además hace falta anteponer el base path del sitio (/Sitio_Web_AMDIM).
+    return image.startsWith('assets/') ? `${base}/${image}` : image;
   }
 
   function replaceBrokenImage(event: Event, index: number) {
@@ -124,7 +126,7 @@
 
   onMount(() => {
     // Attempt to load dynamic posts
-    fetch('/assets/data/linkedin_posts.json')
+    fetch(`${base}/assets/data/linkedin_posts.json`)
       .then(res => {
         if (!res.ok) throw new Error("Local fallback");
         return res.json();
@@ -167,7 +169,7 @@
           <div class="mock-linkedin-post glass-card" onclick={() => handlePostClick(post.enlace)}>
             <div class="post-header">
               <div class="post-author-info">
-                <div class="post-avatar" style="background: url('{post.avatar || '/assets/images/logos/AMIDM_LOGO NUEVO solo rojo.png'}') center/cover no-repeat #111; border: 1px solid rgba(225,39,39,0.3);"></div>
+                <div class="post-avatar" style="background: url('{post.avatar || `${base}/assets/images/logos/AMIDM_LOGO NUEVO solo rojo.png`}') center/cover no-repeat #111; border: 1px solid rgba(225,39,39,0.3);"></div>
                 <div class="post-author-meta">
                   <strong class="post-author-name">Asociación Mexicana Distribuidores Mitsubishi, A.C.</strong>
                   <span class="post-date">{post.fecha || 'Reciente • 🌐'}</span>
@@ -273,4 +275,3 @@
     </a>
   </div>
 </section>
-
