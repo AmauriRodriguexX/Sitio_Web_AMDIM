@@ -2,6 +2,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
 
   interface Props {
     id: string;
@@ -147,7 +148,7 @@
     }
     
     // Redirect to distributors page
-    goto('/distribuidores');
+    goto(`${base}/distribuidores`);
   }
 </script>
 
@@ -200,4 +201,3 @@
     </a>
   </div>
 </div>
-
