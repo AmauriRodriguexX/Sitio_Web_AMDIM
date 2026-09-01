@@ -1,5 +1,6 @@
 <!-- Footer.svelte -->
 <script lang="ts">
+  import { base } from '$app/paths';
   import { globalState } from '$lib/state.svelte';
 </script>
 
@@ -26,9 +27,9 @@
     </div>
 
     <div class="footer-links">
-      <a href="/">Inicio</a> | 
-      <a href="/quienes-somos">Nosotros</a> | 
-      <a href="/contacto">Contacto</a> | 
+      <a href="{base}/">Inicio</a> |
+      <a href="{base}/quienes-somos">Nosotros</a> |
+      <a href="{base}/contacto">Contacto</a> |
       <br class="mobile-break" style="display: none;">
       <!-- svelte-ignore a11y_invalid_attribute -->
       <a href="javascript:void(0)" class="legal-link" onclick={() => globalState.openLegal('privacidad')}>Aviso de Privacidad</a> | 
@@ -41,4 +42,3 @@
     </div>
   </div>
 </footer>
-
