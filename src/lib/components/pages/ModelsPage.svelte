@@ -1,6 +1,7 @@
 <!-- modelos/+page.svelte -->
 <script lang="ts">
   import ModelCard from '$lib/components/molecules/ModelCard.svelte';
+  import { base } from '$app/paths';
 
   let activeFilter = $state('all');
 
@@ -41,7 +42,7 @@
         "https://mitsubishi-motors.mx/assets/cross-sunrise-orange-metallic-7_5078_5ahI17ROa3.avif"
     ],
     "outlander-sport": [
-        "/assets/images/vehicles/Outlander-Sport-energetic-yellow-metallic-1_3664_Q4BHtIY6RY.png",
+        `${base}/assets/images/vehicles/Outlander-Sport-energetic-yellow-metallic-1_3664_Q4BHtIY6RY.png`,
         "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-5_3662_K3OQY39O1t.avif",
         "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-4_3666_lQDWp1gOut.avif",
         "https://mitsubishi-motors.mx/assets/Outlander-Sport-energetic-yellow-metallic-3_2673_HZsumDpqRZ.avif",
@@ -70,14 +71,14 @@
         "https://mitsubishi-motors.mx/assets/montero-blade-silver-metallic-2_3805_PuTg4P28ge.avif"
     ],
     "l200": [
-        "/assets/images/vehicles/l200-impulse-blue-metallic-1_4262_R1Lm6cdVyB.png",
+        `${base}/assets/images/vehicles/l200-impulse-blue-metallic-1_4262_R1Lm6cdVyB.png`,
         "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-5_4266_e2tKFDOWr8.avif",
         "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-4_4265_aRNSM6cpsP.avif",
         "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-3_4264_rP5JJD1wZE.avif",
         "https://mitsubishi-motors.mx/assets/l200-impulse-blue-metallic-2_4263_SG0ZGOEomI.avif"
     ],
     "l200-gsr": [
-        "/assets/images/vehicles/GSR-orange-metallic-1_3919_ghhNVLxsm7.png",
+        `${base}/assets/images/vehicles/GSR-orange-metallic-1_3919_ghhNVLxsm7.png`,
         "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-5_3928_Cd68tvSkqz.avif",
         "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-4_3924_VQV3aJTBji.avif",
         "https://mitsubishi-motors.mx/assets/GSR-orange-metallic-3_3921_cSnMpRyDoc.avif",
@@ -233,4 +234,3 @@
     {/each}
   </div>
 </section>
-
