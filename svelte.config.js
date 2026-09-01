@@ -9,7 +9,9 @@ const config = {
 			fallback: '404.html'
 		}),
 		paths: {
-			base: ''
+			// En GitHub Pages el sitio vive en /Sitio_Web_AMDIM/ (no en la raíz del dominio).
+			// El workflow de despliegue define BASE_PATH; en local (npm run dev / build) queda vacío.
+			base: process.env.BASE_PATH ?? ''
 		}
 	}
 };
