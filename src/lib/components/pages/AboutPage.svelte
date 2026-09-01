@@ -1,5 +1,6 @@
 <!-- quienes-somos/+page.svelte -->
 <script lang="ts">
+  import { base } from '$app/paths';
 </script>
 
 <section id="nosotros" class="content-section">
@@ -17,7 +18,7 @@
         <p>Con la llegada de Mitsubishi Motors al mercado mexicano en 2018 y la formalización de sus operaciones en 2019, la marca consolidó una nueva etapa de crecimiento en el país, integrándose a la Alianza Renault-Nissan-Mitsubishi. Actualmente, AMDIM tiene su sede en la Ciudad de México.</p>
       </article>
       <div class="about-visual-card glass-card">
-        <img src="/assets/images/facades/real_facade.jpg" alt="Asociación Mexicana de Distribuidores Mitsubishi">
+        <img src="{base}/assets/images/facades/real_facade.jpg" alt="Asociación Mexicana de Distribuidores Mitsubishi">
       </div>
     </div>
 
@@ -67,4 +68,3 @@
     </section>
   </div>
 </section>
-
