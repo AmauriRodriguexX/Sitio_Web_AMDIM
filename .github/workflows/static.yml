@@ -29,6 +29,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
+        with:
+          # El lockfile (pnpm-lock.yaml) usa lockfileVersion 9.0, generado con pnpm 9.
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
